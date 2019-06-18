@@ -25,45 +25,34 @@ import java.util.HashMap;
 	
 	public class HomePageTest extends BrowserFunctions{
 		
-		User us= new User();	
+		HomePage ss= new HomePage();
+		User us= new User();
 		
 		
-        @Test
-		public void ticketbooking() throws Exception
+		
+		
+		@Test
+		public void bookticketevents() throws InterruptedException
 		{
-	    	HomePage ss= new HomePage();
-	    	ss.countrySelection();
-	    	ss.signinWanasaTimeCredentials();
+			ss.countrySelection();
 			ss.BookTicketevents();
-			//CommonMethods Cm=new CommonMethods
-			//Assert.assertEquals(ss.successMsg(), "Congratulations! Your Tickets was confirmed.");
-			//System.out.println("ticketbooked");
-	    	//ss.bookticketmovies();
-		} 	
-        
-	   
-	    @Test
-	    public void useredit() throws Exception 
-	    {	    	
-	    		    	
-	    	us.edituser();
-	    		    	
-	    }
+		}
+		
+		@Test
+		public void login()
+		{
+			ss.signinWanasaTimeCredentials();
+		}
+		
+		
+		@Test
+		public void useroperations() throws Exception
+		{
+			us.edituser();
+			us.purchasehistory();
+		}
 	    
-	    
-	    @Test
-	    public void changePassword()
-	    {
-	    	us.passwordchange();
-	    	
-	    }
-	    
-	    
-	    @Test
-	    public void bookinghistory()
-	    {
-	    	us.purchasehistory();
-	    }
+	  
 	    
 	}
 

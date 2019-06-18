@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 
 import utils.*;
@@ -22,12 +23,16 @@ public  class HomePage extends BrowserFunctions{
 	By signinemail          = By.id("email");
 	By signinpassword       = By.id("password");
 	By loginclick           = By.id("LoginSubmit");
+	By logout = By.id("Logout");
 	
-	
+	//confirmation.aspx
+	By txtPaymentMobile = By.id("txtPaymentMobile");
+	By txtPaymentEmail = By.id("txtPaymentEmail");
 	
 	
 	//bhd musicband  href="night-life/bahrain-music-band"
 	By eventbookBHDMusic    = By.xpath("//*[@href='night-life/bahrain-music-band']");
+	By Eventbookclickimg    = By.xpath("//*[@src='http://staging.wanasatime.com/EventPosters/bmb_0905201910540917879.jpg']");
  	By eventbookingclick    = By.id("bookBtnForOtherevents");
  	By next            = By.id("BookingNext");
  	By dateselection        = By.xpath("//*[@recurringid='1766']");
@@ -59,9 +64,11 @@ public  class HomePage extends BrowserFunctions{
 
  	public void  countrySelection() throws InterruptedException
  	{
- 		CommonMethods.clickMethod(location);
+ 		//CommonMethods.clickMethod(location);
+ 		driver.findElement(location).click(); 	
 		List<WebElement> listcountry=driver.findElements(region);
-		listcountry.get(0).click();		
+		listcountry.get(0).click();	
+		Thread.sleep(4000);
  		
  	} 	
  	
@@ -76,13 +83,13 @@ public  class HomePage extends BrowserFunctions{
  		driver.findElement(signinemail).sendKeys(CommonMethods.passingData("EnterMail"));
  		driver.findElement(signinpassword).sendKeys("");
  		driver.findElement(loginclick).click();
- 		Thread.sleep(8000);
+ 		Thread.sleep(5000);
  		
  		driver.findElement(signinemail).clear();
  		driver.findElement(signinemail).sendKeys("test0000@gmail.com");
  		driver.findElement(signinpassword).sendKeys("874283748");
  		driver.findElement(loginclick).click();
- 		Thread.sleep(8000);
+ 		Thread.sleep(5000);
  		
  		
  		driver.findElement(signinemail).clear(); 
@@ -90,7 +97,9 @@ public  class HomePage extends BrowserFunctions{
  		driver.findElement(signinemail).sendKeys(CommonMethods.passingData("EnterMail"));
 		driver.findElement(signinpassword).sendKeys(CommonMethods.passingData("Password"));	
 		driver.findElement(loginclick).click();
-		Thread.sleep(8000);
+	//	driver.findElement(logout).click();
+		Thread.sleep(5000);
+		
 				
  		}
  		catch(Exception ex) {
@@ -105,12 +114,14 @@ public  class HomePage extends BrowserFunctions{
  	
 	public void BookTicketevents()
 	{
-		try{	
-			
-			
+		try{				
 		driver.findElement(eventstab).click();	
 		Thread.sleep(3000);	
-		driver.findElement(eventbookBHDMusic).click();
+		//Actions action= new Actions(driver);
+		//WebElement ele = driver.findElement(Eventbookclickimg);
+		//action.moveToElement(ele).perform();
+		//driver.findElement(Eventbookclickimg).click();
+		driver.navigate().to("http://staging.wanasatime.com/night-life/bahrain-music-band");
 		Thread.sleep(3000);	
 		//driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS); next
 		driver.findElement(eventbookingclick).click();
@@ -122,9 +133,11 @@ public  class HomePage extends BrowserFunctions{
 		driver.findElement(selectcategoryfree).click();
 		Thread.sleep(3000);	
 		driver.findElement(btnproceedfinal).click();
-		Thread.sleep(3000);	
+		Thread.sleep(3000);
+		driver.findElement(txtPaymentMobile).sendKeys(CommonMethods.passingData("mobile"));
+		driver.findElement(txtPaymentEmail).sendKeys(CommonMethods.passingData("EnterMail"));
 		driver.findElement(btnforpay).click();
-		Thread.sleep(10000);	
+		Thread.sleep(5000);	
 						
 	   }
 		catch (Exception e) {
@@ -132,66 +145,6 @@ public  class HomePage extends BrowserFunctions{
 	   }
 		
 	}
-	
-	
-	
-	public void bookticketmovies()
-	{
-		try
-		{
-			
-			driver.navigate().to("http://staging.wanasatime.com/Movies.aspx");
-			 
-			CommonMethods.clickMethod(moviestab);
-		
-			CommonMethods.clickMethod(weelymovie);
-			
-			CommonMethods.clickMethod(weelymoviesbookbutton);
-		
-			CommonMethods.clickMethod(weelymoviedateselection);
-			
-			CommonMethods.clickMethod(weelyshowtimeselection);
-			
-			
-			System.out.println("hai alert");
-			//Thread.sleep(3000);	
-			
-		//	JavascriptExecutor js = (JavascriptExecutor) driver;  
-			//js.executeScript(Script,Arguments);
-			//js.executeScript("document.getElementById('btnAccept').click();");
-			
-			//String s=driver.findElement(By.id("age_restrict")).getText();
-			//Assert.assertEquals(s, "Parental Guidance advised");
-			//CommonMethods.explicitWaitForAlert(driver);
-			//driver.findElement(By.id("btnAccept")).click();
-	 	//	driver.switchTo().alert().accept();
-			//CommonMethods.clickMethod(alertmovieok);
-	 		
-			//Thread.sleep(10000);
-			/*CommonMethods.explicitWaitForAlert(driver);
-	 		driver.switchTo().alert();
-			CommonMethods.clickMethod(numberofseatselection);
-		
-			Thread.sleep(3000);	
-			CommonMethods.clickMethod(seatselectionOkclick);
-			Thread.sleep(3000);	
-			CommonMethods.clickMethod(seatlayoutselect);
-			Thread.sleep(3000);	
-			CommonMethods.clickMethod(proceedpaymovie);*/
-			//Thread.sleep(3000); driver.findElement(voucher).sendKeys("");
-			//Thread.sleep(3000);	CommonMethods.clickMethod(moviespayproceed);		
-		}
-		catch  (Exception e)
-		{
-			
-		}
-		
-						
-		
-	}
-	
-	
-
 	
 
 }
