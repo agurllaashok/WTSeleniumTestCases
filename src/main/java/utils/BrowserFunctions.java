@@ -49,7 +49,7 @@ public class BrowserFunctions {
 			extent = new ExtentReports();
 			extent.attachReporter(reporter);
 			logger_ss = extent.createTest("BeforeTest");
-			System.setProperty("webdriver.gecko.driver", "C:\\Users\\smsc\\eclipse-workspace\\WT\\Drivers\\geckodriver.exe");
+			System.setProperty("webdriver.gecko.driver", "D:\\WanasaWorkSpace\\WTSeleniumTestCases\\Drivers\\geckodriver.exe");
 			driver = new FirefoxDriver();
 			logger_ss.log(Status.INFO, "Firefox Browser Launched Successfully");
 		}
@@ -59,7 +59,7 @@ public class BrowserFunctions {
 			extent = new ExtentReports();
 			extent.attachReporter(reporter);
 			logger_ss = extent.createTest("BeforeTest");
-			System.setProperty("webdriver.chrome.driver","C:\\Users\\smsc\\eclipse-workspace\\WT\\Drivers\\chromedriver.exe");
+			System.setProperty("webdriver.chrome.driver","D:\\WanasaWorkSpace\\WTSeleniumTestCases\\Drivers\\chromedriver.exe");
 			driver = new ChromeDriver();
 			logger_ss.log(Status.INFO, "Chrome Browser Launched Successfully");
 		}
@@ -69,7 +69,7 @@ public class BrowserFunctions {
 			extent = new ExtentReports();
 			extent.attachReporter(reporter);
 			logger_ss = extent.createTest("BeforeTest");
-			System.setProperty("webdriver.edge.driver","C:\\Users\\smsc\\eclipse-workspace\\WT\\Drivers\\MicrosoftWebDriver.exe");
+			System.setProperty("webdriver.edge.driver","D:\\WanasaWorkSpace\\WTSeleniumTestCases\\Drivers\\MicrosoftWebDriver.exe");
 			driver = new EdgeDriver();
 			logger_ss.log(Status.INFO, "Edge Browser Launched Successfully");
 				}
@@ -79,7 +79,7 @@ public class BrowserFunctions {
 			extent = new ExtentReports();
 			extent.attachReporter(reporter);
 			logger_ss = extent.createTest("BeforeTest");
-			System.setProperty("webdriver.chrome.driver","C:\\Users\\smsc\\eclipse-workspace\\WT\\Drivers\\chromedriver.exe");
+			System.setProperty("webdriver.chrome.driver","D:\\WanasaWorkSpace\\WTSeleniumTestCases\\Drivers\\chromedriver.exe");
 			driver = new ChromeDriver();
 			logger_ss.log(Status.INFO, "Chrome Browser Launched Successfully");
 		}
@@ -95,7 +95,7 @@ public class BrowserFunctions {
 		
 		if (result.getStatus() == ITestResult.FAILURE) {
 			System.out.println("TestCase failed");
-			String temp = Utility.getScreenshot();
+			String temp = CommonMethods.getScreenshot();
 			logger_ss.fail(result.getThrowable().getMessage(),
 					MediaEntityBuilder.createScreenCaptureFromPath(temp).build());
 		}else{
