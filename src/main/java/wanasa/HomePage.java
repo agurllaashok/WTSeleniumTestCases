@@ -24,6 +24,7 @@ public  class HomePage extends BrowserFunctions{
 	By signinpassword       = By.id("password");
 	By loginclick           = By.id("LoginSubmit");
 	By logout = By.id("Logout");
+	By errormsgemptypwd = By.id("toast-container");
 	
 	//confirmation.aspx
 	By txtPaymentMobile = By.id("txtPaymentMobile");
@@ -83,6 +84,7 @@ public  class HomePage extends BrowserFunctions{
  		driver.findElement(signinemail).sendKeys(CommonMethods.passingData("EnterMail"));
  		driver.findElement(signinpassword).sendKeys("");
  		driver.findElement(loginclick).click();
+ 		//Assert.assertEquals(errormsgemptypwd(),"Enter a password");
  		Thread.sleep(5000);
  		
  		driver.findElement(signinemail).clear();
@@ -107,9 +109,14 @@ public  class HomePage extends BrowserFunctions{
  		} 		
  	}
  	
- public String successMsg() {
+    public String successMsg() {
  		return driver.findElement(successMsg).getText();
- 	}
+     	}
+ 
+    public String errormsgemptypwd()
+    {
+	   return driver.findElement(errormsgemptypwd).getText();
+    }
  	
  	
 	public void BookTicketevents()

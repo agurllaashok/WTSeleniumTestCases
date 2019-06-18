@@ -34,7 +34,7 @@ import java.util.HashMap;
 		@Test
 		public void bookticketevents() throws InterruptedException
 		{
-			ss.countrySelection();
+			ss.countrySelection();						
 			ss.BookTicketevents();
 		}
 		
@@ -42,6 +42,7 @@ import java.util.HashMap;
 		public void login()
 		{
 			ss.signinWanasaTimeCredentials();
+			
 		}
 		
 		
