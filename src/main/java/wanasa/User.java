@@ -17,20 +17,19 @@ public class User extends BrowserFunctions  {
 	
 	//menu s
 	By menu = By.id("mobileMenu");
+	By menu1 = By.id("userMenu");
 	By profileclick = By.id("myProfile");
 	By BookingHistory = By.id("bookingHistory");
 	By Evouchers = By.id("eVouchers"); 
 	By AdvertiseWithUs = By.linkText("Advertise With Us");
 	
 	
-	// profile edit 
-	
+	// profile edit 	
 	By buyerFName = By.id("buyerFName"); 
 	By buyerLName = By.id("buyerLName");
 
 		// genderdropdown 
-	By gender= By.id("buyerGender");
-	
+	By gender= By.id("buyerGender");	
 	By buyerState = By.id("buyerState");
 	By buyerCity = By.id("buyerCity");
 	By updateBuyerProfile = By.id("updateBuyerProfile");
@@ -65,7 +64,7 @@ public class User extends BrowserFunctions  {
 	public void edituser() throws Exception
 	{		
 		try{
-		driver.findElement(menu).click();
+		driver.findElement(menu1).click();
 		driver.findElement(profileclick).click();
 		Thread.sleep(3000);
 		driver.findElement(buyerLName).clear();
@@ -113,7 +112,7 @@ public class User extends BrowserFunctions  {
     {
     	try
     	{
-    		driver.findElement(menu).click();
+    		driver.findElement(menu1).click();
     		driver.findElement(BookingHistory).click();
     		Thread.sleep(2000);
     		//todaybookings 

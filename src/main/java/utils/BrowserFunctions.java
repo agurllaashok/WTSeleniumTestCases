@@ -31,14 +31,15 @@ import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 
 public class BrowserFunctions {
-	public static String homePageUrl= "http://staging.wanasatime.com";
+	public static String homePageUrl= CommonMethods.passingData("homepageurl");
 	//public static String contactsPageUrl = "http://staging.grptalk.com/Contacts.aspx";
 	public static  WebDriver driver;
 	public ExtentReports extent ;
 	public ExtentTest logger_ss;
 	//public static Logger logger = Logger.getLogger(AudioTest.class);
-	public String downloadFilepath = "D:\\grpTalk\\TestDataFiles\\downloads\\";
-	StringBuilder sb = new StringBuilder();
+	public static String  downloadFilepath;// = "D:\\grpTalk\\TestDataFiles\\downloads\\";
+	StringBuilder sb = new StringBuilder();	
+  
 
 	@BeforeTest	
 	@Parameters("browser")
@@ -55,6 +56,7 @@ public class BrowserFunctions {
 		}
 		
 		else if(browser.equalsIgnoreCase("chrome")){
+			System.out.println(homePageUrl);
 			ExtentHtmlReporter reporter = new ExtentHtmlReporter("GrpTalk_Report_On_Chrome.html");
 			extent = new ExtentReports();
 			extent.attachReporter(reporter);

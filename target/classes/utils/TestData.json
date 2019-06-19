@@ -1,5 +1,8 @@
 {
     "EnterMail"								:		"pallavi.domreddy@smscountry.com",
     "Password"								:		"pallavi22",
-    "mobile" 								:		"7396206647"
+    "mobile" 								:		"7396206647",
+    "homepageurl"							:		"http://staging.wanasatime.com",
+    "downloadFilepath"							:		"D:\\grpTalk\\TestDataFiles\\downloads\\"
+    
 }

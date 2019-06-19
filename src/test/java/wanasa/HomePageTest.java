@@ -27,33 +27,30 @@ import java.util.HashMap;
 		
 		HomePage ss= new HomePage();
 		User us= new User();
-		
-		
-		
-		
-		@Test
-		public void bookticketevents() throws InterruptedException
-		{
-			ss.countrySelection();						
-			ss.BookTicketevents();
-		}
-		
-		@Test
-		public void login()
-		{
-			ss.signinWanasaTimeCredentials();
 			
+		@Test(priority=0)
+		public void verifylogin() throws InterruptedException  
+		{			
+			ss.clickSignInButton();
+			String emptypwd = ss.singInWithEmptyPassword();
+			Assert.assertEquals(emptypwd,"Enter a password");
+			String invalidinput= ss.singInWithincorrectcredentials();
+			Assert.assertEquals(invalidinput,"Invalid credentials" );
+			String afterlogin = ss.signinWanasaTimeCredentials();
+			Assert.assertEquals(afterlogin, "http://staging.wanasatime.com/");						
 		}
 		
-		
-		@Test
-		public void useroperations() throws Exception
+		@Test(priority=1)
+		public void verifybookticketevents() throws InterruptedException 
 		{
-			us.edituser();
-			us.purchasehistory();
+			ss.countrySelection();	
+			String URL = driver.getCurrentUrl();
+			Assert.assertEquals(URL,"http://staging.wanasatime.com/Home.aspx?country=Bahrain" );
+			//Thread.sleep(4000);
+			String success =ss.BookTicketevents();
+			Assert.assertEquals(success,"Congratulations! Your Tickets was confirmed.");				
+			//Thread.sleep(3000);
 		}
-	    
-	  
 	    
 	}
 

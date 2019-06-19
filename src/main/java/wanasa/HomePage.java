@@ -23,19 +23,23 @@ public  class HomePage extends BrowserFunctions{
 	By signinemail          = By.id("email");
 	By signinpassword       = By.id("password");
 	By loginclick           = By.id("LoginSubmit");
-	By logout = By.id("Logout");
-	By errormsgemptypwd = By.id("toast-container");
-	
+	By logout               = By.id("Logout");
+	By errormsgemptypwd 	= By.className("toast-message");
+	By erremtypwd		    = By.xpath("//*[contains(@class,'toast-message') and contains(text(),'Enter a password')]");
+	By erridpwdwrong 		= By.xpath("//*[contains(@class,'toast-message') and contains(text(),'Invalid credentials')]");
+	By afterloginverify 	= By.className("user-profile-name-container");
 	//confirmation.aspx
-	By txtPaymentMobile = By.id("txtPaymentMobile");
-	By txtPaymentEmail = By.id("txtPaymentEmail");
+	By txtPaymentMobile 	= By.id("txtPaymentMobile");
+	By txtPaymentEmail 		= By.id("txtPaymentEmail");
+	By ticketconfirmtext    = By.xpath("//*[@id='successMsg']//h4");
+	By tktcanceltext        = By.xpath("//*[@id='failedMsg']//h4");
 	
 	
-	//bhd musicband  href="night-life/bahrain-music-band"
+	//bhd musicband  href="night-life/bahrain-music-band" 
 	By eventbookBHDMusic    = By.xpath("//*[@href='night-life/bahrain-music-band']");
 	By Eventbookclickimg    = By.xpath("//*[@src='http://staging.wanasatime.com/EventPosters/bmb_0905201910540917879.jpg']");
  	By eventbookingclick    = By.id("bookBtnForOtherevents");
- 	By next            = By.id("BookingNext");
+ 	By next            		= By.id("BookingNext");
  	By dateselection        = By.xpath("//*[@recurringid='1766']");
  	By btnproceed 			= By.id("btnProceed"); 
  	By selectcategoryfree   = By.xpath("//*[@categoryid='5395']");	
@@ -43,7 +47,7 @@ public  class HomePage extends BrowserFunctions{
  	By btnproceedfinal		= By.id("btnProceed");
  	By btnforpay			= By.id("btnProceed");
  	
- 	By fblogin				= By.id("loginBtn1");
+ 	By fblogin				= By.id("loginBtn1"); 
  	By successMsg 			= By.xpath("//*[@id='successMsg']//h4[1]");
  	
  	//movies
@@ -69,68 +73,76 @@ public  class HomePage extends BrowserFunctions{
  		driver.findElement(location).click(); 	
 		List<WebElement> listcountry=driver.findElements(region);
 		listcountry.get(0).click();	
-		Thread.sleep(4000);
- 		
+		Thread.sleep(3000);
+				
  	} 	
  	
  	
- 	public void signinWanasaTimeCredentials()
- 	{
- 		try
- 		{
- 		driver.findElement(signinclick).click(); 		
- 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
- 		
- 		driver.findElement(signinemail).sendKeys(CommonMethods.passingData("EnterMail"));
+ 	public void clickSignInButton() throws InterruptedException{
+ 		driver.findElement(signinclick).click(); 	
+ 	}
+ 	
+ 	
+	public String singInWithEmptyPassword()
+	{
+		driver.findElement(signinemail).sendKeys(CommonMethods.passingData("EnterMail"));
  		driver.findElement(signinpassword).sendKeys("");
  		driver.findElement(loginclick).click();
- 		//Assert.assertEquals(errormsgemptypwd(),"Enter a password");
- 		Thread.sleep(5000);
- 		
- 		driver.findElement(signinemail).clear();
+ 		return driver.findElement(erremtypwd).getText();	
+ 	}
+	
+	
+	public String singInWithincorrectcredentials()
+	{
+		driver.findElement(signinemail).clear();
  		driver.findElement(signinemail).sendKeys("test0000@gmail.com");
  		driver.findElement(signinpassword).sendKeys("874283748");
  		driver.findElement(loginclick).click();
- 		Thread.sleep(5000);
- 		
- 		
- 		driver.findElement(signinemail).clear(); 
+ 		return  driver.findElement(erridpwdwrong).getText();	
+ 	}
+ 	
+	
+ 	public String signinWanasaTimeCredentials()
+ 	{
+ 		try
+ 		{
+ 		/*driver.findElement(signinclick).click(); 		
+ 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS); 			
+ 		Thread.sleep(5000);*/
+		driver.findElement(signinemail).clear(); 
  		driver.findElement(signinpassword).clear();
  		driver.findElement(signinemail).sendKeys(CommonMethods.passingData("EnterMail"));
 		driver.findElement(signinpassword).sendKeys(CommonMethods.passingData("Password"));	
 		driver.findElement(loginclick).click();
-	//	driver.findElement(logout).click();
-		Thread.sleep(5000);
+		//BrowserFunctions.homePageUrl = CommonMethods.passingData("homepageurl");
+		//BrowserFunctions.downloadFilepath = CommonMethods.passingData("downloadFilepath");
 		
-				
+		Thread.sleep(5000);		
+		
+		
  		}
  		catch(Exception ex) {
  			
- 		} 		
- 	}
+ 		} 
+ 		String url=driver.getCurrentUrl();
+ 		return url;
+  	}
  	
-    public String successMsg() {
+ 	
+    public String successMsg()
+     {
  		return driver.findElement(successMsg).getText();
-     	}
- 
-    public String errormsgemptypwd()
-    {
-	   return driver.findElement(errormsgemptypwd).getText();
-    }
- 	
- 	
-	public void BookTicketevents()
+     }
+
+    
+	public String  BookTicketevents()
 	{
-		try{				
-		driver.findElement(eventstab).click();	
-		Thread.sleep(3000);	
-		//Actions action= new Actions(driver);
-		//WebElement ele = driver.findElement(Eventbookclickimg);
-		//action.moveToElement(ele).perform();
-		//driver.findElement(Eventbookclickimg).click();
+		try
+		{				
+		//driver.findElement(eventstab).click();	
+		//Thread.sleep(3000);	
 		driver.navigate().to("http://staging.wanasatime.com/night-life/bahrain-music-band");
 		Thread.sleep(3000);	
-		//driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS); next
 		driver.findElement(eventbookingclick).click();
 		Thread.sleep(3000);	
 		driver.findElement(dateselection).click();
@@ -141,16 +153,14 @@ public  class HomePage extends BrowserFunctions{
 		Thread.sleep(3000);	
 		driver.findElement(btnproceedfinal).click();
 		Thread.sleep(3000);
-		driver.findElement(txtPaymentMobile).sendKeys(CommonMethods.passingData("mobile"));
-		driver.findElement(txtPaymentEmail).sendKeys(CommonMethods.passingData("EnterMail"));
+		//driver.findElement(txtPaymentMobile).sendKeys(CommonMethods.passingData("mobile"));
+	//	driver.findElement(txtPaymentEmail).sendKeys(CommonMethods.passingData("EnterMail"));
 		driver.findElement(btnforpay).click();
-		Thread.sleep(5000);	
-						
+		Thread.sleep(5000);						
 	   }
-		catch (Exception e) {
-		   
-	   }
-		
+		catch (Exception e) {		   
+	   }		
+		return driver.findElement(ticketconfirmtext).getText();
 	}
 	
 
