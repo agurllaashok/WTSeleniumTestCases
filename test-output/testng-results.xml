@@ -2,12 +2,12 @@
 <testng-results skipped="0" failed="0" total="2" passed="2">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="78363" started-at="2019-06-19T11:48:20Z" finished-at="2019-06-19T11:49:39Z">
+  <suite name="Default suite" duration-ms="84206" started-at="2019-06-19T11:55:17Z" finished-at="2019-06-19T11:56:42Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="78363" started-at="2019-06-19T11:48:20Z" finished-at="2019-06-19T11:49:39Z">
+    <test name="Default test" duration-ms="84206" started-at="2019-06-19T11:55:17Z" finished-at="2019-06-19T11:56:42Z">
       <class name="wanasa.HomePageTest">
-        <test-method status="PASS" signature="setup(java.lang.String)[pri:0, instance:wanasa.HomePageTest@6537cf78]" name="setup" is-config="true" duration-ms="21106" started-at="2019-06-19T17:18:20Z" finished-at="2019-06-19T17:18:41Z">
+        <test-method status="PASS" signature="setup(java.lang.String)[pri:0, instance:wanasa.HomePageTest@6537cf78]" name="setup" is-config="true" duration-ms="20453" started-at="2019-06-19T17:25:17Z" finished-at="2019-06-19T17:25:38Z">
           <params>
             <param index="0">
               <value>
@@ -18,11 +18,11 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method status="PASS" signature="verifylogin()[pri:0, instance:wanasa.HomePageTest@6537cf78]" name="verifylogin" duration-ms="11668" started-at="2019-06-19T17:18:41Z" finished-at="2019-06-19T17:18:53Z">
+        <test-method status="PASS" signature="verifylogin()[pri:0, instance:wanasa.HomePageTest@6537cf78]" name="verifylogin" duration-ms="11692" started-at="2019-06-19T17:25:38Z" finished-at="2019-06-19T17:25:50Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- verifylogin -->
-        <test-method status="PASS" signature="tearDown(org.testng.ITestResult)[pri:0, instance:wanasa.HomePageTest@6537cf78]" name="tearDown" is-config="true" duration-ms="267" started-at="2019-06-19T17:18:53Z" finished-at="2019-06-19T17:18:53Z">
+        <test-method status="PASS" signature="tearDown(org.testng.ITestResult)[pri:0, instance:wanasa.HomePageTest@6537cf78]" name="tearDown" is-config="true" duration-ms="374" started-at="2019-06-19T17:25:50Z" finished-at="2019-06-19T17:25:50Z">
           <params>
             <param index="0">
               <value>
@@ -33,11 +33,11 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method status="PASS" signature="verifybookticketevents()[pri:1, instance:wanasa.HomePageTest@6537cf78]" name="verifybookticketevents" duration-ms="45146" started-at="2019-06-19T17:18:53Z" finished-at="2019-06-19T17:19:38Z">
+        <test-method status="PASS" signature="verifybookticketevents()[pri:1, instance:wanasa.HomePageTest@6537cf78]" name="verifybookticketevents" duration-ms="49480" started-at="2019-06-19T17:25:50Z" finished-at="2019-06-19T17:26:39Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- verifybookticketevents -->
-        <test-method status="PASS" signature="tearDown(org.testng.ITestResult)[pri:0, instance:wanasa.HomePageTest@6537cf78]" name="tearDown" is-config="true" duration-ms="72" started-at="2019-06-19T17:19:38Z" finished-at="2019-06-19T17:19:39Z">
+        <test-method status="PASS" signature="tearDown(org.testng.ITestResult)[pri:0, instance:wanasa.HomePageTest@6537cf78]" name="tearDown" is-config="true" duration-ms="82" started-at="2019-06-19T17:26:39Z" finished-at="2019-06-19T17:26:39Z">
           <params>
             <param index="0">
               <value>
@@ -48,7 +48,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method status="PASS" signature="closeBrowser1(java.lang.String)[pri:0, instance:wanasa.HomePageTest@6537cf78]" name="closeBrowser1" is-config="true" duration-ms="92" started-at="2019-06-19T17:19:39Z" finished-at="2019-06-19T17:19:39Z">
+        <test-method status="PASS" signature="closeBrowser1(java.lang.String)[pri:0, instance:wanasa.HomePageTest@6537cf78]" name="closeBrowser1" is-config="true" duration-ms="2112" started-at="2019-06-19T17:26:39Z" finished-at="2019-06-19T17:26:42Z">
           <params>
             <param index="0">
               <value>

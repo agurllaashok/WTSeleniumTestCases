@@ -80,24 +80,30 @@ public  class HomePage extends BrowserFunctions{
  	
  	public void clickSignInButton() throws InterruptedException{
  		driver.findElement(signinclick).click(); 	
+ 		Thread.sleep(3000);
  	}
  	
  	
-	public String singInWithEmptyPassword()
+	public String singInWithEmptyPassword() throws InterruptedException
 	{
 		driver.findElement(signinemail).sendKeys(CommonMethods.passingData("EnterMail"));
- 		driver.findElement(signinpassword).sendKeys("");
+		Thread.sleep(3000);
+ 		driver.findElement(signinpassword).sendKeys(""); 		
  		driver.findElement(loginclick).click();
+ 		Thread.sleep(3000);
  		return driver.findElement(erremtypwd).getText();	
  	}
 	
 	
-	public String singInWithincorrectcredentials()
+	public String singInWithincorrectcredentials() throws InterruptedException
 	{
 		driver.findElement(signinemail).clear();
  		driver.findElement(signinemail).sendKeys("test0000@gmail.com");
+ 		Thread.sleep(3000);
  		driver.findElement(signinpassword).sendKeys("874283748");
+ 		Thread.sleep(3000);
  		driver.findElement(loginclick).click();
+ 		Thread.sleep(3000);
  		return  driver.findElement(erridpwdwrong).getText();	
  	}
  	
@@ -112,7 +118,9 @@ public  class HomePage extends BrowserFunctions{
 		driver.findElement(signinemail).clear(); 
  		driver.findElement(signinpassword).clear();
  		driver.findElement(signinemail).sendKeys(CommonMethods.passingData("EnterMail"));
+ 		Thread.sleep(3000);
 		driver.findElement(signinpassword).sendKeys(CommonMethods.passingData("Password"));	
+		Thread.sleep(3000);
 		driver.findElement(loginclick).click();
 		//BrowserFunctions.homePageUrl = CommonMethods.passingData("homepageurl");
 		//BrowserFunctions.downloadFilepath = CommonMethods.passingData("downloadFilepath");
