@@ -38,7 +38,8 @@ import java.util.HashMap;
 			String invalidinput= ss.singInWithincorrectcredentials();
 			Assert.assertEquals(invalidinput,"Invalid credentials" );
 			String afterlogin = ss.signinWanasaTimeCredentials();
-			Assert.assertEquals(afterlogin, "http://staging.wanasatime.com/");						
+			Assert.assertEquals(afterlogin, "http://staging.wanasatime.com/");	
+			
 		}
 		
 		@Test(priority=1)
@@ -51,7 +52,35 @@ import java.util.HashMap;
 			String success =ss.BookTicketevents();
 			Assert.assertEquals(success,"Congratulations! Your Tickets was confirmed.");				
 			//Thread.sleep(3000);
+		 	//driver.findElement(us.menu1).click();
+			//driver.findElement(us.logout).click();
+			//driver.navigate().to("http://staging.wanasatime.com/");
 		}
+				
+		@Test(priority=2)
+		public void verifybookticketseventsevoucher() throws InterruptedException
+		{
+		
+		ss.countrySelection();		
+		String URL = driver.getCurrentUrl();
+		Assert.assertEquals(URL,"http://staging.wanasatime.com/Home.aspx?country=Bahrain" );
+		String str=ss.BookTicketeventsVoucher();
+		Assert.assertEquals(str, "Congratulations! Your Tickets was confirmed.");
+		driver.findElement(us.menu1).click();
+		driver.findElement(us.logout).click();
+		driver.navigate().to("http://staging.wanasatime.com/");
+		}
+		
+		@Test(priority=3)
+		public void verifyforgotpassword() throws InterruptedException
+		{
+			String checksuccessmsg= ss.forgotpassword();
+			Assert.assertEquals(checksuccessmsg, "We have sent a mail to you.Please check your mail.");
+			
+		}
+		
+		
+		
 	    
 	}
 

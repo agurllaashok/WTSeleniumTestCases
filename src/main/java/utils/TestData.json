@@ -3,6 +3,8 @@
     "Password"								:		"pallavi22",
     "mobile" 								:		"7396206647",
     "homepageurl"							:		"http://staging.wanasatime.com",
-    "downloadFilepath"							:		"D:\\grpTalk\\TestDataFiles\\downloads\\"
+    "downloadFilepath"							:		"D:\\grpTalk\\TestDataFiles\\downloads\\",
+    "evoucher"                             : "178F3D81D1"
+    
     
 }

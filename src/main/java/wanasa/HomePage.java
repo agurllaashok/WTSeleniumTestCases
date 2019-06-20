@@ -28,12 +28,31 @@ public  class HomePage extends BrowserFunctions{
 	By erremtypwd		    = By.xpath("//*[contains(@class,'toast-message') and contains(text(),'Enter a password')]");
 	By erridpwdwrong 		= By.xpath("//*[contains(@class,'toast-message') and contains(text(),'Invalid credentials')]");
 	By afterloginverify 	= By.className("user-profile-name-container");
+	
+	//logout	
+	
+	
+	
 	//confirmation.aspx
 	By txtPaymentMobile 	= By.id("txtPaymentMobile");
 	By txtPaymentEmail 		= By.id("txtPaymentEmail");
 	By ticketconfirmtext    = By.xpath("//*[@id='successMsg']//h4");
 	By tktcanceltext        = By.xpath("//*[@id='failedMsg']//h4");
 	
+	
+	//signup
+	By username				= By.id("RegisterUser");
+	By email				= By.id("RegisterEmail");
+	By mobilenumber 		= By.id("re-phone");
+	By password 			= By.id("re-password");
+	By repassword 			= By.id("re-password");
+	By signupclick 			= By.id("userSignUp");
+	
+	//forgot password
+	By forgotclick			= By.id("lnkForgot");
+	By enteremail 			= By.id("txtForgotEmail");
+	By click				= By.id("btnForgot");
+	By forgotpwdsuccessmsg  = By.xpath("//*[contains(@class,'toast-message') and contains(text(),'We have sent a mail to you.Please check your mail.')]");
 	
 	//bhd musicband  href="night-life/bahrain-music-band" 
 	By eventbookBHDMusic    = By.xpath("//*[@href='night-life/bahrain-music-band']");
@@ -43,9 +62,16 @@ public  class HomePage extends BrowserFunctions{
  	By dateselection        = By.xpath("//*[@recurringid='1766']");
  	By btnproceed 			= By.id("btnProceed"); 
  	By selectcategoryfree   = By.xpath("//*[@categoryid='5395']");	
- 	By ticketcount       	= By.id("294"); 	
+ 	By ticketcount       	= By.id("294"); 
+ 	By sucatplatchild       = By.id("340"); 
  	By btnproceedfinal		= By.id("btnProceed");
- 	By btnforpay			= By.id("btnProceed");
+	By btnforpay			= By.id("btnProceed");
+	
+ 	//E-Voucher
+  	By evoucheraplybtn      = By.id("btnCouponApply");
+ 	By errorvoucher         = By.xpath("//[*contains(@class,'toast-message') and contains(text(),'Enter a E-Voucher Code')]");
+ 	By errorinvalidevoucher = By.xpath("//[*contains(@class,'toast-message') and contains(text(),'Invalid E-Voucher')]");
+ 
  	
  	By fblogin				= By.id("loginBtn1"); 
  	By successMsg 			= By.xpath("//*[@id='successMsg']//h4[1]");
@@ -81,6 +107,7 @@ public  class HomePage extends BrowserFunctions{
  	public void clickSignInButton() throws InterruptedException{
  		driver.findElement(signinclick).click(); 	
  		Thread.sleep(3000);
+ 		
  	}
  	
  	
@@ -171,5 +198,50 @@ public  class HomePage extends BrowserFunctions{
 		return driver.findElement(ticketconfirmtext).getText();
 	}
 	
-
+	public String forgotpassword() throws InterruptedException
+	{
+		driver.findElement(signinclick).click();
+		Thread.sleep(3000);
+		driver.findElement(forgotclick).click();
+		Thread.sleep(2000);
+		driver.findElement(enteremail).sendKeys(CommonMethods.passingData("EnterMail"));
+		driver.findElement(click).click();
+		Thread.sleep(2000);	
+		return driver.findElement(forgotpwdsuccessmsg).getText();
+	}
+	
+	
+	public String  BookTicketeventsVoucher()
+	{
+		try
+		{				
+		//driver.findElement(eventstab).click();	
+		//Thread.sleep(3000);	
+		driver.navigate().to("http://staging.wanasatime.com/night-life/bahrain-music-band");
+		Thread.sleep(3000);	
+		driver.findElement(eventbookingclick).click();
+		Thread.sleep(3000);	
+		driver.findElement(dateselection).click();
+		Thread.sleep(3000);	
+		driver.findElement(next).click();
+		Thread.sleep(3000);	
+		driver.findElement(sucatplatchild).click();
+		Thread.sleep(3000);		
+		driver.findElement(btnproceedfinal).click();
+		Thread.sleep(3000);
+		driver.findElement(voucher).sendKeys(CommonMethods.passingData("evoucher"));
+		driver.findElement(evoucheraplybtn).click();
+		Thread.sleep(3000);
+		driver.findElement(btnforpay).click();
+		Thread.sleep(5000);						
+	   }
+		catch (Exception e) {		   
+	   }		
+		return driver.findElement(ticketconfirmtext).getText();
+	}
+	
+	
+	
+	 
+	
 }
