@@ -32,6 +32,7 @@ import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 
 public class BrowserFunctions {
 	public static String homePageUrl= CommonMethods.passingData("homepageurl");
+	public static String EMCUrl= CommonMethods.passingData("emcurl");
 	//public static String contactsPageUrl = "http://staging.grptalk.com/Contacts.aspx";
 	public static  WebDriver driver;
 	public ExtentReports extent ;
@@ -46,7 +47,7 @@ public class BrowserFunctions {
 	public void setup(@Optional("IamOptional") String browser) throws Exception{
 		
 		if(browser.equalsIgnoreCase("firefox")){
-			ExtentHtmlReporter reporter = new ExtentHtmlReporter("GrpTalk_Report_On_Firefox.html");
+			ExtentHtmlReporter reporter = new ExtentHtmlReporter("WanasaTime_Report_On_Firefox.html");
 			extent = new ExtentReports();
 			extent.attachReporter(reporter);
 			logger_ss = extent.createTest("BeforeTest");
@@ -57,7 +58,7 @@ public class BrowserFunctions {
 		
 		else if(browser.equalsIgnoreCase("chrome")){
 			System.out.println(homePageUrl);
-			ExtentHtmlReporter reporter = new ExtentHtmlReporter("GrpTalk_Report_On_Chrome.html");
+			ExtentHtmlReporter reporter = new ExtentHtmlReporter("WanasaTime_Report_On_Firefox.html");
 			extent = new ExtentReports();
 			extent.attachReporter(reporter);
 			logger_ss = extent.createTest("BeforeTest");
@@ -67,7 +68,7 @@ public class BrowserFunctions {
 		}
 		
 		else if(browser.equalsIgnoreCase("Edge")){
-			ExtentHtmlReporter reporter = new ExtentHtmlReporter("GrpTalk_Report_On_Edge.html");
+			ExtentHtmlReporter reporter = new ExtentHtmlReporter("WanasaTime_Report_On_Firefox.html");
 			extent = new ExtentReports();
 			extent.attachReporter(reporter);
 			logger_ss = extent.createTest("BeforeTest");
@@ -77,7 +78,7 @@ public class BrowserFunctions {
 				}
 		else{
 			//throw new Exception("Browser is not correct");
-			ExtentHtmlReporter reporter = new ExtentHtmlReporter("GrpTalk_Report_On_Chrome.html");
+			ExtentHtmlReporter reporter = new ExtentHtmlReporter("WanasaTime_Report_On_Firefox.html");
 			extent = new ExtentReports();
 			extent.attachReporter(reporter);
 			logger_ss = extent.createTest("BeforeTest");
@@ -88,7 +89,7 @@ public class BrowserFunctions {
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 		driver.get("http://staging.wanasatime.com");
-		logger_ss.log(Status.INFO, "GrpTalk home page opend successfully");
+		logger_ss.log(Status.INFO, "WanasaTime home page opend successfully");
 		Thread.sleep(10000);
 	}
 	

@@ -1,22 +1,34 @@
-package wanasa;
+  package wanasa;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
-import java.util.*;
+import java.util.Set;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.testng.Assert;
+import org.openqa.selenium.support.ui.Select;
 
-import utils.*;
+import utils.BrowserFunctions;
+import utils.CommonMethods;
 
 public  class HomePage extends BrowserFunctions{
 	
 	//select region
 	By location      		= By.className("liLocation");
 	By region        		= By.className("region");
+	
+ 	public void  countrySelection() throws InterruptedException
+ 	{
+ 		//CommonMethods.clickMethod(location);
+ 		driver.findElement(location).click(); 	
+		List<WebElement> listcountry=driver.findElements(region);
+		listcountry.get(0).click();	
+		Thread.sleep(3000);
+				
+ 	} 	
+ 	
+	
 	
 	//signin
 	By signinclick   		= By.id("loginclick");
@@ -29,88 +41,6 @@ public  class HomePage extends BrowserFunctions{
 	By erridpwdwrong 		= By.xpath("//*[contains(@class,'toast-message') and contains(text(),'Invalid credentials')]");
 	By afterloginverify 	= By.className("user-profile-name-container");
 	
-	//logout	
-	
-	
-	
-	//confirmation.aspx
-	By txtPaymentMobile 	= By.id("txtPaymentMobile");
-	By txtPaymentEmail 		= By.id("txtPaymentEmail");
-	By ticketconfirmtext    = By.xpath("//*[@id='successMsg']//h4");
-	By tktcanceltext        = By.xpath("//*[@id='failedMsg']//h4");
-	
-	
-	//signup
-	By username				= By.id("RegisterUser");
-	By email				= By.id("RegisterEmail");
-	By mobilenumber 		= By.id("re-phone");
-	By password 			= By.id("re-password");
-	By repassword 			= By.id("re-password");
-	By signupclick 			= By.id("userSignUp");
-	
-	//forgot password
-	By forgotclick			= By.id("lnkForgot");
-	By enteremail 			= By.id("txtForgotEmail");
-	By click				= By.id("btnForgot");
-	By forgotpwdsuccessmsg  = By.xpath("//*[contains(@class,'toast-message') and contains(text(),'We have sent a mail to you.Please check your mail.')]");
-	
-	//bhd musicband  href="night-life/bahrain-music-band" 
-	By eventbookBHDMusic    = By.xpath("//*[@href='night-life/bahrain-music-band']");
-	By Eventbookclickimg    = By.xpath("//*[@src='http://staging.wanasatime.com/EventPosters/bmb_0905201910540917879.jpg']");
- 	By eventbookingclick    = By.id("bookBtnForOtherevents");
- 	By next            		= By.id("BookingNext");
- 	By dateselection        = By.xpath("//*[@recurringid='1766']");
- 	By btnproceed 			= By.id("btnProceed"); 
- 	By selectcategoryfree   = By.xpath("//*[@categoryid='5395']");	
- 	By ticketcount       	= By.id("294"); 
- 	By sucatplatchild       = By.id("340"); 
- 	By btnproceedfinal		= By.id("btnProceed");
-	By btnforpay			= By.id("btnProceed");
-	
- 	//E-Voucher
-  	By evoucheraplybtn      = By.id("btnCouponApply");
- 	By errorvoucher         = By.xpath("//[*contains(@class,'toast-message') and contains(text(),'Enter a E-Voucher Code')]");
- 	By errorinvalidevoucher = By.xpath("//[*contains(@class,'toast-message') and contains(text(),'Invalid E-Voucher')]");
- 
- 	
- 	By fblogin				= By.id("loginBtn1"); 
- 	By successMsg 			= By.xpath("//*[@id='successMsg']//h4[1]");
- 	
- 	//movies
- 	By moviestab 			= By.id("tabMovies");
- 	By eventstab			= By.id("tabEvents");
- 	By weelymovie			= By.xpath("//*[@href='MovieInfo.aspx?MovieId=14']");
- 	By weelymoviesbookbutton= By.id("bookTickets");
- 	By weelymoviedateselection = By.xpath("//*[@showdate='06/13/2019']");
- 	By weelyshowtimeselection = By.xpath("//*[@showid='4306']");
- 	By alertmovieok 				= By.id("btnAccept");
- 	By numberofseatselection 		= By.linkText("2");
- 	By seatselectionOkclick = By.id("btnOk");
- 	By seatlayoutselect 	= By.xpath("//*[@title='Row-A Seat-02']");
- 	By proceedpaymovie		= By.id("btnPay");
- 	By voucher 				= By.id("eVoucher");
- 	By moviespayproceed		= By.id("btnPaymentProceed");
- 	
-	 
-
- 	public void  countrySelection() throws InterruptedException
- 	{
- 		//CommonMethods.clickMethod(location);
- 		driver.findElement(location).click(); 	
-		List<WebElement> listcountry=driver.findElements(region);
-		listcountry.get(0).click();	
-		Thread.sleep(3000);
-				
- 	} 	
- 	
- 	
- 	public void clickSignInButton() throws InterruptedException{
- 		driver.findElement(signinclick).click(); 	
- 		Thread.sleep(3000);
- 		
- 	}
- 	
- 	
 	public String singInWithEmptyPassword() throws InterruptedException
 	{
 		driver.findElement(signinemail).sendKeys(CommonMethods.passingData("EnterMail"));
@@ -168,35 +98,167 @@ public  class HomePage extends BrowserFunctions{
      {
  		return driver.findElement(successMsg).getText();
      }
-
     
-	public String  BookTicketevents()
+	
+	//footerlinks
+	By aboutus 				= By.linkText("About");
+	By AdvertiseWithUs		= By.linkText("Advertise With Us");
+	By FAQ					= By.linkText("FAQs");
+	By TC					= By.linkText("Terms & Conditions"); 
+	By privacy					= By.linkText("Privacy Policy"); 
+	By contactus					= By.linkText("Contact us"); 
+	By planspricing					= By.linkText("Plans & Pricing"); 
+		
+	
+	public void footerlinksaboutus()
+	{
+		
+		try {
+			driver.navigate().to("http://staging.wanasatime.com/");
+			driver.findElement(aboutus).click();			
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void footerlinksAdvertiseWithUs()
+	{
+		
+		try {
+			//driver.navigate().to("http://staging.wanasatime.com/");
+			driver.findElement(AdvertiseWithUs).click();			
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void footerlinksfaq()
+	{
+		try {
+			//driver.navigate().to("http://staging.wanasatime.com/");
+			driver.findElement(FAQ).click();			
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void footerlinkstc()
+	{
+		try {
+			//driver.navigate().to("http://staging.wanasatime.com/");
+			driver.findElement(TC).click();			
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void footerlinkprivacy()
+	{
+		try {
+			//driver.navigate().to("http://staging.wanasatime.com/");
+			driver.findElement(privacy).click();			
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void footerlinkcontactus()
+	{
+		try {
+			//driver.navigate().to("http://staging.wanasatime.com/");
+			driver.findElement(contactus).click();			
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void footerlinkplanspricing()
+	{
+		try {
+			//driver.navigate().to("http://staging.wanasatime.com/");
+			driver.findElement(planspricing).click();			
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
+	
+	
+	//confirmation.aspx
+	By txtPaymentMobile 	= By.id("txtPaymentMobile");
+	By txtPaymentEmail 		= By.id("txtPaymentEmail");
+	By ticketconfirmtext    = By.xpath("//*[@id='successMsg']//h4");
+	By tktcanceltext        = By.xpath("//*[@id='failedMsg']//h4");
+	
+	
+	
+	//signup
+	By sinupclick			= By.id("lnkSignUp");
+	By username				= By.id("RegisterUser");
+	By email				= By.id("RegisterEmail");
+	//By prefix				= By.className("btn selected-country-code-btn");
+	By cprefix 				= By.id("countrydropup");
+	By prefix				= By.xpath("//*[@id='Phone']//*[@data-toggle='dropdown']");	
+	By mobilenumber 		= By.id("re-phone");
+	By password 			= By.id("re-password");
+	By repassword 			= By.id("confirmPassword");
+	By signupclick 			= By.id("userSignUp");
+	By signupsuccess 		= By.xpath("//*[contains(@class,'toast-message') and contains(text(),'You have successfully registered. We have sent a verification email to you.')]");
+	
+	
+	
+	
+	public String signup() throws InterruptedException
 	{
 		try
-		{				
-		//driver.findElement(eventstab).click();	
-		//Thread.sleep(3000);	
-		driver.navigate().to("http://staging.wanasatime.com/night-life/bahrain-music-band");
-		Thread.sleep(3000);	
-		driver.findElement(eventbookingclick).click();
-		Thread.sleep(3000);	
-		driver.findElement(dateselection).click();
-		Thread.sleep(3000);	
-		driver.findElement(next).click();
-		Thread.sleep(3000);	
-		driver.findElement(selectcategoryfree).click();
-		Thread.sleep(3000);	
-		driver.findElement(btnproceedfinal).click();
+		{
+		clickSignInButton();
+		driver.findElement(sinupclick).click();
+		CommonMethods cm = new CommonMethods();
+		driver.findElement(username).sendKeys(cm.getSaltString1());	
+		Thread.sleep(2000);
+		driver.findElement(email).sendKeys(cm.getSaltString1()+"@gmail.com");
+		Thread.sleep(2000);
+		driver.findElement(prefix).click();		
+		Actions ACT = new Actions(driver);
+		ACT.moveToElement(driver.findElement(By.xpath("//*[@id='countrydropup']//*[@style='padding: 5px 20px;']"))).perform();
+		driver.findElement(By.xpath("//*[@id='countrydropup']//*[@style='padding: 5px 20px;']")).click();
+		driver.findElement(By.id("customCountryPrefix")).sendKeys("91");
+		Thread.sleep(2000);
+		driver.findElement(mobilenumber).sendKeys("9848"+cm.getSaltString());
+		Thread.sleep(2000);
+		driver.findElement(password).sendKeys("pallavi22");	
+		driver.findElement(repassword).sendKeys("pallavi22");		
+		driver.findElement(signupclick).click();
 		Thread.sleep(3000);
-		//driver.findElement(txtPaymentMobile).sendKeys(CommonMethods.passingData("mobile"));
-	//	driver.findElement(txtPaymentEmail).sendKeys(CommonMethods.passingData("EnterMail"));
-		driver.findElement(btnforpay).click();
-		Thread.sleep(5000);						
-	   }
-		catch (Exception e) {		   
-	   }		
-		return driver.findElement(ticketconfirmtext).getText();
+		}
+		catch(Exception ex)
+		{
+			
+		}
+		return driver.findElement(signupsuccess).getText();
+		
 	}
+	
+	
+	//forgot password
+	By forgotclick			= By.id("lnkForgot");
+	By enteremail 			= By.id("txtForgotEmail");
+	By click				= By.id("btnForgot");
+	By forgotpwdsuccessmsg  = By.xpath("//*[contains(@class,'toast-message') and contains(text(),'We have sent a mail to you.Please check your mail.')]");
 	
 	public String forgotpassword() throws InterruptedException
 	{
@@ -211,7 +273,28 @@ public  class HomePage extends BrowserFunctions{
 	}
 	
 	
-	public String  BookTicketeventsVoucher()
+	
+	
+	//bhd musicband  href="night-life/bahrain-music-band" 
+	By eventbookBHDMusic    = By.xpath("//*[@href='night-life/bahrain-music-band']");
+	By Eventbookclickimg    = By.xpath("//*[@src='http://staging.wanasatime.com/EventPosters/bmb_0905201910540917879.jpg']");
+ 	By eventbookingclick    = By.id("bookBtnForOtherevents");
+ 	By next            		= By.id("BookingNext");
+ 	By dateselection        = By.xpath("//*[@recurringid='1766']");
+ 	By btnproceed 			= By.id("btnProceed"); 
+ 	By selectcategoryfree   = By.xpath("//*[@categoryid='5395']");	
+ 	By ticketcount       	= By.id("294"); 
+ 	By sucatplatchild       = By.id("340"); 
+ 	By btnproceedfinal		= By.id("btnProceed");
+	By btnforpay			= By.id("btnProceed");
+	By okButtonOnOverlay 	= By.id("btnAccept");
+	
+ 	//E-Voucher
+  	By evoucheraplybtn      = By.id("btnCouponApply");
+ 	By errorvoucher         = By.xpath("//[*contains(@class,'toast-message') and contains(text(),'Enter a E-Voucher Code')]");
+ 	By errorinvalidevoucher = By.xpath("//[*contains(@class,'toast-message') and contains(text(),'Invalid E-Voucher')]");
+ 
+ 	public String  BookTicketevents()
 	{
 		try
 		{				
@@ -221,17 +304,18 @@ public  class HomePage extends BrowserFunctions{
 		Thread.sleep(3000);	
 		driver.findElement(eventbookingclick).click();
 		Thread.sleep(3000);	
+		driver.findElement(okButtonOnOverlay).click();
+		Thread.sleep(3000);
 		driver.findElement(dateselection).click();
 		Thread.sleep(3000);	
 		driver.findElement(next).click();
 		Thread.sleep(3000);	
-		driver.findElement(sucatplatchild).click();
-		Thread.sleep(3000);		
+		driver.findElement(selectcategoryfree).click();
+		Thread.sleep(3000);	
 		driver.findElement(btnproceedfinal).click();
 		Thread.sleep(3000);
-		driver.findElement(voucher).sendKeys(CommonMethods.passingData("evoucher"));
-		driver.findElement(evoucheraplybtn).click();
-		Thread.sleep(3000);
+		//driver.findElement(txtPaymentMobile).sendKeys(CommonMethods.passingData("mobile"));
+		//driver.findElement(txtPaymentEmail).sendKeys(CommonMethods.passingData("EnterMail"));
 		driver.findElement(btnforpay).click();
 		Thread.sleep(5000);						
 	   }
@@ -242,6 +326,275 @@ public  class HomePage extends BrowserFunctions{
 	
 	
 	
-	 
 	
+	public String BookTicketeventsVoucher()
+	{		
+		try
+		{				
+		//driver.findElement(eventstab).click();	
+		//Thread.sleep(3000);	
+		driver.navigate().to("http://staging.wanasatime.com/night-life/bahrain-music-band");
+		Thread.sleep(3000);	
+		driver.findElement(eventbookingclick).click();
+		Thread.sleep(3000);	
+		driver.findElement(okButtonOnOverlay).click();
+		Thread.sleep(3000);
+		driver.findElement(dateselection).click();
+		Thread.sleep(3000);	
+		driver.findElement(next).click();
+		Thread.sleep(3000);	
+		driver.findElement(sucatplatchild).click();
+		Thread.sleep(3000);		
+		driver.findElement(btnproceedfinal).click();
+		Thread.sleep(3000);
+		driver.findElement(voucher).sendKeys(CommonMethods.passingData("evoucher"));
+		
+		driver.findElement(evoucheraplybtn).click();
+		
+		Thread.sleep(3000);
+		//driver.findElement(txtPaymentMobile).sendKeys(CommonMethods.passingData("mobile"));
+		//driver.findElement(txtPaymentEmail).sendKeys(CommonMethods.passingData("EnterMail"));
+		driver.findElement(btnforpay).click();
+		Thread.sleep(3000);
+		// result = driver.findElement(ticketconfirmtext).getText();
+		Thread.sleep(3000);
+	   }
+		catch (Exception e) {		   
+	   }
+		return driver.findElement(ticketconfirmtext).getText();
+	}
+	
+	
+	
+	
+ 	By fblogin				= By.id("loginBtn1"); 
+ 	By successMsg 			= By.xpath("//*[@id='successMsg']//h4[1]");
+ 	
+ 	//movies
+ 	 	By moviestab 			= By.id("tabMovies");
+ 	 	By eventstab			= By.id("tabEvents");
+ 	 	By vijaymovie			= By.xpath("//*[@href='MovieInfo.aspx?MovieId=17']");
+ 	 	//By vijaymovie			= By.linkText("Book");
+ 	 	By moviesbookbutton     = By.id("bookTickets");
+ 	 	By moviedateselection   = By.xpath("//*[@showdate='07/13/2019']");
+ 	 	By showtimeselection    = By.xpath("//*[@showid='6063']");
+ 	 	By alertmovieok 		= By.id("btnAccept");
+ 	 	By numberofseatselection= By.linkText("2");
+ 	 	By seatselectionOkclick = By.id("btnOk");
+ 	 	By seatlayoutselect 	= By.xpath("//*[@title='Row-H Seat-05']");
+ 	 	By proceedpaymovie		= By.id("btnPay");
+ 	 	By voucher 				= By.id("eVoucher");
+ 	 	By moviespayproceed		= By.id("btnPaymentProceed");
+ 	 	By ticketsuccess		= By.id("onSuccess");
+ 	
+	public String movieticketbooking() throws InterruptedException
+	{
+		
+		try
+		{
+			//driver.navigate().to("http://staging.wanasatime.com/");
+			driver.findElement(moviestab).click();
+			//driver.navigate().to("http://staging.wanasatime.com/Movies.aspx");
+			Thread.sleep(6000);
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+			driver.findElement(vijaymovie).click();
+			Thread.sleep(2000);
+			driver.findElement(moviesbookbutton).click();
+			driver.findElement(moviedateselection).click();
+			driver.findElement(showtimeselection).click();
+			Thread.sleep(2000);
+			driver.findElement(alertmovieok).click();
+			Thread.sleep(2000);
+			//driver.findElement(alertmovieok).click();
+			driver.findElement(seatselectionOkclick).click();
+			Thread.sleep(2000);
+			driver.findElement(seatlayoutselect).click();
+			Thread.sleep(2000);
+			driver.findElement(proceedpaymovie).click();
+			Thread.sleep(2000);		
+				js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+				driver.findElement(debitcardbtn).click();		
+			   Thread.sleep(4000);	
+			  driver.findElement(moviespayproceed).click();		
+			  Thread.sleep(10000);			
+			  driver.findElement(cardnumber).sendKeys(CommonMethods.passingData("CardNumber"));
+			  Thread.sleep(4000);
+			  driver.findElement(expiryMonth).click();
+			  Thread.sleep(2000);
+			  Select oSelect = new Select(driver.findElement(expiryMonth));
+			  oSelect.selectByIndex(11); 		 
+				Thread.sleep(2000);		
+				  driver.findElement(expiryYear).click();
+				Thread.sleep(2000);
+				Select oSelect1 = new Select(driver.findElement(expiryYear));
+				  oSelect1.selectByIndex(10);
+				Thread.sleep(2000);
+				
+				 driver.findElement(cardname).sendKeys(CommonMethods.passingData("CardName"));
+				  Thread.sleep(4000);
+			 
+			  driver.findElement(pinNumber).click();
+			  Thread.sleep(3000);
+			  driver.findElement(pin1).click();
+			  driver.findElement(pin2).click();
+			  driver.findElement(pin3).click();
+			  driver.findElement(pin4).click();
+			 driver.findElement(pinEnter).click();
+			  Thread.sleep(2000);
+			 driver.findElement(submit).click();
+			 driver.findElement(conform).click(); 
+		}
+		catch (Exception ex)
+		{
+			
+		}
+		
+		 return driver.findElement(ticketsuccess).getText();
+				
+	}
+ 	
+ 	
+
+
+ 	
+ 	public void clickSignInButton() throws InterruptedException{
+ 		driver.findElement(signinclick).click(); 	
+ 		Thread.sleep(3000);
+ 		
+ 	}
+ 	
+ 	
+
+
+    
+	
+	
+	// debitcard locators
+	
+	By debitcardbtn                    = By.xpath("//*[@id='btnDebitCard']");
+  	By cardnumber                      = By.id("Ecom_Payment_Card_Number_id");
+ 	By cardname						   = By.id("Ecom_Payment_Card_Name_id"); 	
+ 	By pinNumber					   = By.name("Ecom_Payment_Pin");
+ 	By expiryMonth 					   = By.name("Ecom_Payment_Card_ExpDate_Month");
+ 	By expiryYear				       = By.name("Ecom_Payment_Card_ExpDate_Year");
+ 	By pin1							   = By.xpath("//*[@id='table2']/tbody/tr/td/input[@name='1']");
+ 	By pin2							   = By.xpath("//*[@id='table2']/tbody/tr/td/input[@name='2']");
+ 	By pin3							   = By.xpath("//*[@id='table2']/tbody/tr/td/input[@name='3']");
+ 	By pin4							   = By.xpath("//*[@id='table2']/tbody/tr/td/input[@name='4']");
+ 	By pinEnter						   = By.name("Enter");
+ 	By submit						   = By.name("EntrySubmitAction");
+ 	By conform						   = By.name("ConfirmAction");
+
+ 	
+ 	// Ticket Booking with Debit card Method
+	  
+ 	  public String eventticketBookingWithDebitCard()
+ 	   {
+ 		   try
+ 		   {			   
+ 				driver.navigate().to("http://staging.wanasatime.com/night-life/bahrain-music-band");
+ 				Thread.sleep(3000);	
+ 				driver.findElement(eventbookingclick).click();
+ 				Thread.sleep(3000);	
+ 				driver.findElement(okButtonOnOverlay).click();
+ 				Thread.sleep(3000);
+ 				driver.findElement(dateselection).click();
+ 				Thread.sleep(3000);	
+ 				driver.findElement(next).click();
+ 				Thread.sleep(3000);	 		 
+ 			driver.findElement(sucatplatchild).click();
+ 			Thread.sleep(3000);		
+ 			driver.findElement(btnproceedfinal).click();
+ 			Thread.sleep(3000);
+ 			
+ 			//scrolling the window to bottom
+ 			JavascriptExecutor js = (JavascriptExecutor) driver;
+ 			js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+ 			driver.findElement(debitcardbtn).click();		
+ 		   Thread.sleep(4000);	
+ 		  driver.findElement(btnforpay).click();		
+ 		  Thread.sleep(10000);
+				
+ 		  driver.findElement(cardnumber).sendKeys(CommonMethods.passingData("CardNumber"));
+ 		  Thread.sleep(4000);
+ 		  driver.findElement(expiryMonth).click();
+ 		  Thread.sleep(2000);
+ 		  Select oSelect = new Select(driver.findElement(expiryMonth));
+ 		  oSelect.selectByIndex(11); 		 
+ 			Thread.sleep(2000);		
+ 			  driver.findElement(expiryYear).click();
+ 			Thread.sleep(2000);
+ 			Select oSelect1 = new Select(driver.findElement(expiryYear));
+ 			  oSelect1.selectByIndex(10);
+ 			Thread.sleep(2000);
+ 			
+ 			 driver.findElement(cardname).sendKeys(CommonMethods.passingData("CardName"));
+ 			  Thread.sleep(4000);
+ 		 
+ 		  driver.findElement(pinNumber).click();
+ 		  Thread.sleep(3000);
+ 		  driver.findElement(pin1).click();
+ 		  driver.findElement(pin2).click();
+ 		  driver.findElement(pin3).click();
+ 		  driver.findElement(pin4).click();
+ 		 driver.findElement(pinEnter).click();
+ 		  Thread.sleep(2000);
+ 		 driver.findElement(submit).click();
+ 		 driver.findElement(conform).click(); 		 
+ 		   }
+ 		   catch(Exception e)
+ 		   {
+ 				
+ 		   }
+ 		   return driver.findElement(ticketconfirmtext).getText();
+ 	   }
+ 	  
+
+ 	// Google Sign in Locators
+ 	    By googleLogin					   = By.id("connectGoogle");
+ 		By googleEmail					   = By.id("identifierId");
+ 		By gNext						   = By.xpath("//*[contains(@class,'RveJvd snByac') and contains(text(),'Next')]");
+ 		By googlePswd					   = By.name("password");
+ 		By gpNext						   = By.xpath("//*[contains(@class,'RveJvd snByac') and contains(text(),'Next')]");
+ 		By allow						   = By.xpath("//*[contains(@class,'RveJvd snByac') and contains(text(),'Allow')]");
+ 		
+ 		 //Google Login method
+ 	   
+ 	   public String googleLogin()
+ 	   {		     
+ 			 try
+ 			 {
+ 			driver.findElement(googleLogin).click();
+ 			 Set<String> AllwindowHandles=driver.getWindowHandles();
+ 			 String w1=(String) AllwindowHandles.toArray()[0];
+ 			 String w2=(String) AllwindowHandles.toArray()[1];
+ 			 driver.switchTo().window(w2);
+ 			 Thread.sleep(2000);
+ 			 
+ 				 driver.findElement(googleEmail).sendKeys(CommonMethods.passingData("googEmail"));
+ 				 Thread.sleep(2000);
+ 				driver.findElement(gNext).click();
+ 				 Thread.sleep(2000);
+ 				 driver.findElement(googlePswd).sendKeys(CommonMethods.passingData("googPswd"));
+ 				 Thread.sleep(2000);
+ 				driver.findElement(gpNext).click();
+ 				 Thread.sleep(2000);
+ 				driver.findElement(allow).click();
+ 				 Thread.sleep(2000);
+ 			    driver.switchTo().window(w1);
+ 			    Thread.sleep(4000);
+ 			    
+ 			 }
+ 			
+ 			 catch(Exception ex)
+ 			 {
+ 				 
+ 			 }
+ 			 
+ 			 String url=driver.getCurrentUrl();
+ 			   return url;
+ 	   }
+ 		
+
 }

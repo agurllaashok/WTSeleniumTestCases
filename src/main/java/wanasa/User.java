@@ -1,5 +1,9 @@
 package wanasa;
 
+import java.awt.Robot;
+import java.awt.Toolkit;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.KeyEvent;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -27,6 +31,11 @@ public class User extends BrowserFunctions  {
 	// profile edit 	
 	By buyerFName = By.id("buyerFName"); 
 	By buyerLName = By.id("buyerLName");
+	
+	// Profile Pic Locators
+
+    By profilepic          =             By.id("picEditIcon");
+    By profilesavebtn	   =             By.id("btnSaveImage");
 
 		// genderdropdown 
 	By gender= By.id("buyerGender");	
@@ -35,45 +44,36 @@ public class User extends BrowserFunctions  {
 	By updateBuyerProfile = By.id("updateBuyerProfile");
 	By changePasswordBtn = By.id("changePasswordBtn");
 	
-	//change password
-	By oldPassword = By.id("oldPassword");
-	By newPassword = By.id("newPassword");
-	By ConfirmPassword = By.id("Confirm Password");
-	By BtnupdatePassword = By.id("updatePassword");
-	
-	//booking history
-	
-//	Select bookingstatusdropdown  = new Select(driver.findElement(By.id("filterSelection"))); 
-//y bokkingstatus = By.id("filterSelection");
-
-	By mvebookings = By.linkText("MOVIES");
-	By Eventbookings = By.linkText("EVENTS");
-	By Allbookings = By.linkText("ALL");;
-	By Apply = By.id("btnApply");
-	
-	
-	//evoucher screen 	
-	//Select voucherstatusdropdown  = new Select(driver.findElement(By.id("statusSelection"))); 	
-	By searchDates = By.id("searchDates");
-	
-	//logout
-	By logout = By.id("Logout");
-	
-	
 	
 	public void edituser() throws Exception
 	{		
 		try{
 		driver.findElement(menu1).click();
-		driver.findElement(profileclick).click();
+		driver.findElement(profileclick).click();		
 		Thread.sleep(3000);
-		driver.findElement(buyerLName).clear();
+		Thread.sleep(2000);
+		driver.findElement(profilepic).click();
+		 StringSelection ss= new StringSelection("C:\\Users\\Smsc_Tech\\Downloads\\PicsArt_03-19-02.50.30.jpg");
+		 Thread.sleep(8000);
+		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss,null);
+		 Robot robot = new Robot();
+		 robot.keyPress(KeyEvent.VK_CONTROL);
+		 robot.keyPress(KeyEvent.VK_V);
+		 robot.keyRelease(KeyEvent.VK_V);
+		 robot.keyRelease(KeyEvent.VK_CONTROL);
+		 robot.keyPress(KeyEvent.VK_ENTER);
+		 robot.keyRelease(KeyEvent.VK_ENTER);
+		 Thread.sleep(14000);
+		 driver.findElement(profilesavebtn).click();
+	     Thread.sleep(5000);
+	     
+	/*	driver.findElement(buyerLName).clear();
 		Thread.sleep(3000);
 		driver.findElement(buyerLName).sendKeys("domreddy");
 		Thread.sleep(3000);
 		WebElement testDropDown = driver.findElement(By.id("buyerGender"));  
 		Select gender = new Select(testDropDown);  
-		gender.selectByValue("Female");	
+		gender.selectByValue("Female");			
 		driver.findElement(buyerState).clear();
 		Thread.sleep(3000);
 		driver.findElement(buyerState).sendKeys("hyd");
@@ -81,7 +81,7 @@ public class User extends BrowserFunctions  {
 		Thread.sleep(3000);
 		driver.findElement(buyerCity).sendKeys("hyd");
 		driver.findElement(updateBuyerProfile).click();	
-		Thread.sleep(6000);
+		Thread.sleep(6000);*/
 		}
 		catch(Exception ex)
 		{
@@ -89,6 +89,13 @@ public class User extends BrowserFunctions  {
 		}		
 				
 	}
+	
+	//change password
+	By oldPassword = By.id("oldPassword");
+	By newPassword = By.id("newPassword");
+	By ConfirmPassword = By.id("Confirm Password");
+	By BtnupdatePassword = By.id("updatePassword");
+	
 	public void passwordchange()
 	{
 		try
@@ -107,6 +114,15 @@ public class User extends BrowserFunctions  {
 		}	
 	
 	}
+	
+	//booking history
+
+	By mvebookings = By.linkText("MOVIES");
+	By Eventbookings = By.linkText("EVENTS");
+	By Allbookings = By.linkText("ALL");;
+	By Apply = By.id("btnApply");
+	
+	
 	
     public void purchasehistory()
     {
@@ -133,9 +149,22 @@ public class User extends BrowserFunctions  {
     	catch(Exception ex)
     	{
     		
-    	}
+    	}   	
     	
     }
+	//evoucher screen 		
+	By searchDates = By.id("searchDates");
+	
+	//logout
+	By logout = By.id("Logout");
+	
+	
+
+
+	
+
+    
+  
 
 }
 

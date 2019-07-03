@@ -1,10 +1,15 @@
 {
     "EnterMail"								:		"pallavi.domreddy@smscountry.com",
     "Password"								:		"pallavi22",
-    "mobile" 								:		"7396206647",
+    "mobile" 								:		"12345678",
     "homepageurl"							:		"http://staging.wanasatime.com",
-    "downloadFilepath"							:		"D:\\grpTalk\\TestDataFiles\\downloads\\",
-    "evoucher"                             : "178F3D81D1"
+    "emcurl"								:		"http://staging.emc.wanasatime.com",
+    "downloadFilepath"						:		"D:\\grpTalk\\TestDataFiles\\downloads\\",
+    "evoucher"                              :       "178F3D81D1",
+    "CardNumber"							:		"2222220123456789",
+    "CardName"								:		"pallavi",
+    "googEmail"								:       "navyamanju5@gmail.com",
+    "googPswd"								:       "nagamanjusha"
     
     
 }

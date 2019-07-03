@@ -9,6 +9,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Random;
+
+import org.apache.commons.io.FileUtils;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
@@ -19,10 +24,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.apache.commons.io.FileUtils;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import utils.BrowserFunctions;
 
 public class CommonMethods extends BrowserFunctions{
 	
@@ -142,15 +143,31 @@ public class CommonMethods extends BrowserFunctions{
 		Thread.sleep(2000);
 	}
 	
-	private static final String ALPHA_NUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-	public static String randomAlphaNumeric(int count)
-	{
-		StringBuilder builder = new StringBuilder();
-		while (count-- != 0) 
-	   {
-		int character = (int)(Math.random()*ALPHA_NUMERIC_STRING.length());
-		builder.append(ALPHA_NUMERIC_STRING.charAt(character));
-	   }
-	return builder.toString();
+	
+	public String getSaltString1() {
+	       String SALTCHARS = "abcdefghijklmnopqrstuvwxyz0123456789";
+	       StringBuilder salt = new StringBuilder();
+	       Random rnd = new Random();
+	       while (salt.length() < 10) { // length of the random string.
+	           int index = (int) (rnd.nextFloat() * SALTCHARS.length());
+	           salt.append(SALTCHARS.charAt(index));
+	       }
+	       String saltStr = salt.toString();
+	       return saltStr;
 	}
+	
+	public String getSaltString() {
+	       String SALTCHARS = "0123456789";
+	       StringBuilder salt = new StringBuilder();
+	       Random rnd = new Random();
+	       while (salt.length() < 6) { // length of the random string.
+	           int index = (int) (rnd.nextFloat() * SALTCHARS.length());
+	           salt.append(SALTCHARS.charAt(index));
+	       }
+	       String saltStr = salt.toString();
+	       return saltStr;
+	}
+	
+	
 }
+
