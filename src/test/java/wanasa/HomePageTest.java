@@ -83,11 +83,7 @@ import java.util.HashMap;
 			String success =ss.eventticketBookingWithDebitCard();
 			Assert.assertEquals(success,"Congratulations! Your Tickets was confirmed.");	
 			//ss.downloadTicket();	
-			driver.navigate().to("http://staging.wanasatime.com");
-			driver.findElement(us.menu1).click();
-			driver.findElement(us.logout).click();
-			String URL1 = driver.getCurrentUrl();
-			Assert.assertEquals(URL1,"http://staging.wanasatime.com/Home.aspx");
+			
 						
 			}
 				
@@ -109,8 +105,23 @@ import java.util.HashMap;
 	
 		}
 				*/
+		@Test(priority=5)
+		public void verifymovieticketbooking() throws InterruptedException
+			{
+			driver.navigate().to("http://staging.wanasatime.com");
+			ss.countrySelection();
+			String success =ss.movieticketbooking();
+			Assert.assertEquals(success,"Congratulations! Your Tickets was confirmed.");	
+			//  ss.downloadTicket();	
+			driver.navigate().to("http://staging.wanasatime.com");
+			driver.findElement(us.menu1).click();
+			driver.findElement(us.logout).click();
+			String URL1 = driver.getCurrentUrl();
+			Assert.assertEquals(URL1,"http://staging.wanasatime.com/Home.aspx");
+			}
+		
 				
-		@Test(priority=5) 
+		@Test(priority=6) 
 		public void googLogin() throws InterruptedException
 			{
 			    driver.navigate().to("http://staging.wanasatime.com");
@@ -118,19 +129,14 @@ import java.util.HashMap;
 				String afterlogin=ss.googleLogin();
 				Assert.assertEquals(afterlogin,"http://staging.wanasatime.com/");
 				Thread.sleep(4000);
+				driver.findElement(us.menu1).click();
+				driver.findElement(us.logout).click();
+				String URL1 = driver.getCurrentUrl();
+				Assert.assertEquals(URL1,"http://staging.wanasatime.com/Home.aspx");
 				//String URL = driver.getCurrentUrl();
 				//Assert.assertEquals(URL,"http://staging.wanasatime.com/");							
 				}
 	     
-		@Test(priority=6)
-		public void verifymovieticketbooking() throws InterruptedException
-			{
-			driver.navigate().to("http://staging.wanasatime.com");
-			ss.countrySelection();
-			String success =ss.movieticketbooking();
-			Assert.assertEquals(success,"Congratulations! Your Tickets was confirmed.");	
-			//ss.downloadTicket();						
-			}
 		
 		
 		@Test(priority=7)

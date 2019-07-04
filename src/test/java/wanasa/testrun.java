@@ -54,32 +54,74 @@ public class testrun extends BrowserFunctions{
 		//driver.findElement(us.logout).click();
 		//driver.navigate().to("http://staging.wanasatime.com/");
 	}
+	
+	@Test(priority=4)
+	public void verifyeventticketBookingWithDebitCard() throws InterruptedException
+		{
+		driver.navigate().to("http://staging.wanasatime.com");
+		//ss.clickSignInButton();
+		//ss.signinWanasaTimeCredentials();
+		ss.countrySelection();
+		String success =ss.eventticketBookingWithDebitCard();
+		Assert.assertEquals(success,"Congratulations! Your Tickets was confirmed.");	
+		//ss.downloadTicket();	
+		
+					
+		}
 			
-/*	@Test(priority=4)
+	/*@Test(priority=5)
 	
 	public void verifybookticketseventsevoucher() throws InterruptedException
 	{
-	
+	driver.navigate().to("http://staging.wanasatime.com");
 	ss.countrySelection();		
 	String URL = driver.getCurrentUrl();
 	Assert.assertEquals(URL,"http://staging.wanasatime.com/Home.aspx?country=Bahrain" );
-	ss.BookTicketeventsVoucher();
+	//ss.BookTicketeventsVoucher();
 	Thread.sleep(2000);
-	//Assert.assertEquals(str, "Congratulations! Your Tickets was confirmed.");
-	driver.findElement(us.menu1).click();
-	driver.findElement(us.logout).click();
-	driver.navigate().to("http://staging.wanasatime.com/");
-	}*/
-	
-	@Test
-	public void verifymoviebooking() throws InterruptedException
-	{
-		ss.countrySelection();			
-		ss.movieticketbooking();
-	}
+	String success =ss.BookTicketeventsVoucher();
+	Assert.assertEquals(success, "Congratulations! Your Tickets was confirmed.");
+	//driver.findElement(us.menu1).click();
+	//driver.findElement(us.logout).click();
+	//driver.navigate().to("http://staging.wanasatime.com/");
 
+	}
+			*/
+	@Test(priority=5)
+	public void verifymovieticketbooking() throws InterruptedException
+		{
+		driver.navigate().to("http://staging.wanasatime.com");
+		ss.countrySelection();
+		String success =ss.movieticketbooking();
+		Assert.assertEquals(success,"Congratulations! Your Tickets was confirmed.");	
+		//  ss.downloadTicket();	
+		driver.navigate().to("http://staging.wanasatime.com");
+		driver.findElement(us.menu1).click();
+		driver.findElement(us.logout).click();
+		String URL1 = driver.getCurrentUrl();
+		Assert.assertEquals(URL1,"http://staging.wanasatime.com/Home.aspx");
+		}
 	
-	@Test(priority=4)
+			
+	@Test(priority=6) 
+	public void googLogin() throws InterruptedException
+		{
+		    driver.navigate().to("http://staging.wanasatime.com");
+			ss.clickSignInButton();				
+			String afterlogin=ss.googleLogin();
+			Assert.assertEquals(afterlogin,"http://staging.wanasatime.com/");
+			Thread.sleep(4000);
+			driver.findElement(us.menu1).click();
+			driver.findElement(us.logout).click();
+			String URL1 = driver.getCurrentUrl();
+			Assert.assertEquals(URL1,"http://staging.wanasatime.com/Home.aspx");
+			//String URL = driver.getCurrentUrl();
+			//Assert.assertEquals(URL,"http://staging.wanasatime.com/");							
+			}
+     
+	
+	
+	@Test(priority=7)
 	public void verifyfooterlinks ()
     {
 	    	 ss.footerlinksaboutus();
@@ -103,6 +145,6 @@ public class testrun extends BrowserFunctions{
 	    	 ss.footerlinkplanspricing();
 	    	 String pricing = driver.getCurrentUrl();
 	    	 Assert.assertEquals(pricing,"http://staging.wanasatime.com/PlansPricing.aspx" );		    	 		    	 
-	}	
+	}		
 
 }

@@ -370,7 +370,7 @@ public  class HomePage extends BrowserFunctions{
  	By fblogin				= By.id("loginBtn1"); 
  	By successMsg 			= By.xpath("//*[@id='successMsg']//h4[1]");
  	
- 	//movies
+ 	//movies  
  	 	By moviestab 			= By.id("tabMovies");
  	 	By eventstab			= By.id("tabEvents");
  	 	By vijaymovie			= By.xpath("//*[@href='MovieInfo.aspx?MovieId=17']");
@@ -381,12 +381,13 @@ public  class HomePage extends BrowserFunctions{
  	 	By alertmovieok 		= By.id("btnAccept");
  	 	By numberofseatselection= By.linkText("2");
  	 	By seatselectionOkclick = By.id("btnOk");
- 	 	By seatlayoutselect 	= By.xpath("//*[@title='Row-H Seat-05']");
+ 	 	By seatlayoutselect 	= By.xpath("//*[@title='Row-G Seat-06']");
  	 	By proceedpaymovie		= By.id("btnPay");
  	 	By voucher 				= By.id("eVoucher");
  	 	By moviespayproceed		= By.id("btnPaymentProceed");
- 	 	By ticketsuccess		= By.id("onSuccess");
- 	
+ 	 	By ticketsuccess		= By.xpath("//*[@id='onSuccess']/h4");
+ 	 	
+ 	 
 	public String movieticketbooking() throws InterruptedException
 	{
 		
@@ -399,7 +400,7 @@ public  class HomePage extends BrowserFunctions{
 			JavascriptExecutor js = (JavascriptExecutor) driver;
 			js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
 			driver.findElement(vijaymovie).click();
-			Thread.sleep(2000);
+			Thread.sleep(2000); 
 			driver.findElement(moviesbookbutton).click();
 			driver.findElement(moviedateselection).click();
 			driver.findElement(showtimeselection).click();
@@ -412,16 +413,18 @@ public  class HomePage extends BrowserFunctions{
 			driver.findElement(seatlayoutselect).click();
 			Thread.sleep(2000);
 			driver.findElement(proceedpaymovie).click();
-			Thread.sleep(2000);		
-				js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
-				driver.findElement(debitcardbtn).click();		
-			   Thread.sleep(4000);	
-			  driver.findElement(moviespayproceed).click();		
-			  Thread.sleep(10000);			
-			  driver.findElement(cardnumber).sendKeys(CommonMethods.passingData("CardNumber"));
+			Thread.sleep(2000);	
+			
+			//driver.findElement(txtPaymentMobile).sendKeys(CommonMethods.passingData("mobile"));
+			//driver.findElement(txtPaymentEmail).sendKeys(CommonMethods.passingData("EnterMail"));
+			
+			js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+			driver.findElement(debitcardbtn).click();	
+			Thread.sleep(2000);
+			driver.findElement(moviespayproceed).click();
+			Thread.sleep(2000);
+			driver.findElement(cardnumber).sendKeys(CommonMethods.passingData("CardNumber"));
 			  Thread.sleep(4000);
-			  driver.findElement(expiryMonth).click();
-			  Thread.sleep(2000);
 			  Select oSelect = new Select(driver.findElement(expiryMonth));
 			  oSelect.selectByIndex(11); 		 
 				Thread.sleep(2000);		
@@ -443,7 +446,9 @@ public  class HomePage extends BrowserFunctions{
 			 driver.findElement(pinEnter).click();
 			  Thread.sleep(2000);
 			 driver.findElement(submit).click();
-			 driver.findElement(conform).click(); 
+			 Thread.sleep(2000);
+			 driver.findElement(conform).click();
+			 Thread.sleep(8000);
 		}
 		catch (Exception ex)
 		{
@@ -453,10 +458,7 @@ public  class HomePage extends BrowserFunctions{
 		 return driver.findElement(ticketsuccess).getText();
 				
 	}
- 	
- 	
-
-
+ 		
  	
  	public void clickSignInButton() throws InterruptedException{
  		driver.findElement(signinclick).click(); 	
@@ -509,39 +511,7 @@ public  class HomePage extends BrowserFunctions{
  			Thread.sleep(3000);
  			
  			//scrolling the window to bottom
- 			JavascriptExecutor js = (JavascriptExecutor) driver;
- 			js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
- 			driver.findElement(debitcardbtn).click();		
- 		   Thread.sleep(4000);	
- 		  driver.findElement(btnforpay).click();		
- 		  Thread.sleep(10000);
-				
- 		  driver.findElement(cardnumber).sendKeys(CommonMethods.passingData("CardNumber"));
- 		  Thread.sleep(4000);
- 		  driver.findElement(expiryMonth).click();
- 		  Thread.sleep(2000);
- 		  Select oSelect = new Select(driver.findElement(expiryMonth));
- 		  oSelect.selectByIndex(11); 		 
- 			Thread.sleep(2000);		
- 			  driver.findElement(expiryYear).click();
- 			Thread.sleep(2000);
- 			Select oSelect1 = new Select(driver.findElement(expiryYear));
- 			  oSelect1.selectByIndex(10);
- 			Thread.sleep(2000);
- 			
- 			 driver.findElement(cardname).sendKeys(CommonMethods.passingData("CardName"));
- 			  Thread.sleep(4000);
- 		 
- 		  driver.findElement(pinNumber).click();
- 		  Thread.sleep(3000);
- 		  driver.findElement(pin1).click();
- 		  driver.findElement(pin2).click();
- 		  driver.findElement(pin3).click();
- 		  driver.findElement(pin4).click();
- 		 driver.findElement(pinEnter).click();
- 		  Thread.sleep(2000);
- 		 driver.findElement(submit).click();
- 		 driver.findElement(conform).click(); 		 
+ 			debitpay();	 
  		   }
  		   catch(Exception e)
  		   {
@@ -595,6 +565,127 @@ public  class HomePage extends BrowserFunctions{
  			 String url=driver.getCurrentUrl();
  			   return url;
  	   }
+ 	   
+ 	   
+ 	 //quick booking
+ 	   By qucickbookclick       = By.xpath("//*[contains(@class,'nav-link') and contains(text(),'Quick Booking')]");
+ 	   By movieslist			= By.id("MoviesList");
+ 	   By selectmall	        = By.id("CinemaList");
+ 	   By selectdate            = By.id("ShowDates");
+ 	   By selecttime            = By.id("ShowTimes");
+ 	   By booknow               = By.id("BookNow");
+ 	   
+ 	   public void quickbooking()
+ 	   {
+ 		   try
+ 		   {
+ 			   driver.findElement(qucickbookclick).click();
+ 			   Select movies = new Select(driver.findElement(movieslist));
+ 			   movies.deselectByVisibleText("VIJAY SUPERUM POURNAMIYUM");
+ 			   Select malls = new Select(driver.findElement(selectmall));
+ 			   malls.deselectByVisibleText("Seef Mall");
+ 			   Select date = new Select(driver.findElement(selectdate));
+ 			   date.deselectByVisibleText("Monday, 8 Jul");
+ 			   Select time = new Select(driver.findElement(selecttime));
+ 			   time.deselectByVisibleText("3:00PM-Cinema 4");
+ 			   driver.findElement(booknow).click();
+ 			 // JavascriptExecutor js1 = (JavascriptExecutor) driver;
+ 			  Thread.sleep(2000);
+ 				driver.findElement(alertmovieok).click();
+ 				Thread.sleep(2000);
+ 				//driver.findElement(alertmovieok).click();
+ 				driver.findElement(seatselectionOkclick).click();
+ 				Thread.sleep(2000);
+ 				driver.findElement(seatlayoutselect).click();
+ 				Thread.sleep(2000);
+ 				driver.findElement(proceedpaymovie).click();
+ 				Thread.sleep(2000);		
+ 				JavascriptExecutor js1 = (JavascriptExecutor) driver;
+				js1.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+				driver.findElement(debitcardbtn).click();						
+				driver.findElement(moviespayproceed).click();	
+			  Thread.sleep(10000);
+				
+			  driver.findElement(cardnumber).sendKeys(CommonMethods.passingData("CardNumber"));
+			  Thread.sleep(4000);
+			  driver.findElement(expiryMonth).click();
+			  Thread.sleep(2000);
+			  Select oSelect = new Select(driver.findElement(expiryMonth));
+			  oSelect.selectByIndex(11); 		 
+				Thread.sleep(2000);		
+				  driver.findElement(expiryYear).click();
+				Thread.sleep(2000);
+				Select oSelect1 = new Select(driver.findElement(expiryYear));
+				  oSelect1.selectByIndex(10);
+				Thread.sleep(2000);
+				
+				 driver.findElement(cardname).sendKeys(CommonMethods.passingData("CardName"));
+				  Thread.sleep(4000);
+			 
+			  driver.findElement(pinNumber).click();
+			  Thread.sleep(3000);
+			  driver.findElement(pin1).click();
+			  driver.findElement(pin2).click();
+			  driver.findElement(pin3).click();
+			  driver.findElement(pin4).click();
+			 driver.findElement(pinEnter).click();
+			  Thread.sleep(2000);
+			 driver.findElement(submit).click();
+			 driver.findElement(conform).click(); 
+ 			   
+ 		   }
+ 		   catch(Exception ex)
+ 		   {
+ 			   
+ 		   }
+ 	   }
+ 	   
+ 	   
+ 	   //debit card pay
+ 	   
+		public void debitpay() throws InterruptedException
+		{
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+				js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+				driver.findElement(debitcardbtn).click();		
+			   try 
+			   {
+				Thread.sleep(4000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
+			  driver.findElement(btnforpay).click();		
+			  Thread.sleep(10000);
+				
+			  driver.findElement(cardnumber).sendKeys(CommonMethods.passingData("CardNumber"));
+			  Thread.sleep(4000);
+			  driver.findElement(expiryMonth).click();
+			  Thread.sleep(2000);
+			  Select oSelect = new Select(driver.findElement(expiryMonth));
+			  oSelect.selectByIndex(11); 		 
+				Thread.sleep(2000);		
+				  driver.findElement(expiryYear).click();
+				Thread.sleep(2000);
+				Select oSelect1 = new Select(driver.findElement(expiryYear));
+				  oSelect1.selectByIndex(10);
+				Thread.sleep(2000);
+				
+				 driver.findElement(cardname).sendKeys(CommonMethods.passingData("CardName"));
+				  Thread.sleep(4000);
+			 
+			  driver.findElement(pinNumber).click();
+			  Thread.sleep(3000);
+			  driver.findElement(pin1).click();
+			  driver.findElement(pin2).click();
+			  driver.findElement(pin3).click();
+			  driver.findElement(pin4).click();
+			 driver.findElement(pinEnter).click();
+			  Thread.sleep(2000);
+			 driver.findElement(submit).click();
+			 driver.findElement(conform).click(); 	
+		}
+ 	   
  		
 
 }
