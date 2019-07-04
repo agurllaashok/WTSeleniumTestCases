@@ -381,7 +381,8 @@ public  class HomePage extends BrowserFunctions{
  	 	By alertmovieok 		= By.id("btnAccept");
  	 	By numberofseatselection= By.linkText("2");
  	 	By seatselectionOkclick = By.id("btnOk");
- 	 	By seatlayoutselect 	= By.xpath("//*[@title='Row-G Seat-06']");
+ 	 	By seatlayoutselect 	= By.xpath("//*[@title='Row-G Seat-08']");
+ 	 	By seatlayoutselect1 	= By.xpath("//*[@title='Row-B Seat-04']");
  	 	By proceedpaymovie		= By.id("btnPay");
  	 	By voucher 				= By.id("eVoucher");
  	 	By moviespayproceed		= By.id("btnPaymentProceed");
@@ -406,10 +407,10 @@ public  class HomePage extends BrowserFunctions{
 			driver.findElement(showtimeselection).click();
 			Thread.sleep(2000);
 			driver.findElement(alertmovieok).click();
-			Thread.sleep(2000);
+			Thread.sleep(3000);
 			//driver.findElement(alertmovieok).click();
 			driver.findElement(seatselectionOkclick).click();
-			Thread.sleep(2000);
+			Thread.sleep(3000);
 			driver.findElement(seatlayoutselect).click();
 			Thread.sleep(2000);
 			driver.findElement(proceedpaymovie).click();
@@ -575,37 +576,41 @@ public  class HomePage extends BrowserFunctions{
  	   By selecttime            = By.id("ShowTimes");
  	   By booknow               = By.id("BookNow");
  	   
- 	   public void quickbooking()
+ 	   public String quickbooking()
  	   {
  		   try
  		   {
  			   driver.findElement(qucickbookclick).click();
+ 			   Thread.sleep(2000);
  			   Select movies = new Select(driver.findElement(movieslist));
- 			   movies.deselectByVisibleText("VIJAY SUPERUM POURNAMIYUM");
- 			   Select malls = new Select(driver.findElement(selectmall));
- 			   malls.deselectByVisibleText("Seef Mall");
- 			   Select date = new Select(driver.findElement(selectdate));
- 			   date.deselectByVisibleText("Monday, 8 Jul");
- 			   Select time = new Select(driver.findElement(selecttime));
- 			   time.deselectByVisibleText("3:00PM-Cinema 4");
- 			   driver.findElement(booknow).click();
- 			 // JavascriptExecutor js1 = (JavascriptExecutor) driver;
  			  Thread.sleep(2000);
+ 			   movies.selectByVisibleText("21 ST NOOTTAANDU");
+ 			   Select malls = new Select(driver.findElement(selectmall));
+ 			  Thread.sleep(2000);
+ 			   malls.selectByVisibleText("Seef Mall");
+ 			   Select date = new Select(driver.findElement(selectdate));
+ 			  Thread.sleep(2000);
+ 			   date.selectByVisibleText("Friday, 12 Jul");
+ 			   Select time = new Select(driver.findElement(selecttime));
+ 			  Thread.sleep(2000);
+ 			   time.selectByVisibleText("8:00PM-Cinema 10");
+ 			   driver.findElement(booknow).click(); 			
+ 			  Thread.sleep(5000);
  				driver.findElement(alertmovieok).click();
  				Thread.sleep(2000);
- 				//driver.findElement(alertmovieok).click();
  				driver.findElement(seatselectionOkclick).click();
  				Thread.sleep(2000);
- 				driver.findElement(seatlayoutselect).click();
+ 				driver.findElement(seatlayoutselect1).click();
  				Thread.sleep(2000);
  				driver.findElement(proceedpaymovie).click();
  				Thread.sleep(2000);		
  				JavascriptExecutor js1 = (JavascriptExecutor) driver;
 				js1.executeScript("window.scrollTo(0, document.body.scrollHeight)");
-				driver.findElement(debitcardbtn).click();						
+				driver.findElement(debitcardbtn).click();	
+				driver.findElement(txtPaymentMobile).sendKeys(CommonMethods.passingData("mobile"));
+				driver.findElement(txtPaymentEmail).sendKeys(CommonMethods.passingData("EnterMail"));
 				driver.findElement(moviespayproceed).click();	
-			  Thread.sleep(10000);
-				
+			  Thread.sleep(10000);				
 			  driver.findElement(cardnumber).sendKeys(CommonMethods.passingData("CardNumber"));
 			  Thread.sleep(4000);
 			  driver.findElement(expiryMonth).click();
@@ -631,13 +636,16 @@ public  class HomePage extends BrowserFunctions{
 			 driver.findElement(pinEnter).click();
 			  Thread.sleep(2000);
 			 driver.findElement(submit).click();
-			 driver.findElement(conform).click(); 
+			 Thread.sleep(2000);
+			 driver.findElement(conform).click();
+			 Thread.sleep(8000);
  			   
  		   }
  		   catch(Exception ex)
  		   {
  			   
  		   }
+ 		  return driver.findElement(ticketsuccess).getText();
  	   }
  	   
  	   

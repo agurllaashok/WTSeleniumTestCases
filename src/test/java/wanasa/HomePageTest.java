@@ -163,7 +163,17 @@ import java.util.HashMap;
 		    	 ss.footerlinkplanspricing();
 		    	 String pricing = driver.getCurrentUrl();
 		    	 Assert.assertEquals(pricing,"http://staging.wanasatime.com/PlansPricing.aspx" );		    	 		    	 
-		}	
+		}
+		
+		@Test(priority=8)
+		public void verifyquickbooking() throws InterruptedException
+		{
+			 driver.navigate().to("http://staging.wanasatime.com");
+			 ss.countrySelection();			
+			 String msg = ss.quickbooking();
+			 Assert.assertEquals(msg,"Congratulations! Your Tickets was confirmed.");
+			 
+		}
 	    
 	}
 
