@@ -45,7 +45,6 @@ public class Emcsuite  extends BrowserFunctions{
 	Assert.assertEquals(invalidinput,"EmailId not Registered" );
 	String afterlogin = es.signInValidCredentials();
 	Assert.assertEquals(afterlogin, "http://staging.emc.wanasatime.com/Dashboard.aspx");	
-	logger_ss.log(Status.INFO, "Successfully verified login functionality.");
-	
-}
+  }
+ 
 }
