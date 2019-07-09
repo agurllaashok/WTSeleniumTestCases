@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.Select;
 import utils.BrowserFunctions;
 import utils.CommonMethods;
 
-public class Emc extends CommonMethods {
+public class Emc extends BrowserFunctions {
 	
 			
 	//EMC SignUp
@@ -80,8 +80,7 @@ public class Emc extends CommonMethods {
 			
 		}
 		return driver.findElement(forgotsuccess).getText();
-		
-	}
+		}
 		
 		//Login 
 	
