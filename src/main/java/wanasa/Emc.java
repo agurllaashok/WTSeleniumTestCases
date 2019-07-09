@@ -25,7 +25,7 @@ public class Emc extends CommonMethods {
 		By signUpBtn					=	By.id("btnSignUp");
 		By sucess						=	By.xpath("//*[contains(@class,'toast-message') and contains(text(),'Your account has been created successfully')]");
 		
-		public String signUp() throws InterruptedException
+		 public String signUp() throws InterruptedException
 		{
 			try
 			{

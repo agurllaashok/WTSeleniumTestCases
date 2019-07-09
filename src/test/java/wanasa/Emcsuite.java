@@ -24,7 +24,7 @@ public class Emcsuite  extends BrowserFunctions{
 
    @Test(priority=1)
   
-   public void forgotPswd()
+    public void forgotPswd()
    {
 	  String forEmail=es.forgotPassword();
 	  Assert.assertEquals(forEmail,"We have sent a mail to you.Please check your mail.");
