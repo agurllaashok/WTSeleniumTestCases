@@ -20,6 +20,7 @@ public class Emcsuite  extends BrowserFunctions{
 	  String sucessmsg= es.signUp(); 
 	  Assert.assertEquals(sucessmsg,"Your account has been created successfully");
 	  driver.navigate().to("http://staging.emc.wanasatime.com/"); 
+	  logger_ss.log(Status.INFO, "Successfully verified signUp.");
 	  }
 
    @Test(priority=1)
@@ -29,7 +30,9 @@ public class Emcsuite  extends BrowserFunctions{
 	  String forEmail=es.forgotPassword();
 	  Assert.assertEquals(forEmail,"We have sent a mail to you.Please check your mail.");
 	  //driver.navigate().to("http://staging.emc.wanasatime.com/");
+	  logger_ss.log(Status.INFO, "Successfully verified forgot password.");
 	  driver.findElement(es.loginbtnInForgot).click();
+	  
   }
    
 	 
@@ -44,7 +47,8 @@ public class Emcsuite  extends BrowserFunctions{
 	String invalidinput= es.signInInvalidCredentials();
 	Assert.assertEquals(invalidinput,"EmailId not Registered" );
 	String afterlogin = es.signInValidCredentials();
-	Assert.assertEquals(afterlogin, "http://staging.emc.wanasatime.com/Dashboard.aspx");	
+	Assert.assertEquals(afterlogin, "http://staging.emc.wanasatime.com/Dashboard.aspx");
+	logger_ss.log(Status.INFO, "Successfully verified User signin.");
   }
  
 }
