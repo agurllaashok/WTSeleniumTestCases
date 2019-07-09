@@ -45,7 +45,7 @@ public class Emc extends CommonMethods {
 			driver.findElement(password).sendKeys("manjusha1");	
 			driver.findElement(cnfPassword).sendKeys("manjusha1");		
 			driver.findElement(signUpBtn).click();
-			Thread.sleep(3000);
+			Thread.sleep(4000);
 			}
 			catch(Exception ex)
 			{
