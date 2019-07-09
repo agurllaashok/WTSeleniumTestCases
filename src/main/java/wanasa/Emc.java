@@ -43,6 +43,7 @@ public class Emc extends CommonMethods {
 			driver.findElement(mobileNumber).sendKeys("33"+cm.getSaltString());
 			Thread.sleep(2000);
 			driver.findElement(password).sendKeys("manjusha1");	
+			Thread.sleep(2000);
 			driver.findElement(cnfPassword).sendKeys("manjusha1");		
 			driver.findElement(signUpBtn).click();
 			Thread.sleep(4000);
