@@ -5,11 +5,13 @@
     "homepageurl"							:		"http://staging.wanasatime.com",
     "emcurl"								:		"http://staging.emc.wanasatime.com",
     "downloadFilepath"						:		"D:\\grpTalk\\TestDataFiles\\downloads\\",
-    "evoucher"                              :       "178F3D81D1",
+    "evoucher"                              :       "DBE13E22C3",
     "CardNumber"							:		"2222220123456789",
     "CardName"								:		"pallavi",
     "googEmail"								:       "navyamanju5@gmail.com",
-    "googPswd"								:       "nagamanjusha"
+    "googPswd"								:       "nagamanjusha",
+    "emailv"								: 		"harshitha.basani@smscountry.com",
+    "pwdv"									:       "WanasaTime"
     
     
 }

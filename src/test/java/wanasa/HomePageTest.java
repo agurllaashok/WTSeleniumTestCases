@@ -35,12 +35,14 @@ import java.util.HashMap;
 			String sucessmsg = ss.signup();
 			Assert.assertEquals(sucessmsg, "You have successfully registered. We have sent a verification email to you.");
 			driver.navigate().to("http://staging.wanasatime.com/");
+			logger_ss.log(Status.INFO, "signup done successfully.");
 		}
 		@Test(priority=1)
 		public void verifyforgotpassword() throws InterruptedException
 		{
 			String checksuccessmsg= ss.forgotpassword();
 			Assert.assertEquals(checksuccessmsg, "We have sent a mail to you.Please check your mail.");
+			logger_ss.log(Status.INFO, "Successfully verified forgot password.");
 			
 		}
 		 
@@ -54,9 +56,12 @@ import java.util.HashMap;
 			String invalidinput= ss.singInWithincorrectcredentials();
 			Assert.assertEquals(invalidinput,"Invalid credentials" );
 			String afterlogin = ss.signinWanasaTimeCredentials();
-			Assert.assertEquals(afterlogin, "http://staging.wanasatime.com/");				
+			Assert.assertEquals(afterlogin, "http://staging.wanasatime.com/");	
+			logger_ss.log(Status.INFO, "Successfully verified login functionality.");
 			
 		}
+		
+		
 		
 		@Test(priority=3)
 		public void verifybookticketevents() throws InterruptedException 
@@ -66,12 +71,15 @@ import java.util.HashMap;
 			Assert.assertEquals(URL,"http://staging.wanasatime.com/Home.aspx?country=Bahrain" );
 			//Thread.sleep(4000);
 			String success =ss.BookTicketevents();
-			Assert.assertEquals(success,"Congratulations! Your Tickets was confirmed.");				
+			Assert.assertEquals(success,"Congratulations! Your Tickets was confirmed.");
+			logger_ss.log(Status.INFO, "Successfully verified bookticketevents(free ticket).");
 			//Thread.sleep(3000);
 		 	//driver.findElement(us.menu1).click();
 			//driver.findElement(us.logout).click();
 			//driver.navigate().to("http://staging.wanasatime.com/");
 		}
+		
+		
 		
 		@Test(priority=4)
 		public void verifyeventticketBookingWithDebitCard() throws InterruptedException
@@ -82,46 +90,91 @@ import java.util.HashMap;
 			ss.countrySelection();
 			String success =ss.eventticketBookingWithDebitCard();
 			Assert.assertEquals(success,"Congratulations! Your Tickets was confirmed.");	
+			logger_ss.log(Status.INFO, "Successfully verified bookticketevents(with debitcard).");
 			//ss.downloadTicket();	
 			
 						
 			}
-				
-		/*@Test(priority=5)
 		
+
+		
+		
+		//@Test(priority=5) 
 		public void verifybookticketseventsevoucher() throws InterruptedException
 		{
-		driver.navigate().to("http://staging.wanasatime.com");
-		ss.countrySelection();		
-		String URL = driver.getCurrentUrl();
-		Assert.assertEquals(URL,"http://staging.wanasatime.com/Home.aspx?country=Bahrain" );
-		//ss.BookTicketeventsVoucher();
-		Thread.sleep(2000);
-		String success =ss.BookTicketeventsVoucher();
-		Assert.assertEquals(success, "Congratulations! Your Tickets was confirmed.");
-		//driver.findElement(us.menu1).click();
-		//driver.findElement(us.logout).click();
-		//driver.navigate().to("http://staging.wanasatime.com/");
-	
+			driver.navigate().to("http://staging.wanasatime.com");
+			ss.countrySelection();		
+			String URL = driver.getCurrentUrl();
+			Assert.assertEquals(URL,"http://staging.wanasatime.com/Home.aspx?country=Bahrain" );	
+			Thread.sleep(2000);
+			String success =ss.BookTicketeventsVoucher();
+			Assert.assertEquals(success, "Congratulations! Your Tickets was confirmed.");			
 		}
-				*/
-		@Test(priority=5)
-		public void verifymovieticketbooking() throws InterruptedException
+		
+		
+		
+		//@Test(priority=6) 
+		public void verifypartialbookticketsevent() throws InterruptedException
 			{
 			driver.navigate().to("http://staging.wanasatime.com");
-			ss.countrySelection();
-			String success =ss.movieticketbooking();
-			Assert.assertEquals(success,"Congratulations! Your Tickets was confirmed.");	
-			//  ss.downloadTicket();	
+			ss.countrySelection();		
+			String URL = driver.getCurrentUrl();
+			Assert.assertEquals(URL,"http://staging.wanasatime.com/Home.aspx?country=Bahrain" );	
+			Thread.sleep(2000);
+			String success =ss.BookTicketeventspartial();
+			Assert.assertEquals(success, "Congratulations! Your Tickets was confirmed.");	
 			driver.navigate().to("http://staging.wanasatime.com");
 			driver.findElement(us.menu1).click();
 			driver.findElement(us.logout).click();
 			String URL1 = driver.getCurrentUrl();
 			Assert.assertEquals(URL1,"http://staging.wanasatime.com/Home.aspx");
+		
+		}
+		
+		
+		
+		
+		@Test(priority=7)
+		public void verifymovieticketbooking() throws InterruptedException
+			{
+			driver.navigate().to("http://staging.wanasatime.com");
+			ss.countrySelection();						
+			String success =ss.movieticketbooking();
+			Assert.assertEquals(success,"Congratulations! Your Tickets was confirmed.");
+			logger_ss.log(Status.INFO, "Successfully verified movieticketbooking(with debitcard).");
+			  //ss.downloadTicket();	
+						
 			}
+				
+		
+	/*	@Test
+		public void verifytestmethod() throws InterruptedException
+		{
+			//driver.navigate().to("http://staging.wanasatime.com");
+			ss.countrySelection();
+			ss.movieticketbooking1iter();
+		}*/
+		
+		
+		@Test(priority=8)
+		public void verifyquickbooking() throws InterruptedException
+		{
+			 driver.navigate().to("http://staging.wanasatime.com");
+			 //ss.countrySelection();			
+			 String msg = ss.quickbooking();
+			 Assert.assertEquals(msg,"Congratulations! Your Tickets was confirmed.");
+			 logger_ss.log(Status.INFO, "Successfully verified quickbooking(with debitcard)."); 
+			 Thread.sleep(4000);
+			 driver.navigate().to("http://staging.wanasatime.com");
+			driver.findElement(us.menu1).click();
+			driver.findElement(us.logout).click();
+			String URL1 = driver.getCurrentUrl();
+			Assert.assertEquals(URL1,"http://staging.wanasatime.com/Home.aspx");			
+			logger_ss.log(Status.INFO, "Successfully verified logout."); 
+		}	
 		
 				
-		@Test(priority=6) 
+		@Test(priority=9) 
 		public void googLogin() throws InterruptedException
 			{
 			    driver.navigate().to("http://staging.wanasatime.com");
@@ -133,14 +186,16 @@ import java.util.HashMap;
 				driver.findElement(us.logout).click();
 				String URL1 = driver.getCurrentUrl();
 				Assert.assertEquals(URL1,"http://staging.wanasatime.com/Home.aspx");
+				logger_ss.log(Status.INFO, "Successfully verified googLogin.");
 				//String URL = driver.getCurrentUrl();
 				//Assert.assertEquals(URL,"http://staging.wanasatime.com/");							
-				}
+			}
+		
+	
 	     
-		
-		
-		@Test(priority=7)
-		public void verifyfooterlinks ()
+				
+	//	@Test(priority=10)
+		public void verifyfooterlinks()
 	    {
 		    	 ss.footerlinksaboutus();
 		    	 String URL = driver.getCurrentUrl();
@@ -165,15 +220,6 @@ import java.util.HashMap;
 		    	 Assert.assertEquals(pricing,"http://staging.wanasatime.com/PlansPricing.aspx" );		    	 		    	 
 		}
 		
-		@Test(priority=8)
-		public void verifyquickbooking() throws InterruptedException
-		{
-			 driver.navigate().to("http://staging.wanasatime.com");
-			 ss.countrySelection();			
-			 String msg = ss.quickbooking();
-			 Assert.assertEquals(msg,"Congratulations! Your Tickets was confirmed.");
-			 
-		}
-	    
+		    
 	}
 

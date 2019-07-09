@@ -7,7 +7,7 @@ import org.openqa.selenium.interactions.Actions;
 import utils.BrowserFunctions;
 import utils.CommonMethods;
 
-public class emc {
+public class emc extends BrowserFunctions {
 	
 	//login 
 	By usermail        				= 	By.id("userEmail");

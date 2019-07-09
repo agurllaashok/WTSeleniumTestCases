@@ -54,7 +54,7 @@ public class CommonMethods extends BrowserFunctions{
             alert.accept();
             Thread.sleep(2000);
            // System.out.println("successfully closed the alert");
-            driver.navigate().to(homePageUrl);
+            driver.navigate().to(EMCUrl);
           }
     }
 	
