@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
-  <test verbose="2" name="Default test">
+  <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="wanasa.emcsuite">
+      <class name="wanasa.Emcsuite">
         <methods>
-          <include name="test"/>
+          <include name="tearDown"/>
+          <include name="setup"/>
+          <include name="verifylogin"/>
+          <include name="closeBrowser1"/>
+          <include name="forgotPswd"/>
         </methods>
-      </class> <!-- wanasa.emcsuite -->
+      </class> <!-- wanasa.Emcsuite -->
     </classes>
-  </test> <!-- Default test -->
+  </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
