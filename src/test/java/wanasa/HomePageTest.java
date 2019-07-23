@@ -29,7 +29,7 @@ import java.util.HashMap;
 		User us= new User();
 			
 		
-		//@Test(priority=0) 
+		@Test(priority=0) 
 		public void verifysignup() throws InterruptedException
 		{
 			logger_ss = extent.createTest("verifysignup");
@@ -39,7 +39,7 @@ import java.util.HashMap;
 			logger_ss.log(Status.INFO, "signup done successfully.");
 		}
 		
-		//@Test(priority=1)
+		@Test(priority=1)
 		public void verifyforgotpassword() throws InterruptedException
 		{
 			logger_ss = extent.createTest("verifyforgotpassword");
@@ -49,7 +49,7 @@ import java.util.HashMap;
 			
 		}
 		 
-		//@Test(priority=2)  
+		@Test(priority=2)  
 		public void verifylogin() throws InterruptedException  
 		{	
 			logger_ss = extent.createTest("verifylogin");
