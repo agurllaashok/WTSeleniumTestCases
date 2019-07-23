@@ -1,18 +1,24 @@
 {
-    "EnterMail"								:		"nagamanjusha.a@gmail.com",
+    "EnterMail"								:		"pallavi.domreddy@smscountry.com",
+    "emcmail"								:		"nagamanjusha.a@gmail.com",
 	"EmcPassword"							:		"manjusha1",
     "Password"								:		"pallavi22",
     "mobile" 								:		"12345678",
+    "vemail"								: 		"harshitha.basani@smscountry.com",
+     "vpwd"							    	: 			"WanasaTime",
     "homepageurl"							:		"http://staging.wanasatime.com",
     "emcurl"								:		"http://staging.emc.wanasatime.com",
     "downloadFilepath"						:		"D:\\grpTalk\\TestDataFiles\\downloads\\",
-    "evoucher"                              :       "DBE13E22C3",
+    "evoucher"                              :        "496B6F85EE",
+    "evoucherP"                             :       "70D05B43FF",
     "CardNumber"							:		"2222220123456789",
     "CardName"								:		"pallavi",
     "googEmail"								:       "navyamanju5@gmail.com",
     "googPswd"								:       "nagamanjusha",
     "emailv"								: 		"harshitha.basani@smscountry.com",
-    "pwdv"									:       "WanasaTime"
+    "pwdv"									:       "WanasaTime",
+    "visaCBQ"								:       "4111111111111111",
+    "masterBQ"								:       "5555555555554444"
     
     
 }
