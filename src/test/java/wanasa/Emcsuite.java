@@ -24,6 +24,7 @@ public class Emcsuite  extends BrowserFunctions{
 			  driver.navigate().to("http://staging.emc.wanasatime.com/"); 
 			  }
 		
+
 		   @Test(priority=1)
 		     
 		   public void forgotPswd()
@@ -56,4 +57,8 @@ public class Emcsuite  extends BrowserFunctions{
 			 es.evntcreationmultisubcattimeslot();
 		 }
 		 
+
+ 
+ 
+
 }

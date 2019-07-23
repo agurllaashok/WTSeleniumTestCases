@@ -88,8 +88,13 @@ public class BrowserFunctions {
 		}
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
+
 		driver.get("http://staging.wanasatime.com");
 		logger_ss.log(Status.INFO, "WanasaTime home page opend successfully");
+
+		driver.get("http://staging.emc.wanasatime.com");
+		logger_ss.log(Status.INFO, "WanasaTime emc home page opend successfully");
+
 		Thread.sleep(10000);
 	}
 	
