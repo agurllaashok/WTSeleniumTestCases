@@ -31,8 +31,8 @@ import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 
 public class BrowserFunctions {
-	public static String homePageUrl= CommonMethods.passingData("homepageurl");
-	public static String EMCUrl= CommonMethods.passingData("emcurl");
+	public static String Url= CommonMethods.passingData("url");
+	//public static String EMCUrl= CommonMethods.passingData("emcurl");
 	//public static String contactsPageUrl = "http://staging.grptalk.com/Contacts.aspx";
 	public static  WebDriver driver;
 	public ExtentReports extent ;
@@ -57,7 +57,7 @@ public class BrowserFunctions {
 		}
 		
 		else if(browser.equalsIgnoreCase("chrome")){
-			System.out.println(homePageUrl);
+			System.out.println(Url);
 			ExtentHtmlReporter reporter = new ExtentHtmlReporter("WanasaTime_Report_On_Firefox.html");
 			extent = new ExtentReports();
 			extent.attachReporter(reporter);
@@ -89,13 +89,10 @@ public class BrowserFunctions {
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 
-		driver.get("http://staging.wanasatime.com");
+		driver.get(Url);
 		logger_ss.log(Status.INFO, "WanasaTime home page opend successfully");
 
-		driver.get("http://staging.emc.wanasatime.com");
-		logger_ss.log(Status.INFO, "WanasaTime emc home page opend successfully");
-
-		Thread.sleep(10000);
+		Thread.sleep(5000);
 	}
 	
 	@AfterMethod

@@ -6,4 +6,16 @@
       <class name="wanasa.HomePageTest"/>
     </classes>
   </test> <!-- Default test -->
+  <test name="Default test(failed)">
+    <classes>
+      <class name="wanasa.HomePageTest">
+        <methods>
+          <include name="tearDown"/>
+          <include name="verifymovieticketbooking"/>
+          <include name="setup"/>
+          <include name="closeBrowser1"/>
+        </methods>
+      </class> <!-- wanasa.HomePageTest -->
+    </classes>
+  </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

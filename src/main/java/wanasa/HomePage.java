@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -15,6 +16,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import utils.BrowserFunctions;
 import utils.CommonMethods;
+
 
 public class HomePage extends BrowserFunctions {
 	
@@ -378,7 +380,7 @@ public class HomePage extends BrowserFunctions {
 		//driver.findElement(txtPaymentMobile).sendKeys(CommonMethods.passingData("mobile"));
         // driver.findElement(txtPaymentEmail).sendKeys(CommonMethods.passingData("EnterMail"));
 		driver.findElement(btnforpay).click();
-		Thread.sleep(2000);
+		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
 		 driver.findElement(visacard).click();
 		 driver.findElement(cardnum).sendKeys(CommonMethods.passingData("visaCBQ"));
 		 driver.findElement(expmonth).click();
@@ -687,12 +689,13 @@ public class HomePage extends BrowserFunctions {
 	public void debitpayevents() throws InterruptedException {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		CommonMethods.explicitWaitForClickableElement(driver,driver.findElement(debitcardbtn));
 		driver.findElement(debitcardbtn).click();
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
 		driver.findElement(btnforpay).click();
-		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
+		CommonMethods.explicitWaitForElementVisibility(cardnumber);
 		driver.findElement(cardnumber).sendKeys(CommonMethods.passingData("CardNumber"));
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
 		driver.findElement(expiryMonth).click();
 		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
 		Select oSelect = new Select(driver.findElement(expiryMonth));
@@ -703,10 +706,8 @@ public class HomePage extends BrowserFunctions {
 		Select oSelect1 = new Select(driver.findElement(expiryYear));
 		oSelect1.selectByIndex(10);
 		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
-
 		driver.findElement(cardname).sendKeys(CommonMethods.passingData("CardName"));
 		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
-
 		driver.findElement(pinNumber).click();
 		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
 		driver.findElement(pin1).click();
@@ -727,28 +728,23 @@ public class HomePage extends BrowserFunctions {
 		
 		JavascriptExecutor js1 = (JavascriptExecutor) driver;
 		js1.executeScript("window.scrollTo(0, document.body.scrollHeight)");
-		Thread.sleep(2000);
+		CommonMethods.explicitWaitForClickableElement(driver,driver.findElement(debitcardbtn));
 		driver.findElement(debitcardbtn).click();
-		Thread.sleep(4000);
 		driver.findElement(moviespayproceed).click();
-		Thread.sleep(2000);
+		CommonMethods.explicitWaitForElementVisibility(cardnumber);
 		driver.findElement(cardnumber).sendKeys(CommonMethods.passingData("CardNumber"));
-		Thread.sleep(2000);
 		driver.findElement(expiryMonth).click();
 		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
 		Select oSelect = new Select(driver.findElement(expiryMonth));
 		oSelect.selectByIndex(11);
-
 		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
 		driver.findElement(expiryYear).click();
 		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
 		Select oSelect1 = new Select(driver.findElement(expiryYear));
 		oSelect1.selectByIndex(10);
 		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
-
 		driver.findElement(cardname).sendKeys(CommonMethods.passingData("CardName"));
 		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
-
 		driver.findElement(pinNumber).click();
 		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
 		driver.findElement(pin1).click();

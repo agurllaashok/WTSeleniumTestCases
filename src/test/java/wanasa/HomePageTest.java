@@ -29,7 +29,7 @@ import java.util.HashMap;
 		User us= new User();
 			
 		
-		@Test(priority=0) 
+		//@Test(priority=0) 
 		public void verifysignup() throws InterruptedException
 		{
 			logger_ss = extent.createTest("verifysignup");
@@ -39,7 +39,7 @@ import java.util.HashMap;
 			logger_ss.log(Status.INFO, "signup done successfully.");
 		}
 		
-		@Test(priority=1)
+		//@Test(priority=1)
 		public void verifyforgotpassword() throws InterruptedException
 		{
 			logger_ss = extent.createTest("verifyforgotpassword");
@@ -67,7 +67,7 @@ import java.util.HashMap;
 		
 		
 		// single day event
-		@Test(priority=3)
+		//@Test(priority=3)
 		public void verifyeventbookvisa() throws InterruptedException 
 		{
 			logger_ss = extent.createTest("verifyeventbookvisa");
@@ -79,7 +79,7 @@ import java.util.HashMap;
 		}
 		
 		//multiple day event
-	//	@Test(priority=4)
+		//@Test(priority=4)
 		public void verifyeventbookmaster() throws InterruptedException 
 		{
 			logger_ss = extent.createTest("verifyeventbookmaster");
@@ -106,13 +106,10 @@ import java.util.HashMap;
 		
 		
 		//multi days sub cat
-		@Test(priority=6)
+		//@Test(priority=6)
 		public void verifyeventticketBookingWithDebitCard() throws InterruptedException
 			{
-			logger_ss = extent.createTest("verifyeventticketBookingWithDebitCard");
-			//driver.navigate().to("http://staging.wanasatime.com");
-			//ss.clickSignInButton();
-			//ss.signinWanasaTimeCredentials();
+			logger_ss = extent.createTest("verifyeventticketBookingWithDebitCard");			
 			ss.countrySelection();
 			String success =ss.eventticketBookingWithDebitCard();
 			Assert.assertEquals(success,"Congratulations! Your Tickets was confirmed.");	
@@ -165,8 +162,7 @@ import java.util.HashMap;
 		
 		}
 			
-		  @Test(priority=9)
-		   
+		// @Test(priority=9)		   
 		  public void verifymovieticketbooking() throws InterruptedException
 			{
 			logger_ss = extent.createTest("verifymovieticketbooking");
@@ -183,7 +179,7 @@ import java.util.HashMap;
 
 		
 		
-		@Test(priority=10)
+		//@Test(priority=10)
 		public void verifyquickbooking() throws InterruptedException
 		{
 			logger_ss = extent.createTest("verifyquickbooking");

@@ -6,7 +6,7 @@
     "mobile" 								:		"12345678",
     "vemail"								: 		"harshitha.basani@smscountry.com",
     "vpwd"							    	: 		"WanasaTime",
-    "homepageurl"							:		"http://staging.wanasatime.com",
+    "url"									:		"http://staging.wanasatime.com",
     "emcurl"								:		"http://staging.emc.wanasatime.com",
     "downloadFilepath"						:		"D:\\grpTalk\\TestDataFiles\\downloads\\",
     "evoucher"                              :        "496B6F85EE",
