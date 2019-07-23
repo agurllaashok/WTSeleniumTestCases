@@ -67,7 +67,7 @@ import java.util.HashMap;
 		
 		
 		// single day event
-	//	@Test(priority=3)
+		@Test(priority=3)
 		public void verifyeventbookvisa() throws InterruptedException 
 		{
 			logger_ss = extent.createTest("verifyeventbookvisa");
