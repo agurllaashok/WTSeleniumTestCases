@@ -22,7 +22,8 @@ public class HomePage extends BrowserFunctions {
 	By location = By.className("liLocation");
 	By region = By.className("region");
 
-	//bhd
+	//Bahrain
+	
 	public void countrySelection() throws InterruptedException {
 		// CommonMethods.clickMethod(location);
 		driver.findElement(location).click();
@@ -32,7 +33,8 @@ public class HomePage extends BrowserFunctions {
 
 	}
 	
-	//qatar
+	//Qatar
+	
 	public void countrySelectionqar() throws InterruptedException {
 		// CommonMethods.clickMethod(location);
 		driver.findElement(location).click();
@@ -42,7 +44,8 @@ public class HomePage extends BrowserFunctions {
 	}
 	
 
-	// signin
+	// Signin
+	
 	By signinclick = By.id("loginclick");
 	By signinemail = By.id("email");
 	By signinpassword = By.id("password");
@@ -53,14 +56,16 @@ public class HomePage extends BrowserFunctions {
 	By erridpwdwrong = By.xpath("//*[contains(@class,'toast-message') and contains(text(),'Invalid credentials')]");
 	By afterloginverify = By.className("user-profile-name-container");
 
-	public String singInWithEmptyPassword() throws InterruptedException {
+	public String singInWithEmptyPassword() throws InterruptedException
+	{
 		driver.findElement(signinemail).sendKeys(CommonMethods.passingData("EnterMail"));		
 		driver.findElement(signinpassword).sendKeys("");
 		driver.findElement(loginclick).click();
 		return driver.findElement(erremtypwd).getText();
 	}
 
-	public String singInWithincorrectcredentials() throws InterruptedException {
+	public String singInWithincorrectcredentials() throws InterruptedException 
+	{
 		driver.findElement(signinemail).clear();
 		driver.findElement(signinemail).sendKeys("test0000@gmail.com");
 		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
@@ -71,13 +76,10 @@ public class HomePage extends BrowserFunctions {
 		return driver.findElement(erridpwdwrong).getText();
 	}
 
-	public String signinWanasaTimeCredentials() {
+	public String signinWanasaTimeCredentials() 
+	{
 		try {
-			/*
-			 * driver.findElement(signinclick).click();
-			 * driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-			 * driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
-			 */
+			
 			driver.findElement(signinemail).clear();
 			driver.findElement(signinpassword).clear();
 			driver.findElement(signinemail).sendKeys(CommonMethods.passingData("EnterMail"));
@@ -85,11 +87,7 @@ public class HomePage extends BrowserFunctions {
 			driver.findElement(signinpassword).sendKeys(CommonMethods.passingData("Password"));
 			driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
 			driver.findElement(loginclick).click();
-			// BrowserFunctions.homePageUrl =
-			// CommonMethods.passingData("homepageurl");
-			// BrowserFunctions.downloadFilepath =
-			// CommonMethods.passingData("downloadFilepath");
-
+			
 			driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
 
 		} catch (Exception ex) {
@@ -103,7 +101,8 @@ public class HomePage extends BrowserFunctions {
 		return driver.findElement(successMsg).getText();
 	}
 
-	// footerlinks
+	// Footerlinks
+	
 	By aboutus = By.linkText("About");
 	By AdvertiseWithUs = By.linkText("Advertise With Us");
 	By FAQ = By.linkText("FAQs");
@@ -156,13 +155,15 @@ public class HomePage extends BrowserFunctions {
 		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
 	}
 
-	// confirmation.aspx
+	// Confirmation.aspx
+	
 	By txtPaymentMobile = By.id("txtPaymentMobile");
 	By txtPaymentEmail = By.id("txtPaymentEmail");
 	By ticketconfirmtext = By.xpath("//*[@id='successMsg']//h4");
 	By tktcanceltext = By.xpath("//*[@id='failedMsg']//h4");
 
-	// signup
+	// Signup
+	
 	By sinupclick = By.id("lnkSignUp");
 	By username = By.id("RegisterUser");
 	By email = By.id("RegisterEmail");
@@ -199,7 +200,8 @@ public class HomePage extends BrowserFunctions {
 
 	}
 
-	// forgot password
+	// Forgot password
+	
 	By forgotclick = By.id("lnkForgot");
 	By enteremail = By.id("txtForgotEmail");
 	By click = By.id("btnForgot");
@@ -220,13 +222,14 @@ public class HomePage extends BrowserFunctions {
 	
 	
 
-	// bhd musicband href="night-life/bahrain-music-band"
+	// Bahrain musicband href="night-life/bahrain-music-band"
+	
 	By eventbookBHDMusic = By.xpath("//*[@href='night-life/bahrain-music-band']");
 	By Eventbookclickimg = By.xpath("//*[@src='http://staging.wanasatime.com/EventPosters/bmb_0905201910540917879.jpg']");
 	By okButtonOnOverlay = By.id("btnAccept");
 	By eventbookingclick = By.id("bookBtnForOtherevents");	
-	By dateselection = By.xpath("//*[@recurringid='1924']");
-	By next = By.id("BookingNext");
+	By dateselection     = By.xpath("//*[@recurringid='1924']");
+	By next 			 = By.id("BookingNext");
 	By selectcategoryfree = By.xpath("//*[@categoryid='5395']");
 	By selectcategoryvip = By.xpath("//*[@categoryid='5394']");
 	By ticketcountsubvipaudlut1 = By.xpath("//div[@id='Subcat']//div[1]//button[1]");
@@ -245,7 +248,8 @@ public class HomePage extends BrowserFunctions {
 			.xpath("//[*contains(@class,'toast-message') and contains(text(),'Invalid E-Voucher')]");
 	
 	
-//free ticket
+//Free ticket
+	
 	public String BookTicketevents() 
 	{
 		try {
@@ -351,7 +355,8 @@ public class HomePage extends BrowserFunctions {
 		}
 		
 	
-	// event ticket book -qatar 
+	// Event ticket book -Qatar 
+		
 	By littlesing	 	= By.xpath("//*[@href='events/littleSingers']");
 	By silvercat 		= By.xpath("//div[@id='EventCatgeory']//button[2]");
 	By custname 		= By.id("txtCustomerName");
@@ -363,7 +368,8 @@ public class HomePage extends BrowserFunctions {
 	By cvv 				= By.id("card_cvn");
 	By pay 				= By.xpath("//input[@name='commit']");
 	
-	//(single day evnt book with CBQ-visa) - qatar
+	//(Single day event book with CBQ-visa) - Qatar
+	
 	public String eventbookvisa() throws InterruptedException
 	{
 		
@@ -397,7 +403,7 @@ public class HomePage extends BrowserFunctions {
 	
 	
 	
-	//(multiple day evnt book with CBQ-Mastercard) - qatar
+	//(Multiple day event book with CBQ-Mastercard) - Qatar
 	
 	By parent	 		 = By.xpath("//*[@href='science-and-technology/ParentTrainig']");
 	By bookingdate		 = By.xpath("//*[@recurringid='1969']");
@@ -441,14 +447,8 @@ public class HomePage extends BrowserFunctions {
 		return driver.findElement(ticketconfirmtext).getText();
 	}
 	
-	
 
-
-	
-	
-
-
-	// By fblogin = By.id("loginBtn1");
+	// By Fb login = By.id("loginBtn1");
 
 
 	public void clickSignInButton() throws InterruptedException
@@ -458,7 +458,7 @@ public class HomePage extends BrowserFunctions {
 
 	}
 
-	// debitcard locators
+	// Debitcard locators
 
 	By debitcardbtn = By.xpath("//*[@id='btnDebitCard']");
 	By cardnumber = By.id("Ecom_Payment_Card_Number_id");
@@ -477,6 +477,7 @@ public class HomePage extends BrowserFunctions {
 
 
 	// Google Sign in Locators
+	
 	By menug = By.id("userMenu");
 	By logoutg = By.id("Logout");
 	By googleLogin = By.id("connectGoogle");
@@ -510,7 +511,8 @@ public class HomePage extends BrowserFunctions {
 		return url;
 	}
 
-	// movies
+	// Movies
+	
 	By moviestab = By.id("tabMovies");
 	By eventstab = By.id("tabEvents");
 	By vijaymovie = By.xpath("//*[@href='MovieInfo.aspx?MovieId=17']");
@@ -523,7 +525,9 @@ public class HomePage extends BrowserFunctions {
 	By numberofseatselection = By.linkText("2");
 	By ticketcount2 = By.xpath("//*[@class='nav nav-pills members']/li");
 	By seatselectionOkclick = By.id("btnOk");
+	
 	// By seatlayoutselect = By.xpath("//*[@title='Row-G Seat-08']");
+	
 	By seatlayoutselect = By.xpath("//*[@id='seatNumber']//td[contains(@class,'seat available')]");
 	By error = By.xpath("*//[@id='seat_error']");
 	By proceedbutton = By.id("btnPay");
@@ -601,7 +605,8 @@ public class HomePage extends BrowserFunctions {
 	
 	
 	
-	// quick booking 
+	// Quick booking 
+	
 	//By qucickbookclick = By.xpath("//*[@class='quick-booking-input-docker']/h4");
 	By movieslist = By.id("MoviesList");
 	By selectmall = By.id("CinemaList");
@@ -610,6 +615,7 @@ public class HomePage extends BrowserFunctions {
 	By booknow = By.id("BookNow");
 
 	public String quickbooking() throws InterruptedException
+	
 	{
 		//driver.findElement(qucickbookclick).click();
 			//driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
@@ -673,16 +679,14 @@ public class HomePage extends BrowserFunctions {
 						seat11.click();
 					}
 							
-			
-
-		} 
+					} 
 
 		return driver.findElement(ticketsuccess).getText();
 	}
 
 	
 	
-	// debit card pay
+	// Debit card pay
 
 	public void debitpayevents() throws InterruptedException {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -719,10 +723,8 @@ public class HomePage extends BrowserFunctions {
 		driver.findElement(conform).click();
 	}
 	
+	// Debit pay movies
 	
-	
-
-	// debit pay movies
 	public void debitpaymovies() throws InterruptedException {
 		
 		JavascriptExecutor js1 = (JavascriptExecutor) driver;
@@ -763,7 +765,8 @@ public class HomePage extends BrowserFunctions {
 		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
 	}
 
-	//contact us (bhd)
+	//Contact us (Bahrain)
+	
 	By fname = By.id("firstName");
 	By lname = By.id("secondName");
 	By Email = By.id("emailId");
@@ -775,6 +778,7 @@ public class HomePage extends BrowserFunctions {
 	By sendsuccess = By.className("toast-message");
 	
 	//Thanks for providing your information we will get back to you soon  //toastr-message  //toast-close-button
+	
 	public String contactus()
 	{
 		driver.findElement(contactus).click();
@@ -788,7 +792,20 @@ public class HomePage extends BrowserFunctions {
 		return driver.findElement(sendsuccess).getText();		
 	}
 	
+	// Negative Cases 
 	
+	// Single day Event Cancel and Back Button
 	
-
+	By eventYoga			= By.linkText("science-and-technology/Yoga");
+	
+	public void singleDayCancelBahrain()
+	
+	{
+	CommonMethods.explicitWaitForClickableElement(driver,driver.findElement(eventYoga));
+	driver.findElement(eventYoga).click();
+	driver.findElement(eventbookingclick).click();
+	driver.findElement(okButtonOnOverlay).click();
+	
+	}
+	
 }
