@@ -153,12 +153,7 @@ import java.util.HashMap;
 			driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
 			String success =ss.BookTicketeventspartial();
 			Assert.assertEquals(success, "Congratulations! Your Tickets was confirmed.");
-			//logout
-			driver.navigate().to("http://staging.wanasatime.com");
-			driver.findElement(us.menu1).click();
-			driver.findElement(us.logout).click();
-			String URL1 = driver.getCurrentUrl();
-			Assert.assertEquals(URL1,"http://staging.wanasatime.com/Home.aspx");
+			
 		
 		}
 			
@@ -174,12 +169,9 @@ import java.util.HashMap;
 			//ss.downloadTicket();	
 						
 			}
-				
-		
-
 		
 		
-		//@Test(priority=10)
+	//	@Test(priority=10)
 		public void verifyquickbooking() throws InterruptedException
 		{
 			logger_ss = extent.createTest("verifyquickbooking");
@@ -188,6 +180,12 @@ import java.util.HashMap;
 			String msg = ss.quickbooking();
 			Assert.assertEquals(msg,"Congratulations! Your Tickets was confirmed.");
 			logger_ss.log(Status.INFO, "Successfully verified quickbooking(with debitcard)."); 
+			//logout
+			driver.navigate().to("http://staging.wanasatime.com");
+			driver.findElement(us.menu1).click();
+			driver.findElement(us.logout).click();
+			String URL1 = driver.getCurrentUrl();
+			Assert.assertEquals(URL1,"http://staging.wanasatime.com/Home.aspx");
 			
 		}	
 		
@@ -199,7 +197,6 @@ import java.util.HashMap;
 			    driver.navigate().to("http://staging.wanasatime.com");
 				ss.clickSignInButton();	
 				Thread.sleep(3000);
-				driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
 				String afterlogin=ss.googleLogin();
 				Assert.assertEquals(afterlogin,"http://staging.wanasatime.com/");				
 				driver.navigate().to("http://staging.wanasatime.com");

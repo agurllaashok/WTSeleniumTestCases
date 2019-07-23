@@ -11,9 +11,9 @@
       <class name="wanasa.HomePageTest">
         <methods>
           <include name="tearDown"/>
-          <include name="verifymovieticketbooking"/>
           <include name="setup"/>
           <include name="closeBrowser1"/>
+          <include name="verifyquickbooking"/>
         </methods>
       </class> <!-- wanasa.HomePageTest -->
     </classes>

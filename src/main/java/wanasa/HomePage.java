@@ -519,8 +519,8 @@ public class HomePage extends BrowserFunctions {
 	
 	By movielist = By.xpath("//*[@src='http://staging.wanasatime.com/movie_images/VIJAY_SUPERUM_POURNAMIYUM210219062202_thumbnail.jpg']");
 	By moviesbookbutton = By.id("bookTickets");
-	By moviedateselection = By.xpath("//*[@showdate='07/22/2019']");
-	By showtimeselection = By.xpath("//*[@showid='6612']");
+	By moviedateselection = By.xpath("//*[@showdate='07/23/2019']");
+	By showtimeselection = By.xpath("//*[@showid='6666']");
 	By alertmovieok = By.id("btnAccept");
 	By numberofseatselection = By.linkText("2");
 	By ticketcount2 = By.xpath("//*[@class='nav nav-pills members']/li");
@@ -554,7 +554,8 @@ public class HomePage extends BrowserFunctions {
 			for(WebElement seat : seatselection)
 			{
 				String seatnumber = seat.getText();
-				if(seatnumber.equalsIgnoreCase("2"))
+				System.out.println(seatnumber);
+				if(seatnumber.equalsIgnoreCase("1"))
 				{
 					seat.click();
 					Thread.sleep(4000);
@@ -580,7 +581,6 @@ public class HomePage extends BrowserFunctions {
 						paybutton.click();
 						//driver.findElement(txtPaymentMobile).sendKeys(CommonMethods.passingData("mobile"));
 						//driver.findElement(txtPaymentEmail).sendKeys(CommonMethods.passingData("EnterMail"));
-
 						debitpaymovies();
 						Thread.sleep(2000);
 						System.out.println("done");
@@ -623,7 +623,7 @@ public class HomePage extends BrowserFunctions {
 			malls.selectByVisibleText("Seef Mall");
 			Select date = new Select(driver.findElement(selectdate));
 			driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
-			date.selectByVisibleText("Monday, 22 Jul");
+			date.selectByVisibleText("Tuesday, 23 Jul");
 			Select time = new Select(driver.findElement(selecttime));
 			driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
 			time.selectByVisibleText("8:00PM-Cinema 10");
@@ -636,7 +636,7 @@ public class HomePage extends BrowserFunctions {
 			for(WebElement seat : seatselection)
 			{
 				String seatnumber = seat.getText();
-				if(seatnumber.equalsIgnoreCase("2"))
+				if(seatnumber.equalsIgnoreCase("1"))
 				{
 					seat.click();
 					Thread.sleep(4000);
@@ -728,8 +728,11 @@ public class HomePage extends BrowserFunctions {
 		
 		JavascriptExecutor js1 = (JavascriptExecutor) driver;
 		js1.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
 		CommonMethods.explicitWaitForClickableElement(driver,driver.findElement(debitcardbtn));
-		driver.findElement(debitcardbtn).click();
+		//driver.findElement(debitcardbtn).click();
+		CommonMethods.explicitWaitForElementVisibility(moviespayproceed);
+		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
 		driver.findElement(moviespayproceed).click();
 		CommonMethods.explicitWaitForElementVisibility(cardnumber);
 		driver.findElement(cardnumber).sendKeys(CommonMethods.passingData("CardNumber"));
