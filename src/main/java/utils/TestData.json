@@ -5,7 +5,7 @@
     "Password"								:		"pallavi22",
     "mobile" 								:		"12345678",
     "vemail"								: 		"harshitha.basani@smscountry.com",
-     "vpwd"							    	: 		"WanasaTime",
+    "vpwd"							    	: 		"WanasaTime",
     "homepageurl"							:		"http://staging.wanasatime.com",
     "emcurl"								:		"http://staging.emc.wanasatime.com",
     "downloadFilepath"						:		"D:\\grpTalk\\TestDataFiles\\downloads\\",
