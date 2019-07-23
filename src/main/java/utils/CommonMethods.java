@@ -43,7 +43,8 @@ public class CommonMethods extends BrowserFunctions{
 		return driver.findElement(loactor).isDisplayed();
 	}
 	
-	public static void sendKeysMethod(By loactor,String text){
+	public static void sendKeysMethod(By loactor,String text)
+	{
 		driver.findElement(loactor).sendKeys(passingData(text));
 	}
 	
@@ -54,7 +55,7 @@ public class CommonMethods extends BrowserFunctions{
             alert.accept();
             Thread.sleep(2000);
            // System.out.println("successfully closed the alert");
-            driver.navigate().to(EMCUrl);
+            driver.navigate().to(homePageUrl);
           }
     }
 	
