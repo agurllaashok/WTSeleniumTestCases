@@ -50,11 +50,11 @@ import org.openqa.selenium.chrome.ChromeDriver;
 			
 		}
 		 
-<<<<<<< HEAD
+
 		//@Test(priority=2)  
-=======
+
 	//	@Test(priority=2)  
->>>>>>> 19cce023c50fa91dae752e796f23d7cd2fa8c923
+
 		public void verifylogin() throws InterruptedException  
 		{	
 			logger_ss = extent.createTest("verifylogin");
@@ -268,8 +268,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 			Assert.assertEquals(msg,"Thanks for providing your information we will get back to you soon" );		
 			logger_ss.log(Status.INFO, "Successfully verified contactus.");
 		}
-		
-<<<<<<< HEAD
+
 		@Test(priority=14)
 		public void verifyfacebookiconclick() throws InterruptedException
 		{
@@ -280,7 +279,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 		}
 		
 		    
-=======
+
 		// Negative Cases
 		
 		//@Test
@@ -354,15 +353,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 		  Assert.assertEquals(str,"Select No.Of Tickets you want to book");
 	  }
 	  
-	  @Test(priority=14)
-	  public void verifyfacebookiconclick() throws InterruptedException
-	  {
-	  logger_ss = extent.createTest("verifyfacebookiconclick");
-	  ss.facebookiconclick();	
-	  //Assert.assertEquals(s1, true);	
-	  logger_ss.log(Status.INFO, "Successfully facebookiconclick.");
-	  }
-
->>>>>>> 19cce023c50fa91dae752e796f23d7cd2fa8c923
+	
 	}
 
