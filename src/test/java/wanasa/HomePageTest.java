@@ -3,10 +3,12 @@
 import utils.CommonMethods;
 
 import java.util.HashMap;
-	import java.util.concurrent.TimeUnit;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 	import org.openqa.selenium.WebDriver;
-	import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 	import org.openqa.selenium.chrome.ChromeOptions;
 	import org.openqa.selenium.remote.CapabilityType;
 	import org.openqa.selenium.remote.DesiredCapabilities;
@@ -24,8 +26,7 @@ import java.util.HashMap;
 	import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 	
 	public class HomePageTest extends BrowserFunctions{
-		
-		HomePage ss= new HomePage();
+		HomePage ss= new HomePage();	
 		User us= new User();
 			
 		
@@ -49,7 +50,7 @@ import java.util.HashMap;
 			
 		}
 		 
-		@Test(priority=2)  
+		//@Test(priority=2)  
 		public void verifylogin() throws InterruptedException  
 		{	
 			logger_ss = extent.createTest("verifylogin");
@@ -254,6 +255,15 @@ import java.util.HashMap;
 			String msg =ss.contactus();
 			Assert.assertEquals(msg,"Thanks for providing your information we will get back to you soon" );		
 			logger_ss.log(Status.INFO, "Successfully verified contactus.");
+		}
+		
+		@Test(priority=14)
+		public void verifyfacebookiconclick() throws InterruptedException
+		{
+			logger_ss = extent.createTest("verifyfacebookiconclick");
+			ss.facebookiconclick();	
+			//Assert.assertEquals(s1, true);		
+			logger_ss.log(Status.INFO, "Successfully facebookiconclick.");
 		}
 		
 		    
