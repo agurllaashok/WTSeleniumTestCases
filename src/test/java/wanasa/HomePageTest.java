@@ -30,7 +30,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 		User us= new User();
 			
 		
-		//@Test(priority=0) 
+	//	@Test(priority=0) 
 		public void verifysignup() throws InterruptedException
 		{
 			logger_ss = extent.createTest("verifysignup");
@@ -40,7 +40,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 			logger_ss.log(Status.INFO, "signup done successfully.");
 		}
 		
-		//@Test(priority=1)
+	//	@Test(priority=1)
 		public void verifyforgotpassword() throws InterruptedException
 		{
 			logger_ss = extent.createTest("verifyforgotpassword");
@@ -50,7 +50,11 @@ import org.openqa.selenium.chrome.ChromeDriver;
 			
 		}
 		 
+<<<<<<< HEAD
 		//@Test(priority=2)  
+=======
+	//	@Test(priority=2)  
+>>>>>>> 19cce023c50fa91dae752e796f23d7cd2fa8c923
 		public void verifylogin() throws InterruptedException  
 		{	
 			logger_ss = extent.createTest("verifylogin");
@@ -68,7 +72,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 		
 		
 		// single day event
-		//@Test(priority=3)
+		
+	//	@Test(priority=3)
 		public void verifyeventbookvisa() throws InterruptedException 
 		{
 			logger_ss = extent.createTest("verifyeventbookvisa");
@@ -80,7 +85,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 		}
 		
 		//multiple day event
-		//@Test(priority=4)
+	//	@Test(priority=4)
 		public void verifyeventbookmaster() throws InterruptedException 
 		{
 			logger_ss = extent.createTest("verifyeventbookmaster");
@@ -110,7 +115,10 @@ import org.openqa.selenium.chrome.ChromeDriver;
 		//@Test(priority=6)
 		public void verifyeventticketBookingWithDebitCard() throws InterruptedException
 			{
-			logger_ss = extent.createTest("verifyeventticketBookingWithDebitCard");			
+			logger_ss = extent.createTest("verifyeventticketBookingWithDebitCard");
+			//driver.navigate().to("http://staging.wanasatime.com");
+			//ss.clickSignInButton();
+			//ss.signinWanasaTimeCredentials();
 			ss.countrySelection();
 			String success =ss.eventticketBookingWithDebitCard();
 			Assert.assertEquals(success,"Congratulations! Your Tickets was confirmed.");	
@@ -154,11 +162,17 @@ import org.openqa.selenium.chrome.ChromeDriver;
 			driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
 			String success =ss.BookTicketeventspartial();
 			Assert.assertEquals(success, "Congratulations! Your Tickets was confirmed.");
-			
+			//logout
+			driver.navigate().to("http://staging.wanasatime.com");
+			driver.findElement(us.menu1).click();
+			driver.findElement(us.logout).click();
+			String URL1 = driver.getCurrentUrl();
+			Assert.assertEquals(URL1,"http://staging.wanasatime.com/Home.aspx");
 		
 		}
 			
-		// @Test(priority=9)		   
+		  //@Test(priority=9)
+		   
 		  public void verifymovieticketbooking() throws InterruptedException
 			{
 			logger_ss = extent.createTest("verifymovieticketbooking");
@@ -170,9 +184,12 @@ import org.openqa.selenium.chrome.ChromeDriver;
 			//ss.downloadTicket();	
 						
 			}
+				
+		
+
 		
 		
-	//	@Test(priority=10)
+		//@Test(priority=10)
 		public void verifyquickbooking() throws InterruptedException
 		{
 			logger_ss = extent.createTest("verifyquickbooking");
@@ -181,12 +198,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 			String msg = ss.quickbooking();
 			Assert.assertEquals(msg,"Congratulations! Your Tickets was confirmed.");
 			logger_ss.log(Status.INFO, "Successfully verified quickbooking(with debitcard)."); 
-			//logout
-			driver.navigate().to("http://staging.wanasatime.com");
-			driver.findElement(us.menu1).click();
-			driver.findElement(us.logout).click();
-			String URL1 = driver.getCurrentUrl();
-			Assert.assertEquals(URL1,"http://staging.wanasatime.com/Home.aspx");
 			
 		}	
 		
@@ -198,6 +209,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 			    driver.navigate().to("http://staging.wanasatime.com");
 				ss.clickSignInButton();	
 				Thread.sleep(3000);
+				driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
 				String afterlogin=ss.googleLogin();
 				Assert.assertEquals(afterlogin,"http://staging.wanasatime.com/");				
 				driver.navigate().to("http://staging.wanasatime.com");
@@ -257,6 +269,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 			logger_ss.log(Status.INFO, "Successfully verified contactus.");
 		}
 		
+<<<<<<< HEAD
 		@Test(priority=14)
 		public void verifyfacebookiconclick() throws InterruptedException
 		{
@@ -267,5 +280,89 @@ import org.openqa.selenium.chrome.ChromeDriver;
 		}
 		
 		    
+=======
+		// Negative Cases
+		
+		//@Test
+		
+		public void backBtnSingleDayEvent() throws InterruptedException
+		{
+			logger_ss=extent.createTest("verifyBackBtn");
+			ss.countrySelection();
+			boolean bl=ss.singleDayBackBtnBahrain();
+			Assert.assertEquals(bl, true);						
+		}
+		
+	 // @Test 
+	  public void cancelBtnSingleDayEvent() throws InterruptedException
+	 {
+		    logger_ss=extent.createTest("verifyBackBtn");
+			ss.countrySelection(); 
+			boolean bln=ss.singleDayCancelBtnBahrain();
+			Assert.assertEquals(bln, true);
+	 }
+	  
+	  //@Test
+	  
+	  public void cancelBtnCreditCard() throws InterruptedException
+	  {
+		    logger_ss=extent.createTest("verifyCancelBtnCreditCard");
+		    driver.findElement(ss.signinclick).click();
+		    driver.findElement(ss.signinemail).sendKeys(CommonMethods.passingData("EnterMail"));
+			//driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
+			driver.findElement(ss.signinpassword).sendKeys(CommonMethods.passingData("Password"));
+			//driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
+			driver.findElement(ss.loginclick).click();
+		    //ss.signinWanasaTimeCredentials();
+			ss.countrySelection(); 
+			String crbtn=ss.cancelBtnInCreditCard();
+			Assert.assertEquals(crbtn, "Your transaction was failed or you may cancelled the purchase.");
+	  }
+	  
+	  //@Test
+	  
+	  public void backBtnInSeatLayoutNaal() throws InterruptedException
+	  {
+		  logger_ss=extent.createTest("verifyBackBtnInSeatLayout");
+		  ss.countrySelectionqar();
+		  boolean val=ss.backinSeatLayoutPage();
+		  Assert.assertEquals(val, true);
+	  }
+	  
+	  // @Test
+	  public void cancelBtnInCBQPayment() throws InterruptedException
+	  {
+		    logger_ss=extent.createTest("verifyCancelBtnInPaymentPage");
+		    driver.findElement(ss.signinclick).click();
+		    driver.findElement(ss.signinemail).sendKeys(CommonMethods.passingData("EnterMail"));
+			//driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
+			driver.findElement(ss.signinpassword).sendKeys(CommonMethods.passingData("Password"));
+			//driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
+			driver.findElement(ss.loginclick).click();
+			ss.countrySelectionqar();
+			String canCbq=ss.cancelBtnInPaymentPage();
+			Assert.assertEquals(canCbq,"Your transaction was failed or you may cancelled the purchase.");
+		  	  
+	  }
+	  
+	  @Test
+	  
+	  public void withOutSelectingSeat() throws InterruptedException
+	  {
+		  ss.countrySelectionqar();
+		  String str=ss.withoutSubCategories();
+		  Assert.assertEquals(str,"Select No.Of Tickets you want to book");
+	  }
+	  
+	  @Test(priority=14)
+	  public void verifyfacebookiconclick() throws InterruptedException
+	  {
+	  logger_ss = extent.createTest("verifyfacebookiconclick");
+	  ss.facebookiconclick();	
+	  //Assert.assertEquals(s1, true);	
+	  logger_ss.log(Status.INFO, "Successfully facebookiconclick.");
+	  }
+
+>>>>>>> 19cce023c50fa91dae752e796f23d7cd2fa8c923
 	}
 
