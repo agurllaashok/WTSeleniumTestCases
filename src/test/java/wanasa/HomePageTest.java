@@ -6,7 +6,8 @@ import java.util.HashMap;
 	import java.util.concurrent.TimeUnit;
 
 	import org.openqa.selenium.WebDriver;
-	import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 	import org.openqa.selenium.chrome.ChromeOptions;
 	import org.openqa.selenium.remote.CapabilityType;
 	import org.openqa.selenium.remote.DesiredCapabilities;
@@ -29,7 +30,7 @@ import java.util.HashMap;
 		User us= new User();
 			
 		
-		@Test(priority=0) 
+	//	@Test(priority=0) 
 		public void verifysignup() throws InterruptedException
 		{
 			logger_ss = extent.createTest("verifysignup");
@@ -39,7 +40,7 @@ import java.util.HashMap;
 			logger_ss.log(Status.INFO, "signup done successfully.");
 		}
 		
-		@Test(priority=1)
+	//	@Test(priority=1)
 		public void verifyforgotpassword() throws InterruptedException
 		{
 			logger_ss = extent.createTest("verifyforgotpassword");
@@ -49,7 +50,7 @@ import java.util.HashMap;
 			
 		}
 		 
-		@Test(priority=2)  
+	//	@Test(priority=2)  
 		public void verifylogin() throws InterruptedException  
 		{	
 			logger_ss = extent.createTest("verifylogin");
@@ -67,7 +68,8 @@ import java.util.HashMap;
 		
 		
 		// single day event
-		@Test(priority=3)
+		
+	//	@Test(priority=3)
 		public void verifyeventbookvisa() throws InterruptedException 
 		{
 			logger_ss = extent.createTest("verifyeventbookvisa");
@@ -106,7 +108,7 @@ import java.util.HashMap;
 		
 		
 		//multi days sub cat
-		@Test(priority=6)
+		//@Test(priority=6)
 		public void verifyeventticketBookingWithDebitCard() throws InterruptedException
 			{
 			logger_ss = extent.createTest("verifyeventticketBookingWithDebitCard");
@@ -165,7 +167,7 @@ import java.util.HashMap;
 		
 		}
 			
-		  @Test(priority=9)
+		  //@Test(priority=9)
 		   
 		  public void verifymovieticketbooking() throws InterruptedException
 			{
@@ -183,7 +185,7 @@ import java.util.HashMap;
 
 		
 		
-		@Test(priority=10)
+		//@Test(priority=10)
 		public void verifyquickbooking() throws InterruptedException
 		{
 			logger_ss = extent.createTest("verifyquickbooking");
@@ -263,6 +265,77 @@ import java.util.HashMap;
 			logger_ss.log(Status.INFO, "Successfully verified contactus.");
 		}
 		
-		    
+		// Negative Cases
+		
+		//@Test
+		
+		public void backBtnSingleDayEvent() throws InterruptedException
+		{
+			logger_ss=extent.createTest("verifyBackBtn");
+			ss.countrySelection();
+			boolean bl=ss.singleDayBackBtnBahrain();
+			Assert.assertEquals(bl, true);						
+		}
+		
+	 // @Test 
+	  public void cancelBtnSingleDayEvent() throws InterruptedException
+	 {
+		    logger_ss=extent.createTest("verifyBackBtn");
+			ss.countrySelection(); 
+			boolean bln=ss.singleDayCancelBtnBahrain();
+			Assert.assertEquals(bln, true);
+	 }
+	  
+	  //@Test
+	  
+	  public void cancelBtnCreditCard() throws InterruptedException
+	  {
+		    logger_ss=extent.createTest("verifyCancelBtnCreditCard");
+		    driver.findElement(ss.signinclick).click();
+		    driver.findElement(ss.signinemail).sendKeys(CommonMethods.passingData("EnterMail"));
+			//driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
+			driver.findElement(ss.signinpassword).sendKeys(CommonMethods.passingData("Password"));
+			//driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
+			driver.findElement(ss.loginclick).click();
+		    //ss.signinWanasaTimeCredentials();
+			ss.countrySelection(); 
+			String crbtn=ss.cancelBtnInCreditCard();
+			Assert.assertEquals(crbtn, "Your transaction was failed or you may cancelled the purchase.");
+	  }
+	  
+	  //@Test
+	  
+	  public void backBtnInSeatLayoutNaal() throws InterruptedException
+	  {
+		  logger_ss=extent.createTest("verifyBackBtnInSeatLayout");
+		  ss.countrySelectionqar();
+		  boolean val=ss.backinSeatLayoutPage();
+		  Assert.assertEquals(val, true);
+	  }
+	  
+	  // @Test
+	  public void cancelBtnInCBQPayment() throws InterruptedException
+	  {
+		    logger_ss=extent.createTest("verifyCancelBtnInPaymentPage");
+		    driver.findElement(ss.signinclick).click();
+		    driver.findElement(ss.signinemail).sendKeys(CommonMethods.passingData("EnterMail"));
+			//driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
+			driver.findElement(ss.signinpassword).sendKeys(CommonMethods.passingData("Password"));
+			//driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
+			driver.findElement(ss.loginclick).click();
+			ss.countrySelectionqar();
+			String canCbq=ss.cancelBtnInPaymentPage();
+			Assert.assertEquals(canCbq,"Your transaction was failed or you may cancelled the purchase.");
+		  	  
+	  }
+	  
+	  @Test
+	  
+	  public void withOutSelectingSeat() throws InterruptedException
+	  {
+		  ss.countrySelectionqar();
+		  String str=ss.withoutSubCategories();
+		  Assert.assertEquals(str,"sSelect No.Of Tickets you want to book");
+	  }
 	}
 

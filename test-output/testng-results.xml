@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" total="4" passed="4">
+<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="130970" started-at="2019-07-22T05:56:44Z" finished-at="2019-07-22T05:58:55Z">
+  <suite name="Default suite" duration-ms="30100" started-at="2019-07-24T08:46:42Z" finished-at="2019-07-24T08:47:12Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="130970" started-at="2019-07-22T05:56:44Z" finished-at="2019-07-22T05:58:55Z">
+    <test name="Default test" duration-ms="30100" started-at="2019-07-24T08:46:42Z" finished-at="2019-07-24T08:47:12Z">
       <class name="wanasa.HomePageTest">
-        <test-method status="PASS" signature="setup(java.lang.String)[pri:0, instance:wanasa.HomePageTest@6537cf78]" name="setup" is-config="true" duration-ms="22152" started-at="2019-07-22T11:26:44Z" finished-at="2019-07-22T11:27:06Z">
+        <test-method status="PASS" signature="setup(java.lang.String)[pri:0, instance:wanasa.HomePageTest@335eadca]" name="setup" is-config="true" duration-ms="16308" started-at="2019-07-24T08:46:42Z" finished-at="2019-07-24T08:46:59Z">
           <params>
             <param index="0">
               <value>
@@ -18,67 +18,22 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method status="PASS" signature="verifysignup()[pri:0, instance:wanasa.HomePageTest@6537cf78]" name="verifysignup" duration-ms="12189" started-at="2019-07-22T11:27:06Z" finished-at="2019-07-22T11:27:18Z">
+        <test-method status="PASS" signature="withOutSelectingSeat()[pri:0, instance:wanasa.HomePageTest@335eadca]" name="withOutSelectingSeat" duration-ms="13285" started-at="2019-07-24T08:46:59Z" finished-at="2019-07-24T08:47:12Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- verifysignup -->
-        <test-method status="PASS" signature="tearDown(org.testng.ITestResult)[pri:0, instance:wanasa.HomePageTest@6537cf78]" name="tearDown" is-config="true" duration-ms="698" started-at="2019-07-22T11:27:18Z" finished-at="2019-07-22T11:27:19Z">
+        </test-method> <!-- withOutSelectingSeat -->
+        <test-method status="PASS" signature="tearDown(org.testng.ITestResult)[pri:0, instance:wanasa.HomePageTest@335eadca]" name="tearDown" is-config="true" duration-ms="371" started-at="2019-07-24T08:47:12Z" finished-at="2019-07-24T08:47:12Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=verifysignup status=SUCCESS method=HomePageTest.verifysignup()[pri:0, instance:wanasa.HomePageTest@6537cf78] output={null}]]]>
+                <![CDATA[[TestResult name=withOutSelectingSeat status=SUCCESS method=HomePageTest.withOutSelectingSeat()[pri:0, instance:wanasa.HomePageTest@335eadca] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method status="PASS" signature="verifylogin()[pri:2, instance:wanasa.HomePageTest@6537cf78]" name="verifylogin" duration-ms="8358" started-at="2019-07-22T11:27:19Z" finished-at="2019-07-22T11:27:27Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- verifylogin -->
-        <test-method status="PASS" signature="tearDown(org.testng.ITestResult)[pri:0, instance:wanasa.HomePageTest@6537cf78]" name="tearDown" is-config="true" duration-ms="107" started-at="2019-07-22T11:27:27Z" finished-at="2019-07-22T11:27:27Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=verifylogin status=SUCCESS method=HomePageTest.verifylogin()[pri:2, instance:wanasa.HomePageTest@6537cf78] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method status="PASS" signature="verifyeventbookvisa()[pri:3, instance:wanasa.HomePageTest@6537cf78]" name="verifyeventbookvisa" duration-ms="42821" started-at="2019-07-22T11:27:27Z" finished-at="2019-07-22T11:28:10Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- verifyeventbookvisa -->
-        <test-method status="PASS" signature="tearDown(org.testng.ITestResult)[pri:0, instance:wanasa.HomePageTest@6537cf78]" name="tearDown" is-config="true" duration-ms="81" started-at="2019-07-22T11:28:10Z" finished-at="2019-07-22T11:28:10Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=verifyeventbookvisa status=SUCCESS method=HomePageTest.verifyeventbookvisa()[pri:3, instance:wanasa.HomePageTest@6537cf78] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method status="PASS" signature="verifyeventticketBookingWithDebitCard()[pri:6, instance:wanasa.HomePageTest@6537cf78]" name="verifyeventticketBookingWithDebitCard" duration-ms="44324" started-at="2019-07-22T11:28:10Z" finished-at="2019-07-22T11:28:55Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- verifyeventticketBookingWithDebitCard -->
-        <test-method status="PASS" signature="tearDown(org.testng.ITestResult)[pri:0, instance:wanasa.HomePageTest@6537cf78]" name="tearDown" is-config="true" duration-ms="60" started-at="2019-07-22T11:28:55Z" finished-at="2019-07-22T11:28:55Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=verifyeventticketBookingWithDebitCard status=SUCCESS method=HomePageTest.verifyeventticketBookingWithDebitCard()[pri:6, instance:wanasa.HomePageTest@6537cf78] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method status="PASS" signature="closeBrowser1(java.lang.String)[pri:0, instance:wanasa.HomePageTest@6537cf78]" name="closeBrowser1" is-config="true" duration-ms="135" started-at="2019-07-22T11:28:55Z" finished-at="2019-07-22T11:28:55Z">
+        <test-method status="PASS" signature="closeBrowser1(java.lang.String)[pri:0, instance:wanasa.HomePageTest@335eadca]" name="closeBrowser1" is-config="true" duration-ms="83" started-at="2019-07-24T08:47:12Z" finished-at="2019-07-24T08:47:12Z">
           <params>
             <param index="0">
               <value>

@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -15,6 +16,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import utils.BrowserFunctions;
 import utils.CommonMethods;
+
+
 
 public class HomePage extends BrowserFunctions {
 	
@@ -384,7 +387,7 @@ public class HomePage extends BrowserFunctions {
 		//driver.findElement(txtPaymentMobile).sendKeys(CommonMethods.passingData("mobile"));
         // driver.findElement(txtPaymentEmail).sendKeys(CommonMethods.passingData("EnterMail"));
 		driver.findElement(btnforpay).click();
-		Thread.sleep(2000);
+		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
 		 driver.findElement(visacard).click();
 		 driver.findElement(cardnum).sendKeys(CommonMethods.passingData("visaCBQ"));
 		 driver.findElement(expmonth).click();
@@ -519,8 +522,8 @@ public class HomePage extends BrowserFunctions {
 	
 	By movielist = By.xpath("//*[@src='http://staging.wanasatime.com/movie_images/VIJAY_SUPERUM_POURNAMIYUM210219062202_thumbnail.jpg']");
 	By moviesbookbutton = By.id("bookTickets");
-	By moviedateselection = By.xpath("//*[@showdate='07/22/2019']");
-	By showtimeselection = By.xpath("//*[@showid='6612']");
+	By moviedateselection = By.xpath("//*[@showdate='07/23/2019']");
+	By showtimeselection = By.xpath("//*[@showid='6666']");
 	By alertmovieok = By.id("btnAccept");
 	By numberofseatselection = By.linkText("2");
 	By ticketcount2 = By.xpath("//*[@class='nav nav-pills members']/li");
@@ -556,7 +559,8 @@ public class HomePage extends BrowserFunctions {
 			for(WebElement seat : seatselection)
 			{
 				String seatnumber = seat.getText();
-				if(seatnumber.equalsIgnoreCase("2"))
+				System.out.println(seatnumber);
+				if(seatnumber.equalsIgnoreCase("1"))
 				{
 					seat.click();
 					Thread.sleep(4000);
@@ -582,7 +586,6 @@ public class HomePage extends BrowserFunctions {
 						paybutton.click();
 						//driver.findElement(txtPaymentMobile).sendKeys(CommonMethods.passingData("mobile"));
 						//driver.findElement(txtPaymentEmail).sendKeys(CommonMethods.passingData("EnterMail"));
-
 						debitpaymovies();
 						Thread.sleep(2000);
 						System.out.println("done");
@@ -627,7 +630,7 @@ public class HomePage extends BrowserFunctions {
 			malls.selectByVisibleText("Seef Mall");
 			Select date = new Select(driver.findElement(selectdate));
 			driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
-			date.selectByVisibleText("Monday, 22 Jul");
+			date.selectByVisibleText("Tuesday, 23 Jul");
 			Select time = new Select(driver.findElement(selecttime));
 			driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
 			time.selectByVisibleText("8:00PM-Cinema 10");
@@ -640,7 +643,7 @@ public class HomePage extends BrowserFunctions {
 			for(WebElement seat : seatselection)
 			{
 				String seatnumber = seat.getText();
-				if(seatnumber.equalsIgnoreCase("2"))
+				if(seatnumber.equalsIgnoreCase("1"))
 				{
 					seat.click();
 					Thread.sleep(4000);
@@ -691,12 +694,13 @@ public class HomePage extends BrowserFunctions {
 	public void debitpayevents() throws InterruptedException {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		CommonMethods.explicitWaitForClickableElement(driver,driver.findElement(debitcardbtn));
 		driver.findElement(debitcardbtn).click();
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
 		driver.findElement(btnforpay).click();
-		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
+		CommonMethods.explicitWaitForElementVisibility(cardnumber);
 		driver.findElement(cardnumber).sendKeys(CommonMethods.passingData("CardNumber"));
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
 		driver.findElement(expiryMonth).click();
 		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
 		Select oSelect = new Select(driver.findElement(expiryMonth));
@@ -707,10 +711,8 @@ public class HomePage extends BrowserFunctions {
 		Select oSelect1 = new Select(driver.findElement(expiryYear));
 		oSelect1.selectByIndex(10);
 		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
-
 		driver.findElement(cardname).sendKeys(CommonMethods.passingData("CardName"));
 		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
-
 		driver.findElement(pinNumber).click();
 		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
 		driver.findElement(pin1).click();
@@ -729,28 +731,26 @@ public class HomePage extends BrowserFunctions {
 		
 		JavascriptExecutor js1 = (JavascriptExecutor) driver;
 		js1.executeScript("window.scrollTo(0, document.body.scrollHeight)");
-		Thread.sleep(2000);
-		driver.findElement(debitcardbtn).click();
-		Thread.sleep(4000);
+		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
+		CommonMethods.explicitWaitForClickableElement(driver,driver.findElement(debitcardbtn));
+		//driver.findElement(debitcardbtn).click();
+		CommonMethods.explicitWaitForElementVisibility(moviespayproceed);
+		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
 		driver.findElement(moviespayproceed).click();
-		Thread.sleep(2000);
+		CommonMethods.explicitWaitForElementVisibility(cardnumber);
 		driver.findElement(cardnumber).sendKeys(CommonMethods.passingData("CardNumber"));
-		Thread.sleep(2000);
 		driver.findElement(expiryMonth).click();
 		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
 		Select oSelect = new Select(driver.findElement(expiryMonth));
 		oSelect.selectByIndex(11);
-
 		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
 		driver.findElement(expiryYear).click();
 		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
 		Select oSelect1 = new Select(driver.findElement(expiryYear));
 		oSelect1.selectByIndex(10);
 		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
-
 		driver.findElement(cardname).sendKeys(CommonMethods.passingData("CardName"));
 		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
-
 		driver.findElement(pinNumber).click();
 		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
 		driver.findElement(pin1).click();
@@ -796,16 +796,127 @@ public class HomePage extends BrowserFunctions {
 	
 	// Single day Event Cancel and Back Button
 	
-	By eventYoga			= By.linkText("science-and-technology/Yoga");
+	By tabEvents					=	By.id("tabEvents");
+	By eventYoga					= 	By.xpath("//*[@href='science-and-technology/Yoga']");
+	By back							= 	By.id("btnBack");
+	By cancel						=	By.xpath("//*[@class='text-center mt_30 mb_20']//button[1]");
+	By catSelectionChild			=	By.id("403");
+	By catSelectionParent			=	By.id("404");
+	By btnCreditCard				=	By.id("btnCreditCard");
+	By cancelBtnCreditCard			=	By.xpath("//*[@class='col-xs-12 text-right hidden-xs']//*[@class='cancelButton']");
+	By ticketFailure				=	By.xpath("//*[@id='failedMsg']//h4");
 	
-	public void singleDayCancelBahrain()
+	public boolean singleDayBackBtnBahrain()
 	
 	{
-	CommonMethods.explicitWaitForClickableElement(driver,driver.findElement(eventYoga));
+	
+	driver.findElement(tabEvents).click();
+	JavascriptExecutor js = (JavascriptExecutor) driver;
+	js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+	CommonMethods.explicitWaitForElementVisibility(eventYoga);
 	driver.findElement(eventYoga).click();
 	driver.findElement(eventbookingclick).click();
 	driver.findElement(okButtonOnOverlay).click();
+	driver.findElement(next).click();
+	driver.findElement(catSelectionChild).click();
+	driver.findElement(catSelectionParent).click();
+	driver.findElement(back).click();
+	CommonMethods.explicitWaitForElementVisibility(next);
+    return driver.findElement(next).isDisplayed(); 
 	
 	}
 	
+	public boolean singleDayCancelBtnBahrain()
+	{
+		driver.findElement(tabEvents).click();
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		CommonMethods.explicitWaitForElementVisibility(eventYoga);
+		driver.findElement(eventYoga).click();
+		driver.findElement(eventbookingclick).click();
+		driver.findElement(okButtonOnOverlay).click();
+		driver.findElement(cancel).click();
+		return driver.findElement(eventbookingclick).isDisplayed();
+		
+	}
+	
+	// Back in Debit Card
+	
+	public String cancelBtnInCreditCard()
+	{
+		driver.findElement(tabEvents).click();
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		CommonMethods.explicitWaitForElementVisibility(eventYoga);
+		driver.findElement(eventYoga).click();
+		driver.findElement(eventbookingclick).click();
+		driver.findElement(okButtonOnOverlay).click();
+		driver.findElement(next).click();
+		driver.findElement(catSelectionChild).click();
+		driver.findElement(catSelectionParent).click();
+		driver.findElement(btnproceed).click();
+		driver.findElement(btnproceedfinal).click();
+		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+		driver.findElement(cancelBtnCreditCard).click();
+		return driver.findElement(ticketFailure).getText();
+		
+				
+	}
+	
+	// Back button in Seat selection Page Naal Event Qatar
+	
+	   By naalEvent			=	By.xpath("//*[@href='arts-and-culture/naal-']");
+	   By goBack			=	By.id("goBack");
+	   
+	 
+	public boolean backinSeatLayoutPage()
+	{
+		CommonMethods.explicitWaitForElementVisibility(naalEvent);
+		driver.findElement(naalEvent).click();
+		driver.findElement(eventbookingclick).click();
+		driver.findElement(next).click();
+		driver.findElement(btnproceed).click();
+		driver.findElement(goBack).click();
+		return driver.findElement(eventbookingclick).isDisplayed();
+	}
+
+	//Cancel Button in Patment GateWay Page CBQ
+	
+	By festivalAround		=	By.xpath("//*[@href='arts-and-culture/festivals-around-theworld']");
+	By cancelinPayment		=	By.xpath("//*[@id='payment_details']/input[1]");
+	By yesbtnAfterCancel	=	By.xpath("//span[contains(@class,'ui-button-text')][contains(text(),'Yes')]");
+	By subCatAdult			=	By.xpath("//button[@id='326'][1]");
+	By subCatChild			=	By.xpath("//button[@id='327'][2]");
+	By withOutSelectingSeat	=	By.xpath("//*[contains(@class,'toast-message') and contains(text(),'Select No.Of Tickets you want to book')]");
+	
+	public String cancelBtnInPaymentPage()
+	{
+		CommonMethods.explicitWaitForElementVisibility(festivalAround);
+		driver.findElement(festivalAround).click();
+		driver.findElement(eventbookingclick).click();
+		driver.findElement(okButtonOnOverlay).click();
+		driver.findElement(next).click();
+		driver.findElement(btnproceed).click();
+		driver.findElement(subCatAdult).click();
+		driver.findElement(subCatChild).click();
+		driver.findElement(btnproceed).click();
+		driver.findElement(btnproceedfinal).click();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.findElement(cancelinPayment).click();
+		driver.findElement(yesbtnAfterCancel).click();
+		return driver.findElement(ticketFailure).getText();
+	}
+// Proceed Btn without Selecting sub Categories
+	
+	public String withoutSubCategories()
+	{
+		CommonMethods.explicitWaitForElementVisibility(festivalAround);
+		driver.findElement(festivalAround).click();
+		driver.findElement(eventbookingclick).click();
+		driver.findElement(okButtonOnOverlay).click();
+		driver.findElement(next).click();
+		//driver.findElement(btnproceed).click();
+		driver.findElement(btnproceed).click();
+		return driver.findElement(withOutSelectingSeat).getText();
+	}
 }
