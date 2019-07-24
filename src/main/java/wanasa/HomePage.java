@@ -1,5 +1,6 @@
 package wanasa;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -918,5 +919,71 @@ public class HomePage extends BrowserFunctions {
 		//driver.findElement(btnproceed).click();
 		driver.findElement(btnproceed).click();
 		return driver.findElement(withOutSelectingSeat).getText();
+	}
+	
+	//icon clicks bhd
+	
+	By fbicon = By.id("faceboolink");
+	By insta  = By.id("instalink");
+	By youtube= By.id("youtublink");
+	By fbid   = By.id("u_0_3");
+	By smlinks = By.xpath("//*[@class='social text-center']/a");
+
+	public void facebookiconclick() throws InterruptedException
+	{
+	Thread.sleep(2000);
+	//driver.findElement(location).click();
+	WebElement xx = driver.findElement(By.xpath("//span[@class='fa fa-map-marker']"));
+	Actions a = new Actions(driver);
+	a.moveToElement(xx).build().perform();
+	Thread.sleep(2000);
+	List<WebElement> s3 = driver.findElements(By.xpath("//li[@class='dropdown liLocation']/ul/li"));
+	//System.out.println("List of locations" +s3.size());
+
+	for(WebElement s4 : s3)
+	{
+	String s5 = s4.findElement(By.xpath("./a")).getText();
+	//System.out.println("Country Name " +s5);	
+	String s6 = CommonMethods.passingData("loc");
+	//System.out.println("For Json:" +s6);	
+	if(s6.equalsIgnoreCase(s5))
+	{
+	s4.click();
+	JavascriptExecutor js = (JavascriptExecutor) driver;
+	js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+	List<WebElement> slinks = driver.findElements(smlinks);
+	for(WebElement sl:slinks)
+	{
+	sl.click();
+	Thread.sleep(4000);
+	   ArrayList  fbclick  = new ArrayList (driver.getWindowHandles());
+	System.out.println("Size of windows opened" +fbclick.size());
+	driver.switchTo().window((String) fbclick.get(1)); 
+	//String s1 = driver.getCurrentUrl();
+	//System.out.println(s1);	
+	driver.close();
+	driver.switchTo().window((String) fbclick.get(0)); 
+	//String s2 = driver.getCurrentUrl();
+	//System.out.println(s2);	
+	}
+	break;	
+	}
+
+	}
+
+	/*countrySelection();	
+	JavascriptExecutor js = (JavascriptExecutor) driver;
+	js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+	WebElement fblink = driver.findElement(fbicon);
+	fblink.click();
+	Thread.sleep(4000);
+	   ArrayList  fbclick  = new ArrayList (driver.getWindowHandles());
+	System.out.println("Size of windows opened" +fbclick.size());
+	driver.switchTo().window((String) fbclick.get(1)); 
+	String s1 = driver.getCurrentUrl();
+	System.out.println(s1);
+	CommonMethods.explicitWaitForElementVisibility(fbid);
+	return driver.findElement(fbid).isDisplayed();*/
+
 	}
 }

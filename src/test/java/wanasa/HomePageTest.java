@@ -335,7 +335,17 @@ import org.openqa.selenium.chrome.ChromeDriver;
 	  {
 		  ss.countrySelectionqar();
 		  String str=ss.withoutSubCategories();
-		  Assert.assertEquals(str,"sSelect No.Of Tickets you want to book");
+		  Assert.assertEquals(str,"Select No.Of Tickets you want to book");
 	  }
+	  
+	  @Test(priority=14)
+	  public void verifyfacebookiconclick() throws InterruptedException
+	  {
+	  logger_ss = extent.createTest("verifyfacebookiconclick");
+	  ss.facebookiconclick();	
+	  //Assert.assertEquals(s1, true);	
+	  logger_ss.log(Status.INFO, "Successfully facebookiconclick.");
+	  }
+
 	}
 
