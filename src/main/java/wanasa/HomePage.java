@@ -1,24 +1,16 @@
 package wanasa;
 
 
-import java.lang.reflect.Array;
-
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
+import org.openqa.selenium.support.ui.Select;
 import utils.BrowserFunctions;
 import utils.CommonMethods;
 
@@ -805,7 +797,7 @@ public class HomePage extends BrowserFunctions {
 	By fbid   = By.id("u_0_3");
 	By smlinks = By.xpath("//*[@class='social text-center']/a");
 	
-	public void facebookiconclick() throws InterruptedException
+	public int  SMiconclick() throws InterruptedException
 	{
 		Thread.sleep(2000);
 		//driver.findElement(location).click();
@@ -832,41 +824,52 @@ public class HomePage extends BrowserFunctions {
 				{
 					sl.click();
 					Thread.sleep(4000);
-				    ArrayList  fbclick  = new ArrayList (driver.getWindowHandles());
-					System.out.println("Size of windows opened" +fbclick.size());
-					driver.switchTo().window((String) fbclick.get(1)); 
-					//String s1 = driver.getCurrentUrl();
-					//System.out.println(s1);	
-					driver.close();
-					driver.switchTo().window((String) fbclick.get(0)); 
-					//String s2 = driver.getCurrentUrl();
-					//System.out.println(s2);						
+				    ArrayList  iconclick  = new ArrayList (driver.getWindowHandles());
+					System.out.println("Size of windows opened" +iconclick.size());
+					driver.switchTo().window((String) iconclick.get(1)); 
+					String s1 = driver.getCurrentUrl();
+
+					System.out.println(s1);	
+					//driver.close();
+					driver.switchTo().window((String) iconclick.get(0)); 
+					String s2 = driver.getCurrentUrl();
+					System.out.println(s2);						
 				}
 				break;				
 			}
 			
 		}
-		
-		
-		
+		ArrayList  fbclick  = new ArrayList (driver.getWindowHandles());
+		int windowsopened = fbclick.size();
+		return windowsopened;
+				 			
+	}
 	
-		
-		
-		
-		/*countrySelection();			
+	// play/app store click
+	
+	By playstore= By.xpath("//*[@class='col-md-3 store']/a[1]");
+	By appstore= By.xpath("//*[@class='col-md-3 store']/a[2]");
+	
+	public String playstoreclick()
+	{
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
-		WebElement fblink = driver.findElement(fbicon);
-		fblink.click();
-		Thread.sleep(4000);
-	    ArrayList  fbclick  = new ArrayList (driver.getWindowHandles());
-		System.out.println("Size of windows opened" +fbclick.size());
-		driver.switchTo().window((String) fbclick.get(1)); 
-		String s1 = driver.getCurrentUrl();
+		driver.findElement(playstore).click();
+		String s1=driver.getCurrentUrl();
 		System.out.println(s1);
-		CommonMethods.explicitWaitForElementVisibility(fbid);
-		return driver.findElement(fbid).isDisplayed();*/
-		 			
+		return s1;
+		
+	}
+	
+	public String appstoreclick()
+	{
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		driver.findElement(appstore).click();
+		String s1=driver.getCurrentUrl();
+		System.out.println(s1);
+		return s1;
+		
 	}
 	
 	

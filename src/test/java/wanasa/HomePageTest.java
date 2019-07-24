@@ -1,29 +1,13 @@
 	package wanasa;
-	import utils.BrowserFunctions;
+	import java.util.concurrent.TimeUnit;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import com.aventstack.extentreports.Status;
+
+import utils.BrowserFunctions;
 import utils.CommonMethods;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
-	import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-	import org.openqa.selenium.chrome.ChromeOptions;
-	import org.openqa.selenium.remote.CapabilityType;
-	import org.openqa.selenium.remote.DesiredCapabilities;
-	import org.testng.Assert;
-	import org.testng.ITestResult;
-	import org.testng.annotations.AfterMethod;
-	import org.testng.annotations.AfterSuite;
-	import org.testng.annotations.BeforeMethod;
-	import org.testng.annotations.BeforeSuite;
-	import org.testng.annotations.Ignore;
-	import org.testng.annotations.Test;
-
-	import com.aventstack.extentreports.ExtentReports;
-	import com.aventstack.extentreports.Status;
-	import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 	
 	public class HomePageTest extends BrowserFunctions{
 		HomePage ss= new HomePage();	
@@ -270,38 +254,62 @@ import org.openqa.selenium.chrome.ChromeDriver;
 		}
 
 		@Test(priority=14)
-		public void verifyfacebookiconclick() throws InterruptedException
+		public void verifySMiconclick() throws InterruptedException
 		{
-			logger_ss = extent.createTest("verifyfacebookiconclick");
-			ss.facebookiconclick();	
-			//Assert.assertEquals(s1, true);		
-			logger_ss.log(Status.INFO, "Successfully facebookiconclick.");
+			logger_ss = extent.createTest("verifySMiconclick");			
+			int cocunt = ss.SMiconclick();
+			Assert.assertEquals(cocunt,4);
+			logger_ss.log(Status.INFO, "Successfully verified SMiconclick.");
 		}
+		
+		@Test(priority=15)
+		public void verifyplaystoreclick() throws InterruptedException
+		{
+			logger_ss = extent.createTest("verifyplaystoreclick");
+			String s=ss.playstoreclick();	
+			Assert.assertEquals(s, "https://play.google.com/store/apps/details?id=com.mobile.android.wanasatime&hl=en_US");		
+			logger_ss.log(Status.INFO, "Successfully verified playstoreclick");
+		}
+		
+
+		@Test(priority=16)
+		public void verifyappstoreclick() throws InterruptedException
+		{
+			logger_ss = extent.createTest("verifyappstoreclick");
+			String s=ss.appstoreclick();	
+			Assert.assertEquals(s, "https://apps.apple.com/us/app/wanasatime/id1187788688");		
+			logger_ss.log(Status.INFO, "Successfully verified appstoreclick");
+		}
+		
+		
+		
 		
 		    
 
 		// Negative Cases
 		
-		//@Test
+		//@Test(priority=17)
 		
 		public void backBtnSingleDayEvent() throws InterruptedException
 		{
-			logger_ss=extent.createTest("verifyBackBtn");
+			logger_ss=extent.createTest("verifybackBtnSingleDayEvent");
 			ss.countrySelection();
 			boolean bl=ss.singleDayBackBtnBahrain();
-			Assert.assertEquals(bl, true);						
+			Assert.assertEquals(bl, true);
+			logger_ss.log(Status.INFO, "Successfully verified backBtnSingleDayEvent");
 		}
 		
-	 // @Test 
+	 // @Test(priority=18) 
 	  public void cancelBtnSingleDayEvent() throws InterruptedException
 	 {
-		    logger_ss=extent.createTest("verifyBackBtn");
+		    logger_ss=extent.createTest("verifycancelBtnSingleDayEvent");
 			ss.countrySelection(); 
 			boolean bln=ss.singleDayCancelBtnBahrain();
 			Assert.assertEquals(bln, true);
+			logger_ss.log(Status.INFO, "Successfully verified cancelBtnSingleDayEvent");
 	 }
 	  
-	  //@Test
+	  //@Test(priority=19) 
 	  
 	  public void cancelBtnCreditCard() throws InterruptedException
 	  {
@@ -316,9 +324,10 @@ import org.openqa.selenium.chrome.ChromeDriver;
 			ss.countrySelection(); 
 			String crbtn=ss.cancelBtnInCreditCard();
 			Assert.assertEquals(crbtn, "Your transaction was failed or you may cancelled the purchase.");
+			logger_ss.log(Status.INFO, "Successfully verified cancelBtnCreditCard");
 	  }
 	  
-	  //@Test
+	  //@Test(priority=20) 
 	  
 	  public void backBtnInSeatLayoutNaal() throws InterruptedException
 	  {
@@ -326,9 +335,10 @@ import org.openqa.selenium.chrome.ChromeDriver;
 		  ss.countrySelectionqar();
 		  boolean val=ss.backinSeatLayoutPage();
 		  Assert.assertEquals(val, true);
+		  logger_ss.log(Status.INFO, "Successfully verified backBtnInSeatLayoutNaal");
 	  }
 	  
-	  // @Test
+	  // @Test(priority=21) 
 	  public void cancelBtnInCBQPayment() throws InterruptedException
 	  {
 		    logger_ss=extent.createTest("verifyCancelBtnInPaymentPage");
@@ -341,17 +351,20 @@ import org.openqa.selenium.chrome.ChromeDriver;
 			ss.countrySelectionqar();
 			String canCbq=ss.cancelBtnInPaymentPage();
 			Assert.assertEquals(canCbq,"Your transaction was failed or you may cancelled the purchase.");
-		  	  
+			logger_ss.log(Status.INFO, "Successfully verified cancelBtnInCBQPayment");  
 	  }
 	  
-	  @Test
+	  @Test(priority=22) 
 	  
 	  public void withOutSelectingSeat() throws InterruptedException
 	  {
+		  logger_ss=extent.createTest("verifywithOutSelectingSeat");
 		  ss.countrySelectionqar();
 		  String str=ss.withoutSubCategories();
 		  Assert.assertEquals(str,"Select No.Of Tickets you want to book");
+		  logger_ss.log(Status.INFO, "Successfully verified withOutSelectingSeat"); 
 	  }
+	  
 	  
 	
 	}

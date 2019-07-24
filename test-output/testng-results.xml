@@ -2,12 +2,12 @@
 <testng-results skipped="0" failed="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="56240" started-at="2019-07-24T07:43:04Z" finished-at="2019-07-24T07:44:00Z">
+  <suite name="Default suite" duration-ms="29369" started-at="2019-07-24T10:41:14Z" finished-at="2019-07-24T10:41:43Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="56240" started-at="2019-07-24T07:43:04Z" finished-at="2019-07-24T07:44:00Z">
+    <test name="Default test" duration-ms="29369" started-at="2019-07-24T10:41:14Z" finished-at="2019-07-24T10:41:43Z">
       <class name="wanasa.HomePageTest">
-        <test-method status="PASS" signature="setup(java.lang.String)[pri:0, instance:wanasa.HomePageTest@6df97b55]" name="setup" is-config="true" duration-ms="17667" started-at="2019-07-24T13:13:04Z" finished-at="2019-07-24T13:13:21Z">
+        <test-method status="PASS" signature="setup(java.lang.String)[pri:0, instance:wanasa.HomePageTest@6df97b55]" name="setup" is-config="true" duration-ms="20126" started-at="2019-07-24T16:11:14Z" finished-at="2019-07-24T16:11:34Z">
           <params>
             <param index="0">
               <value>
@@ -18,22 +18,22 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method status="PASS" signature="verifyfacebookiconclick()[pri:14, instance:wanasa.HomePageTest@6df97b55]" name="verifyfacebookiconclick" duration-ms="37499" started-at="2019-07-24T13:13:21Z" finished-at="2019-07-24T13:13:59Z">
+        <test-method status="PASS" signature="verifyappstoreclick()[pri:15, instance:wanasa.HomePageTest@6df97b55]" name="verifyappstoreclick" duration-ms="8390" started-at="2019-07-24T16:11:34Z" finished-at="2019-07-24T16:11:42Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- verifyfacebookiconclick -->
-        <test-method status="PASS" signature="tearDown(org.testng.ITestResult)[pri:0, instance:wanasa.HomePageTest@6df97b55]" name="tearDown" is-config="true" duration-ms="271" started-at="2019-07-24T13:13:59Z" finished-at="2019-07-24T13:13:59Z">
+        </test-method> <!-- verifyappstoreclick -->
+        <test-method status="PASS" signature="tearDown(org.testng.ITestResult)[pri:0, instance:wanasa.HomePageTest@6df97b55]" name="tearDown" is-config="true" duration-ms="207" started-at="2019-07-24T16:11:42Z" finished-at="2019-07-24T16:11:43Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=verifyfacebookiconclick status=SUCCESS method=HomePageTest.verifyfacebookiconclick()[pri:14, instance:wanasa.HomePageTest@6df97b55] output={null}]]]>
+                <![CDATA[[TestResult name=verifyappstoreclick status=SUCCESS method=HomePageTest.verifyappstoreclick()[pri:15, instance:wanasa.HomePageTest@6df97b55] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method status="PASS" signature="closeBrowser1(java.lang.String)[pri:0, instance:wanasa.HomePageTest@6df97b55]" name="closeBrowser1" is-config="true" duration-ms="794" started-at="2019-07-24T13:13:59Z" finished-at="2019-07-24T13:14:00Z">
+        <test-method status="PASS" signature="closeBrowser1(java.lang.String)[pri:0, instance:wanasa.HomePageTest@6df97b55]" name="closeBrowser1" is-config="true" duration-ms="625" started-at="2019-07-24T16:11:43Z" finished-at="2019-07-24T16:11:43Z">
           <params>
             <param index="0">
               <value>

@@ -5,7 +5,7 @@
     <classes>
       <class name="wanasa.HomePageTest">
         <methods>
-          <include name="verifyfacebookiconclick"/>
+          <include name="verifyappstoreclick"/>
         </methods>
       </class> <!-- wanasa.HomePageTest -->
     </classes>
