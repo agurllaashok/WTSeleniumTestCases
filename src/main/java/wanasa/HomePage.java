@@ -601,9 +601,7 @@ public class HomePage extends BrowserFunctions {
 							
 			}
 
-		
-
-		return driver.findElement(ticketsuccess).getText();
+			return driver.findElement(ticketsuccess).getText();
 
 	}
 	
@@ -611,7 +609,8 @@ public class HomePage extends BrowserFunctions {
 	
 	// Quick booking 
 	
-	//By qucickbookclick = By.xpath("//*[@class='quick-booking-input-docker']/h4");
+	//By quickbookclick = By.xpath("//*[@class='quick-booking-input-docker']/h4");
+	
 	By movieslist = By.id("MoviesList");
 	By selectmall = By.id("CinemaList");
 	By selectdate = By.id("ShowDates");
@@ -621,7 +620,7 @@ public class HomePage extends BrowserFunctions {
 	public String quickbooking() throws InterruptedException
 	
 	{
-		//driver.findElement(qucickbookclick).click();
+		//driver.findElement(quickbookclick).click();
 			//driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
 			Select movies = new Select(driver.findElement(movieslist));
 			driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
@@ -778,7 +777,7 @@ public class HomePage extends BrowserFunctions {
 	By sendbutton = By.id("btnSendQuery");
 	By sendsuccess = By.className("toast-message");
 	
-	//Thanks for providing your information we will get back to you soon  //toastr-message  //toast-close-button
+	//Thanks for providing your information we will get back to you soon  //toaster-message  //toast-close-button
 	
 	public String contactus()
 	{
@@ -881,7 +880,7 @@ public class HomePage extends BrowserFunctions {
 		return driver.findElement(eventbookingclick).isDisplayed();
 	}
 
-	//Cancel Button in Patment GateWay Page CBQ
+	//Cancel Button in Payment GateWay Page CBQ
 	
 	By festivalAround		=	By.xpath("//*[@href='arts-and-culture/festivals-around-theworld']");
 	By cancelinPayment		=	By.xpath("//*[@id='payment_details']/input[1]");
@@ -907,6 +906,7 @@ public class HomePage extends BrowserFunctions {
 		driver.findElement(yesbtnAfterCancel).click();
 		return driver.findElement(ticketFailure).getText();
 	}
+	
 // Proceed Btn without Selecting sub Categories
 	
 	public String withoutSubCategories()
@@ -921,7 +921,7 @@ public class HomePage extends BrowserFunctions {
 		return driver.findElement(withOutSelectingSeat).getText();
 	}
 	
-	//icon clicks bhd
+	//icon clicks Bahrain
 	
 	By fbicon = By.id("faceboolink");
 	By insta  = By.id("instalink");
@@ -943,6 +943,7 @@ public class HomePage extends BrowserFunctions {
 	for(WebElement s4 : s3)
 	{
 	String s5 = s4.findElement(By.xpath("./a")).getText();
+	
 	//System.out.println("Country Name " +s5);	
 	String s6 = CommonMethods.passingData("loc");
 	//System.out.println("For Json:" +s6);	
@@ -955,6 +956,7 @@ public class HomePage extends BrowserFunctions {
 	for(WebElement sl:slinks)
 	{
 	sl.click();
+
 	Thread.sleep(4000);
 	   ArrayList  fbclick  = new ArrayList (driver.getWindowHandles());
 	System.out.println("Size of windows opened" +fbclick.size());
@@ -968,22 +970,60 @@ public class HomePage extends BrowserFunctions {
 	}
 	break;	
 	}
-
 	}
-
-	/*countrySelection();	
-	JavascriptExecutor js = (JavascriptExecutor) driver;
-	js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
-	WebElement fblink = driver.findElement(fbicon);
-	fblink.click();
-	Thread.sleep(4000);
-	   ArrayList  fbclick  = new ArrayList (driver.getWindowHandles());
-	System.out.println("Size of windows opened" +fbclick.size());
-	driver.switchTo().window((String) fbclick.get(1)); 
-	String s1 = driver.getCurrentUrl();
-	System.out.println(s1);
-	CommonMethods.explicitWaitForElementVisibility(fbid);
-	return driver.findElement(fbid).isDisplayed();*/
-
+ 	}
+	
+	// Advertise With Us Query Page
+	
+	By advertiseWithUs			=	By.xpath("//*[@id='advertiseWithUs']");
+	By adverFName				=	By.id("txtFirstName");
+	By adverLName				=	By.id("txtLastName");
+	By adverEmail				=	By.id("txtEmail");
+	By prefixAd					=	By.xpath("/html/body/div[1]/main/section[4]/div/form/div[1]/div/div");
+	By bhdCountryCode			=	By.xpath("//*[@class='imagemodal11'][1]//*[@countryphcode='973']");
+	By phoneNumText				=	By.id("txtPhoneNum");
+	By descrip					=	By.id("txtDescription");
+	By submitBtn				=	By.id("btnSubmit");
+	By successAdd				=	By.xpath("//*[contains(@class,'toast-message') and contains(text(),'Thanks for providing your information we will get back to you soon.')]");
+	
+	public String queryAdvertise()
+	{
+		//driver.navigate().to("http://staging.wanasatime.com");
+		driver.findElement(advertiseWithUs).click();
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		driver.findElement(adverFName).sendKeys("Manjusha");
+		driver.findElement(adverLName).sendKeys("Konala");
+		driver.findElement(adverEmail).sendKeys(CommonMethods.passingData("EnterMail"));
+		driver.findElement(prefixAd).click();
+		driver.findElement(bhdCountryCode).click();
+		driver.findElement(phoneNumText).sendKeys("33456789");
+		driver.findElement(descrip).sendKeys("I want to Advertise from your Platform");
+		driver.findElement(submitBtn).click();
+		String ur=driver.getCurrentUrl();
+		return ur;
 	}
+	
+	//Any Query in Plans and Pricing
+	
+	By plansandpricing	=	By.xpath("//*[@href='/PlansPricing.aspx']");
+	By anyQuery			=	By.xpath("//*[@class='text-center']//*[@class='anyQuery']");
+	By userEmail		=	By.id("userE-mail");
+	By userMessage		=	By.id("userMessage");
+	By subBtn			=	By.id("submitQuery");
+	
+	public String plansAndPricingQuery()
+	{
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		driver.findElement(plansandpricing).click();
+		driver.findElement(anyQuery).click();
+		driver.findElement(userEmail).sendKeys(CommonMethods.passingData("EnterMail"));
+		driver.findElement(userMessage).sendKeys("I want to know the plans and pricing Details");
+		driver.findElement(subBtn).click();
+		String u=driver.getCurrentUrl();
+		return u;
+			
+	}
+		
 }

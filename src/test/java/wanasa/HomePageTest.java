@@ -329,7 +329,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 		  	  
 	  }
 	  
-	  @Test
+	  //@Test
 	  
 	  public void withOutSelectingSeat() throws InterruptedException
 	  {
@@ -338,13 +338,37 @@ import org.openqa.selenium.chrome.ChromeDriver;
 		  Assert.assertEquals(str,"Select No.Of Tickets you want to book");
 	  }
 	  
-	  @Test(priority=14)
+	 // @Test(priority=14)
 	  public void verifyfacebookiconclick() throws InterruptedException
 	  {
 	  logger_ss = extent.createTest("verifyfacebookiconclick");
 	  ss.facebookiconclick();	
 	  //Assert.assertEquals(s1, true);	
 	  logger_ss.log(Status.INFO, "Successfully facebookiconclick.");
+	  }
+	  
+	  // Advertise With Us Query
+	  @Test
+	 public void queryAdvertiseWithUs() throws InterruptedException
+	 {
+		 logger_ss = extent.createTest("verifyAdvertiseWithUs");
+		 driver.navigate().to("http://staging.wanasatime.com");
+		 ss.countrySelection();
+		 String adver=ss.queryAdvertise();
+		 Assert.assertEquals(adver, "http://staging.wanasatime.com/AdvertiseWithUs.aspx?");
+		 logger_ss.log(Status.INFO, "Successfully Submitted Details in AdvertiseWithUs");
+		 	
+	 }
+	  
+	  @Test
+	  public void plansandpricingAnyQuery() throws InterruptedException
+	  {
+		  logger_ss = extent.createTest("verifyPlansAndPricing");
+          ss.countrySelection();
+          String plans=ss.plansAndPricingQuery();
+          Assert.assertEquals(plans, "http://staging.wanasatime.com/PlansPricing.aspx");
+          logger_ss.log(Status.INFO, "Successfully Submitted Details in Plans and Pricing");
+		 	
 	  }
 
 	}
