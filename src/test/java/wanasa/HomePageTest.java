@@ -347,7 +347,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 	  logger_ss.log(Status.INFO, "Successfully facebookiconclick.");
 	  }
 	  
-	  // Advertise With Us Query
+	  // Advertise With Us Query...
 	  @Test
 	 public void queryAdvertiseWithUs() throws InterruptedException
 	 {

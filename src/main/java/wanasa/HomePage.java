@@ -1004,7 +1004,7 @@ public class HomePage extends BrowserFunctions {
 		return ur;
 	}
 	
-	//Any Query in Plans and Pricing
+	//Any Query in Plans and Pricing...
 	
 	By plansandpricing	=	By.xpath("//*[@href='/PlansPricing.aspx']");
 	By anyQuery			=	By.xpath("//*[@class='text-center']//*[@class='anyQuery']");

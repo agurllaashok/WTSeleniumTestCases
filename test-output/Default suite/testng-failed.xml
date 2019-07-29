@@ -3,14 +3,14 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="wanasa.HomePageTest">
+      <class name="wanasa.Emcsuite">
         <methods>
-          <include name="cancelBtnInCBQPayment"/>
           <include name="tearDown"/>
           <include name="setup"/>
           <include name="closeBrowser1"/>
+          <include name="approveEvent"/>
         </methods>
-      </class> <!-- wanasa.HomePageTest -->
+      </class> <!-- wanasa.Emcsuite -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
