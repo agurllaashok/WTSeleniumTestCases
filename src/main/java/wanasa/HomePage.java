@@ -519,8 +519,8 @@ public class HomePage extends BrowserFunctions {
 	
 	By movielist = By.xpath("//*[@src='http://staging.wanasatime.com/movie_images/VIJAY_SUPERUM_POURNAMIYUM210219062202_thumbnail.jpg']");
 	By moviesbookbutton = By.id("bookTickets");
-	By moviedateselection = By.xpath("//*[@showdate='07/23/2019']");
-	By showtimeselection = By.xpath("//*[@showid='6666']");
+	By moviedateselection = By.xpath("//*[@showdate='08/02/2019']");
+	By showtimeselection = By.xpath("//*[@showid='7544']");
 	By alertmovieok = By.id("btnAccept");
 	By numberofseatselection = By.linkText("2");
 	By ticketcount2 = By.xpath("//*[@class='nav nav-pills members']/li");
@@ -627,7 +627,7 @@ public class HomePage extends BrowserFunctions {
 			malls.selectByVisibleText("Seef Mall");
 			Select date = new Select(driver.findElement(selectdate));
 			driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
-			date.selectByVisibleText("Tuesday, 23 Jul");
+			date.selectByVisibleText("Friday, 2 Aug");
 			Select time = new Select(driver.findElement(selecttime));
 			driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
 			time.selectByVisibleText("8:00PM-Cinema 10");
@@ -873,9 +873,38 @@ public class HomePage extends BrowserFunctions {
 	}
 	
 	
-	
+	//advertisingneeds
+	By name1 		= By.id("txtFirstName");
+	By name2 		= By.id("txtLastName");
+	By advtemail 	= By.id("txtEmail");
+	By advtmobile   = By.id("txtPhoneNum");
+	By addescription   = By.id("txtDescription");
+	By advtsubmit 	= By.id("btnSubmit");
+	By advtsuccessmsg = By.xpath("//*[contains(@class,'toast-message') and contains(text(),'Thanks for providing your information we will get back to you soon.')]");
 
-	// Negative Cases 
+	
+	
+	
+	public String advertisingneeds()
+	{
+		driver.findElement(AdvertiseWithUs).click();
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		driver.findElement(name1).sendKeys("pallavi");
+		driver.findElement(name2).sendKeys("domreddy");
+		driver.findElement(advtemail).sendKeys("pallavi.domreddy@smscountry.com");
+		driver.findElement(advtmobile).sendKeys("7396206647");
+		driver.findElement(addescription).sendKeys("test desc");
+		driver.findElement(advtsubmit).click();		
+		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
+		CommonMethods.explicitWaitForElementVisibility(errormsgemptypwd);
+		return driver.findElement(errormsgemptypwd).getText();				
+	}
+	 
+
+	// Negative Cases 		
+	
+	//events
 	
 	// Single day Event Cancel and Back Button
 	

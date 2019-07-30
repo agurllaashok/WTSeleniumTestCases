@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" total="1" passed="1">
+<testng-results skipped="0" failed="0" total="19" passed="19">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="29369" started-at="2019-07-24T10:41:14Z" finished-at="2019-07-24T10:41:43Z">
+  <suite name="Default suite" duration-ms="549038" started-at="2019-07-26T06:12:44Z" finished-at="2019-07-26T06:21:53Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="29369" started-at="2019-07-24T10:41:14Z" finished-at="2019-07-24T10:41:43Z">
+    <test name="Default test" duration-ms="549038" started-at="2019-07-26T06:12:44Z" finished-at="2019-07-26T06:21:53Z">
       <class name="wanasa.HomePageTest">
-        <test-method status="PASS" signature="setup(java.lang.String)[pri:0, instance:wanasa.HomePageTest@6df97b55]" name="setup" is-config="true" duration-ms="20126" started-at="2019-07-24T16:11:14Z" finished-at="2019-07-24T16:11:34Z">
+        <test-method status="PASS" signature="setup(java.lang.String)[pri:0, instance:wanasa.HomePageTest@67b6d4ae]" name="setup" is-config="true" duration-ms="18884" started-at="2019-07-26T11:42:44Z" finished-at="2019-07-26T11:43:03Z">
           <params>
             <param index="0">
               <value>
@@ -18,22 +18,292 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method status="PASS" signature="verifyappstoreclick()[pri:15, instance:wanasa.HomePageTest@6df97b55]" name="verifyappstoreclick" duration-ms="8390" started-at="2019-07-24T16:11:34Z" finished-at="2019-07-24T16:11:42Z">
+        <test-method status="PASS" signature="verifysignup()[pri:0, instance:wanasa.HomePageTest@67b6d4ae]" name="verifysignup" duration-ms="12149" started-at="2019-07-26T11:43:03Z" finished-at="2019-07-26T11:43:15Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- verifyappstoreclick -->
-        <test-method status="PASS" signature="tearDown(org.testng.ITestResult)[pri:0, instance:wanasa.HomePageTest@6df97b55]" name="tearDown" is-config="true" duration-ms="207" started-at="2019-07-24T16:11:42Z" finished-at="2019-07-24T16:11:43Z">
+        </test-method> <!-- verifysignup -->
+        <test-method status="PASS" signature="tearDown(org.testng.ITestResult)[pri:0, instance:wanasa.HomePageTest@67b6d4ae]" name="tearDown" is-config="true" duration-ms="245" started-at="2019-07-26T11:43:15Z" finished-at="2019-07-26T11:43:16Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=verifyappstoreclick status=SUCCESS method=HomePageTest.verifyappstoreclick()[pri:15, instance:wanasa.HomePageTest@6df97b55] output={null}]]]>
+                <![CDATA[[TestResult name=verifysignup status=SUCCESS method=HomePageTest.verifysignup()[pri:0, instance:wanasa.HomePageTest@67b6d4ae] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method status="PASS" signature="closeBrowser1(java.lang.String)[pri:0, instance:wanasa.HomePageTest@6df97b55]" name="closeBrowser1" is-config="true" duration-ms="625" started-at="2019-07-24T16:11:43Z" finished-at="2019-07-24T16:11:43Z">
+        <test-method status="PASS" signature="verifyforgotpassword()[pri:1, instance:wanasa.HomePageTest@67b6d4ae]" name="verifyforgotpassword" duration-ms="2801" started-at="2019-07-26T11:43:16Z" finished-at="2019-07-26T11:43:19Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyforgotpassword -->
+        <test-method status="PASS" signature="tearDown(org.testng.ITestResult)[pri:0, instance:wanasa.HomePageTest@67b6d4ae]" name="tearDown" is-config="true" duration-ms="47" started-at="2019-07-26T11:43:19Z" finished-at="2019-07-26T11:43:19Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=verifyforgotpassword status=SUCCESS method=HomePageTest.verifyforgotpassword()[pri:1, instance:wanasa.HomePageTest@67b6d4ae] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="verifylogin()[pri:2, instance:wanasa.HomePageTest@67b6d4ae]" name="verifylogin" duration-ms="14193" started-at="2019-07-26T11:43:19Z" finished-at="2019-07-26T11:43:33Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifylogin -->
+        <test-method status="PASS" signature="tearDown(org.testng.ITestResult)[pri:0, instance:wanasa.HomePageTest@67b6d4ae]" name="tearDown" is-config="true" duration-ms="376" started-at="2019-07-26T11:43:33Z" finished-at="2019-07-26T11:43:33Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=verifylogin status=SUCCESS method=HomePageTest.verifylogin()[pri:2, instance:wanasa.HomePageTest@67b6d4ae] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="verifyeventbookvisa()[pri:3, instance:wanasa.HomePageTest@67b6d4ae]" name="verifyeventbookvisa" duration-ms="44366" started-at="2019-07-26T11:43:33Z" finished-at="2019-07-26T11:44:18Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyeventbookvisa -->
+        <test-method status="PASS" signature="tearDown(org.testng.ITestResult)[pri:0, instance:wanasa.HomePageTest@67b6d4ae]" name="tearDown" is-config="true" duration-ms="63" started-at="2019-07-26T11:44:18Z" finished-at="2019-07-26T11:44:18Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=verifyeventbookvisa status=SUCCESS method=HomePageTest.verifyeventbookvisa()[pri:3, instance:wanasa.HomePageTest@67b6d4ae] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="verifyeventbookmaster()[pri:4, instance:wanasa.HomePageTest@67b6d4ae]" name="verifyeventbookmaster" duration-ms="47560" started-at="2019-07-26T11:44:18Z" finished-at="2019-07-26T11:45:05Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyeventbookmaster -->
+        <test-method status="PASS" signature="tearDown(org.testng.ITestResult)[pri:0, instance:wanasa.HomePageTest@67b6d4ae]" name="tearDown" is-config="true" duration-ms="36" started-at="2019-07-26T11:45:05Z" finished-at="2019-07-26T11:45:05Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=verifyeventbookmaster status=SUCCESS method=HomePageTest.verifyeventbookmaster()[pri:4, instance:wanasa.HomePageTest@67b6d4ae] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="verifybookticketevents()[pri:5, instance:wanasa.HomePageTest@67b6d4ae]" name="verifybookticketevents" duration-ms="30832" started-at="2019-07-26T11:45:05Z" finished-at="2019-07-26T11:45:36Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifybookticketevents -->
+        <test-method status="PASS" signature="tearDown(org.testng.ITestResult)[pri:0, instance:wanasa.HomePageTest@67b6d4ae]" name="tearDown" is-config="true" duration-ms="55" started-at="2019-07-26T11:45:36Z" finished-at="2019-07-26T11:45:36Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=verifybookticketevents status=SUCCESS method=HomePageTest.verifybookticketevents()[pri:5, instance:wanasa.HomePageTest@67b6d4ae] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="verifyeventticketBookingWithDebitCard()[pri:6, instance:wanasa.HomePageTest@67b6d4ae]" name="verifyeventticketBookingWithDebitCard" duration-ms="37525" started-at="2019-07-26T11:45:36Z" finished-at="2019-07-26T11:46:14Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyeventticketBookingWithDebitCard -->
+        <test-method status="PASS" signature="tearDown(org.testng.ITestResult)[pri:0, instance:wanasa.HomePageTest@67b6d4ae]" name="tearDown" is-config="true" duration-ms="61" started-at="2019-07-26T11:46:14Z" finished-at="2019-07-26T11:46:14Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=verifyeventticketBookingWithDebitCard status=SUCCESS method=HomePageTest.verifyeventticketBookingWithDebitCard()[pri:6, instance:wanasa.HomePageTest@67b6d4ae] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="verifygoogLogin()[pri:11, instance:wanasa.HomePageTest@67b6d4ae]" name="verifygoogLogin" duration-ms="47061" started-at="2019-07-26T11:46:14Z" finished-at="2019-07-26T11:47:01Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifygoogLogin -->
+        <test-method status="PASS" signature="tearDown(org.testng.ITestResult)[pri:0, instance:wanasa.HomePageTest@67b6d4ae]" name="tearDown" is-config="true" duration-ms="101" started-at="2019-07-26T11:47:01Z" finished-at="2019-07-26T11:47:01Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=verifygoogLogin status=SUCCESS method=HomePageTest.verifygoogLogin()[pri:11, instance:wanasa.HomePageTest@67b6d4ae] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="verifyfooterlinks()[pri:12, instance:wanasa.HomePageTest@67b6d4ae]" name="verifyfooterlinks" duration-ms="35078" started-at="2019-07-26T11:47:01Z" finished-at="2019-07-26T11:47:36Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyfooterlinks -->
+        <test-method status="PASS" signature="tearDown(org.testng.ITestResult)[pri:0, instance:wanasa.HomePageTest@67b6d4ae]" name="tearDown" is-config="true" duration-ms="60" started-at="2019-07-26T11:47:36Z" finished-at="2019-07-26T11:47:36Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=verifyfooterlinks status=SUCCESS method=HomePageTest.verifyfooterlinks()[pri:12, instance:wanasa.HomePageTest@67b6d4ae] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="verifycontactus()[pri:13, instance:wanasa.HomePageTest@67b6d4ae]" name="verifycontactus" duration-ms="16504" started-at="2019-07-26T11:47:36Z" finished-at="2019-07-26T11:47:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifycontactus -->
+        <test-method status="PASS" signature="tearDown(org.testng.ITestResult)[pri:0, instance:wanasa.HomePageTest@67b6d4ae]" name="tearDown" is-config="true" duration-ms="65" started-at="2019-07-26T11:47:52Z" finished-at="2019-07-26T11:47:53Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=verifycontactus status=SUCCESS method=HomePageTest.verifycontactus()[pri:13, instance:wanasa.HomePageTest@67b6d4ae] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="verifySMiconclick()[pri:14, instance:wanasa.HomePageTest@67b6d4ae]" name="verifySMiconclick" duration-ms="30239" started-at="2019-07-26T11:47:53Z" finished-at="2019-07-26T11:48:23Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifySMiconclick -->
+        <test-method status="PASS" signature="tearDown(org.testng.ITestResult)[pri:0, instance:wanasa.HomePageTest@67b6d4ae]" name="tearDown" is-config="true" duration-ms="81" started-at="2019-07-26T11:48:23Z" finished-at="2019-07-26T11:48:23Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=verifySMiconclick status=SUCCESS method=HomePageTest.verifySMiconclick()[pri:14, instance:wanasa.HomePageTest@67b6d4ae] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="verifyplaystoreclick()[pri:15, instance:wanasa.HomePageTest@67b6d4ae]" name="verifyplaystoreclick" duration-ms="8864" started-at="2019-07-26T11:48:23Z" finished-at="2019-07-26T11:48:32Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyplaystoreclick -->
+        <test-method status="PASS" signature="tearDown(org.testng.ITestResult)[pri:0, instance:wanasa.HomePageTest@67b6d4ae]" name="tearDown" is-config="true" duration-ms="72" started-at="2019-07-26T11:48:32Z" finished-at="2019-07-26T11:48:32Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=verifyplaystoreclick status=SUCCESS method=HomePageTest.verifyplaystoreclick()[pri:15, instance:wanasa.HomePageTest@67b6d4ae] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="verifyappstoreclick()[pri:16, instance:wanasa.HomePageTest@67b6d4ae]" name="verifyappstoreclick" duration-ms="9743" started-at="2019-07-26T11:48:32Z" finished-at="2019-07-26T11:48:42Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyappstoreclick -->
+        <test-method status="PASS" signature="tearDown(org.testng.ITestResult)[pri:0, instance:wanasa.HomePageTest@67b6d4ae]" name="tearDown" is-config="true" duration-ms="76" started-at="2019-07-26T11:48:42Z" finished-at="2019-07-26T11:48:42Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=verifyappstoreclick status=SUCCESS method=HomePageTest.verifyappstoreclick()[pri:16, instance:wanasa.HomePageTest@67b6d4ae] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="backBtnSingleDayEvent()[pri:18, instance:wanasa.HomePageTest@67b6d4ae]" name="backBtnSingleDayEvent" duration-ms="28199" started-at="2019-07-26T11:48:42Z" finished-at="2019-07-26T11:49:10Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- backBtnSingleDayEvent -->
+        <test-method status="PASS" signature="tearDown(org.testng.ITestResult)[pri:0, instance:wanasa.HomePageTest@67b6d4ae]" name="tearDown" is-config="true" duration-ms="53" started-at="2019-07-26T11:49:10Z" finished-at="2019-07-26T11:49:10Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=backBtnSingleDayEvent status=SUCCESS method=HomePageTest.backBtnSingleDayEvent()[pri:18, instance:wanasa.HomePageTest@67b6d4ae] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="cancelBtnSingleDayEvent()[pri:19, instance:wanasa.HomePageTest@67b6d4ae]" name="cancelBtnSingleDayEvent" duration-ms="20445" started-at="2019-07-26T11:49:10Z" finished-at="2019-07-26T11:49:30Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- cancelBtnSingleDayEvent -->
+        <test-method status="PASS" signature="tearDown(org.testng.ITestResult)[pri:0, instance:wanasa.HomePageTest@67b6d4ae]" name="tearDown" is-config="true" duration-ms="52" started-at="2019-07-26T11:49:30Z" finished-at="2019-07-26T11:49:30Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=cancelBtnSingleDayEvent status=SUCCESS method=HomePageTest.cancelBtnSingleDayEvent()[pri:19, instance:wanasa.HomePageTest@67b6d4ae] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="cancelBtnCreditCard()[pri:20, instance:wanasa.HomePageTest@67b6d4ae]" name="cancelBtnCreditCard" duration-ms="44064" started-at="2019-07-26T11:49:30Z" finished-at="2019-07-26T11:50:14Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- cancelBtnCreditCard -->
+        <test-method status="PASS" signature="tearDown(org.testng.ITestResult)[pri:0, instance:wanasa.HomePageTest@67b6d4ae]" name="tearDown" is-config="true" duration-ms="60" started-at="2019-07-26T11:50:14Z" finished-at="2019-07-26T11:50:14Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=cancelBtnCreditCard status=SUCCESS method=HomePageTest.cancelBtnCreditCard()[pri:20, instance:wanasa.HomePageTest@67b6d4ae] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="backBtnInSeatLayoutNaal()[pri:21, instance:wanasa.HomePageTest@67b6d4ae]" name="backBtnInSeatLayoutNaal" duration-ms="21775" started-at="2019-07-26T11:50:14Z" finished-at="2019-07-26T11:50:36Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- backBtnInSeatLayoutNaal -->
+        <test-method status="PASS" signature="tearDown(org.testng.ITestResult)[pri:0, instance:wanasa.HomePageTest@67b6d4ae]" name="tearDown" is-config="true" duration-ms="58" started-at="2019-07-26T11:50:36Z" finished-at="2019-07-26T11:50:36Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=backBtnInSeatLayoutNaal status=SUCCESS method=HomePageTest.backBtnInSeatLayoutNaal()[pri:21, instance:wanasa.HomePageTest@67b6d4ae] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="cancelBtnInCBQPayment()[pri:22, instance:wanasa.HomePageTest@67b6d4ae]" name="cancelBtnInCBQPayment" duration-ms="38921" started-at="2019-07-26T11:50:36Z" finished-at="2019-07-26T11:51:15Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- cancelBtnInCBQPayment -->
+        <test-method status="PASS" signature="tearDown(org.testng.ITestResult)[pri:0, instance:wanasa.HomePageTest@67b6d4ae]" name="tearDown" is-config="true" duration-ms="75" started-at="2019-07-26T11:51:15Z" finished-at="2019-07-26T11:51:15Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=cancelBtnInCBQPayment status=SUCCESS method=HomePageTest.cancelBtnInCBQPayment()[pri:22, instance:wanasa.HomePageTest@67b6d4ae] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="withOutSelectingSeat()[pri:23, instance:wanasa.HomePageTest@67b6d4ae]" name="withOutSelectingSeat" duration-ms="36870" started-at="2019-07-26T11:51:15Z" finished-at="2019-07-26T11:51:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- withOutSelectingSeat -->
+        <test-method status="PASS" signature="tearDown(org.testng.ITestResult)[pri:0, instance:wanasa.HomePageTest@67b6d4ae]" name="tearDown" is-config="true" duration-ms="46" started-at="2019-07-26T11:51:52Z" finished-at="2019-07-26T11:51:52Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=withOutSelectingSeat status=SUCCESS method=HomePageTest.withOutSelectingSeat()[pri:23, instance:wanasa.HomePageTest@67b6d4ae] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="closeBrowser1(java.lang.String)[pri:0, instance:wanasa.HomePageTest@67b6d4ae]" name="closeBrowser1" is-config="true" duration-ms="1251" started-at="2019-07-26T11:51:52Z" finished-at="2019-07-26T11:51:53Z">
           <params>
             <param index="0">
               <value>
