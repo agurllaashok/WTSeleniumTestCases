@@ -361,7 +361,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 	 }
 	  
 	  @Test
-	  public void plansandpricingAnyQueryy() throws InterruptedException
+	  public void plansandpricingAnyQuery() throws InterruptedException
 	  {
 		  logger_ss = extent.createTest("verifyPlansAndPricing");
           ss.countrySelection();
