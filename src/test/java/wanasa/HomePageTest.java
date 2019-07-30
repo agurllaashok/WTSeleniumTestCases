@@ -265,7 +265,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 			logger_ss.log(Status.INFO, "Successfully verified contactus.");
 		}
 		
-		// Negative Cases
+		// Negative Cases...
 		
 		//@Test
 		
@@ -361,7 +361,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 	 }
 	  
 	  @Test
-	  public void plansandpricingAnyQuery() throws InterruptedException
+	  public void plansandpricingAnyQueryy() throws InterruptedException
 	  {
 		  logger_ss = extent.createTest("verifyPlansAndPricing");
           ss.countrySelection();

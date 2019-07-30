@@ -1013,6 +1013,7 @@ public class HomePage extends BrowserFunctions {
 	By subBtn			=	By.id("submitQuery");
 	
 	public String plansAndPricingQuery()
+	
 	{
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
