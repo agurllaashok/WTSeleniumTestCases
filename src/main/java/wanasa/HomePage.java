@@ -885,7 +885,7 @@ public class HomePage extends BrowserFunctions {
 	
 	
 	
-	public String advertisingneeds()
+/*	public String advertisingneeds()
 	{
 		driver.findElement(AdvertiseWithUs).click();
 		JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -900,7 +900,7 @@ public class HomePage extends BrowserFunctions {
 		CommonMethods.explicitWaitForElementVisibility(errormsgemptypwd);
 		return driver.findElement(errormsgemptypwd).getText();				
 	}
-	 
+	 */
 
 	// Negative Cases 		
 	
