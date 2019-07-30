@@ -902,6 +902,64 @@ public class HomePage extends BrowserFunctions {
 		CommonMethods.explicitWaitForElementVisibility(errormsgemptypwd);
 		return driver.findElement(errormsgemptypwd).getText();				
 	}
+	
+	
+	// Advertise With Us Query Page
+	
+	By advertiseWithUs			=	By.xpath("//*[@id='advertiseWithUs']");
+	By adverFName				=	By.id("txtFirstName");
+	By adverLName				=	By.id("txtLastName");
+	By adverEmail				=	By.id("txtEmail");
+	By prefixAd					=	By.xpath("/html/body/div[1]/main/section[4]/div/form/div[1]/div/div");
+	By bhdCountryCode			=	By.xpath("//*[@class='imagemodal11'][1]//*[@countryphcode='973']");
+	By phoneNumText				=	By.id("txtPhoneNum");
+	By descrip					=	By.id("txtDescription");
+	By submitBtn				=	By.id("btnSubmit");
+	By successAdd				=	By.xpath("//*[contains(@class,'toast-message') and contains(text(),'Thanks for providing your information we will get back to you soon.')]");
+	
+	public String queryAdvertise()
+	{
+		//driver.navigate().to("http://staging.wanasatime.com");
+		driver.findElement(advertiseWithUs).click();
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		driver.findElement(adverFName).sendKeys("Manjusha");
+		driver.findElement(adverLName).sendKeys("Konala");
+		driver.findElement(adverEmail).sendKeys(CommonMethods.passingData("EnterMail"));
+		driver.findElement(prefixAd).click();
+		driver.findElement(bhdCountryCode).click();
+		driver.findElement(phoneNumText).sendKeys("33456789");
+		driver.findElement(descrip).sendKeys("I want to Advertise from your Platform");
+		driver.findElement(submitBtn).click();
+		String ur=driver.getCurrentUrl();
+		return ur;
+	}
+	
+	//Any Query in Plans and Pricing...
+	
+	By plansandpricing	=	By.xpath("//*[@href='/PlansPricing.aspx']");
+	By anyQuery			=	By.xpath("//*[@class='text-center']//*[@class='anyQuery']");
+	By userEmail		=	By.id("userE-mail");
+	By userMessage		=	By.id("userMessage");
+	By subBtn			=	By.id("submitQuery");
+	
+
+	
+	public String plansAndPricingQuery()
+	
+	
+	{
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		driver.findElement(plansandpricing).click();
+		driver.findElement(anyQuery).click();
+		driver.findElement(userEmail).sendKeys(CommonMethods.passingData("EnterMail"));
+		driver.findElement(userMessage).sendKeys("I want to know the plans and pricing Details");
+		driver.findElement(subBtn).click();
+		String u=driver.getCurrentUrl();
+		return u;
+			
+	}
 	 
 
 	//user 
@@ -1203,61 +1261,7 @@ public class HomePage extends BrowserFunctions {
 	}
 	}
  	}
-	
-	// Advertise With Us Query Page
-	
-	By advertiseWithUs			=	By.xpath("//*[@id='advertiseWithUs']");
-	By adverFName				=	By.id("txtFirstName");
-	By adverLName				=	By.id("txtLastName");
-	By adverEmail				=	By.id("txtEmail");
-	By prefixAd					=	By.xpath("/html/body/div[1]/main/section[4]/div/form/div[1]/div/div");
-	By bhdCountryCode			=	By.xpath("//*[@class='imagemodal11'][1]//*[@countryphcode='973']");
-	By phoneNumText				=	By.id("txtPhoneNum");
-	By descrip					=	By.id("txtDescription");
-	By submitBtn				=	By.id("btnSubmit");
-	By successAdd				=	By.xpath("//*[contains(@class,'toast-message') and contains(text(),'Thanks for providing your information we will get back to you soon.')]");
-	
-	public String queryAdvertise()
-	{
-		//driver.navigate().to("http://staging.wanasatime.com");
-		driver.findElement(advertiseWithUs).click();
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
-		driver.findElement(adverFName).sendKeys("Manjusha");
-		driver.findElement(adverLName).sendKeys("Konala");
-		driver.findElement(adverEmail).sendKeys(CommonMethods.passingData("EnterMail"));
-		driver.findElement(prefixAd).click();
-		driver.findElement(bhdCountryCode).click();
-		driver.findElement(phoneNumText).sendKeys("33456789");
-		driver.findElement(descrip).sendKeys("I want to Advertise from your Platform");
-		driver.findElement(submitBtn).click();
-		String ur=driver.getCurrentUrl();
-		return ur;
-	}
-	
-	//Any Query in Plans and Pricing...
-	
-	By plansandpricing	=	By.xpath("//*[@href='/PlansPricing.aspx']");
-	By anyQuery			=	By.xpath("//*[@class='text-center']//*[@class='anyQuery']");
-	By userEmail		=	By.id("userE-mail");
-	By userMessage		=	By.id("userMessage");
-	By subBtn			=	By.id("submitQuery");
-	
-	public String plansAndPricingQuery()
-	
-	
-	{
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
-		driver.findElement(plansandpricing).click();
-		driver.findElement(anyQuery).click();
-		driver.findElement(userEmail).sendKeys(CommonMethods.passingData("EnterMail"));
-		driver.findElement(userMessage).sendKeys("I want to know the plans and pricing Details");
-		driver.findElement(subBtn).click();
-		String u=driver.getCurrentUrl();
-		return u;
-			
-	}
+
 		
 
 }
