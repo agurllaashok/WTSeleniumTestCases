@@ -112,6 +112,6 @@ public class BrowserFunctions {
 	@AfterTest
 	@Parameters("browser")
 	public void closeBrowser1(@Optional("IamOptional") String browser) throws Exception {
-			driver.close();
+			driver.quit();
 	}
 }

@@ -1,20 +1,16 @@
 package wanasa;
 
+
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
+import org.openqa.selenium.support.ui.Select;
 import utils.BrowserFunctions;
 import utils.CommonMethods;
 
@@ -523,8 +519,8 @@ public class HomePage extends BrowserFunctions {
 	
 	By movielist = By.xpath("//*[@src='http://staging.wanasatime.com/movie_images/VIJAY_SUPERUM_POURNAMIYUM210219062202_thumbnail.jpg']");
 	By moviesbookbutton = By.id("bookTickets");
-	By moviedateselection = By.xpath("//*[@showdate='07/23/2019']");
-	By showtimeselection = By.xpath("//*[@showid='6666']");
+	By moviedateselection = By.xpath("//*[@showdate='08/02/2019']");
+	By showtimeselection = By.xpath("//*[@showid='7544']");
 	By alertmovieok = By.id("btnAccept");
 	By numberofseatselection = By.linkText("2");
 	By ticketcount2 = By.xpath("//*[@class='nav nav-pills members']/li");
@@ -630,7 +626,7 @@ public class HomePage extends BrowserFunctions {
 			malls.selectByVisibleText("Seef Mall");
 			Select date = new Select(driver.findElement(selectdate));
 			driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
-			date.selectByVisibleText("Tuesday, 23 Jul");
+			date.selectByVisibleText("Friday, 2 Aug");
 			Select time = new Select(driver.findElement(selecttime));
 			driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
 			time.selectByVisibleText("8:00PM-Cinema 10");
@@ -792,7 +788,120 @@ public class HomePage extends BrowserFunctions {
 		return driver.findElement(sendsuccess).getText();		
 	}
 	
-	// Negative Cases 
+
+	//icon clicks bhd
+	By fbicon = By.id("faceboolink");
+	By insta  = By.id("instalink");
+	By youtube= By.id("youtublink");
+	By fbid   = By.id("u_0_3");
+	By smlinks = By.xpath("//*[@class='social text-center']/a");
+	
+	public int  SMiconclick() throws InterruptedException
+	{
+		Thread.sleep(2000);
+		//driver.findElement(location).click();
+		WebElement xx = driver.findElement(By.xpath("//span[@class='fa fa-map-marker']"));
+		Actions a = new Actions(driver);
+		a.moveToElement(xx).build().perform();
+		Thread.sleep(2000);
+		List<WebElement> s3 = driver.findElements(By.xpath("//li[@class='dropdown liLocation']/ul/li"));
+		//System.out.println("List of locations" +s3.size());
+		
+		for(WebElement s4 : s3)
+		{
+			String s5 = s4.findElement(By.xpath("./a")).getText();
+			//System.out.println("Country Name " +s5);	
+			String s6 = CommonMethods.passingData("loc");
+			//System.out.println("For Json:" +s6);	
+			if(s6.equalsIgnoreCase(s5))
+			{
+				s4.click();
+				JavascriptExecutor js = (JavascriptExecutor) driver;
+				js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+				List<WebElement> slinks = driver.findElements(smlinks);
+				for(WebElement sl:slinks)
+				{
+					sl.click();
+					Thread.sleep(4000);
+				    ArrayList  iconclick  = new ArrayList (driver.getWindowHandles());
+					System.out.println("Size of windows opened" +iconclick.size());
+					driver.switchTo().window((String) iconclick.get(1)); 
+					String s1 = driver.getCurrentUrl();
+
+					System.out.println(s1);	
+					//driver.close();
+					driver.switchTo().window((String) iconclick.get(0)); 
+					String s2 = driver.getCurrentUrl();
+					System.out.println(s2);						
+				}
+				break;				
+			}
+			
+		}
+		ArrayList  fbclick  = new ArrayList (driver.getWindowHandles());
+		int windowsopened = fbclick.size();
+		return windowsopened;
+				 			
+	}
+	
+	// play/app store click
+	
+	By playstore= By.xpath("//*[@class='col-md-3 store']/a[1]");
+	By appstore= By.xpath("//*[@class='col-md-3 store']/a[2]");
+	
+	public String playstoreclick()
+	{
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		driver.findElement(playstore).click();
+		String s1=driver.getCurrentUrl();
+		System.out.println(s1);
+		return s1;
+		
+	}
+	
+	public String appstoreclick()
+	{
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		driver.findElement(appstore).click();
+		String s1=driver.getCurrentUrl();
+		System.out.println(s1);
+		return s1;
+		
+	}
+	
+	
+	//advertisingneeds
+	By name1 		= By.id("txtFirstName");
+	By name2 		= By.id("txtLastName");
+	By advtemail 	= By.id("txtEmail");
+	By advtmobile   = By.id("txtPhoneNum");
+	By addescription   = By.id("txtDescription");
+	By advtsubmit 	= By.id("btnSubmit");
+	By advtsuccessmsg = By.xpath("//*[contains(@class,'toast-message') and contains(text(),'Thanks for providing your information we will get back to you soon.')]");
+
+		
+	public String advertisingneeds()
+	{
+		driver.findElement(AdvertiseWithUs).click();
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		driver.findElement(name1).sendKeys("pallavi");
+		driver.findElement(name2).sendKeys("domreddy");
+		driver.findElement(advtemail).sendKeys("pallavi.domreddy@smscountry.com");
+		driver.findElement(advtmobile).sendKeys("7396206647");
+		driver.findElement(addescription).sendKeys("test desc");
+		driver.findElement(advtsubmit).click();		
+		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
+		CommonMethods.explicitWaitForElementVisibility(errormsgemptypwd);
+		return driver.findElement(errormsgemptypwd).getText();				
+	}
+	 
+
+	// Negative Cases 		
+	
+	//events
 	
 	// Single day Event Cancel and Back Button
 	
@@ -920,16 +1029,8 @@ public class HomePage extends BrowserFunctions {
 		driver.findElement(btnproceed).click();
 		return driver.findElement(withOutSelectingSeat).getText();
 	}
-	
-	//icon clicks Bahrain
-	
-	By fbicon = By.id("faceboolink");
-	By insta  = By.id("instalink");
-	By youtube= By.id("youtublink");
-	By fbid   = By.id("u_0_3");
-	By smlinks = By.xpath("//*[@class='social text-center']/a");
 
-	public void facebookiconclick() throws InterruptedException
+		public void facebookiconclick() throws InterruptedException
 	{
 	Thread.sleep(2000);
 	//driver.findElement(location).click();
@@ -1028,4 +1129,5 @@ public class HomePage extends BrowserFunctions {
 			
 	}
 		
+
 }
