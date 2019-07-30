@@ -283,6 +283,7 @@ import utils.CommonMethods;
 			logger_ss.log(Status.INFO, "Successfully verified advertisingneeds");
 		}
 		
+<<<<<<< HEAD
 		
 		//user
 
@@ -300,8 +301,13 @@ import utils.CommonMethods;
 		}
 		
 	
+=======
+
+    
+>>>>>>> b3598bead7b18195772afba5eb87aa18112fb7f9
 
 		// Negative Cases
+
 		
 		@Test(priority=18)
 		
@@ -374,7 +380,10 @@ import utils.CommonMethods;
 			logger_ss.log(Status.INFO, "Successfully verified cancelBtnInCBQPayment");  
 	  }
 	  
+
+
 	  @Test(priority=23) 
+
 	  
 	  public void withOutSelectingSeat() throws InterruptedException
 	  {
@@ -388,8 +397,43 @@ import utils.CommonMethods;
 			driver.findElement(ss.menu1).click();
 			driver.findElement(ss.logout).click();
 	  }
+
+	 // @Test(priority=14)
+	  public void verifyfacebookiconclick() throws InterruptedException
+	  {
+	  logger_ss = extent.createTest("verifyfacebookiconclick");
+	  ss.facebookiconclick();	
+	  //Assert.assertEquals(s1, true);	
+	  logger_ss.log(Status.INFO, "Successfully facebookiconclick.");
+	  }
+	  
+	  // Advertise With Us Query...
+	  @Test
+	 public void queryAdvertiseWithUs() throws InterruptedException
+	 {
+		 logger_ss = extent.createTest("verifyAdvertiseWithUs");
+		 driver.navigate().to("http://staging.wanasatime.com");
+		 ss.countrySelection();
+		 String adver=ss.queryAdvertise();
+		 Assert.assertEquals(adver, "http://staging.wanasatime.com/AdvertiseWithUs.aspx?");
+		 logger_ss.log(Status.INFO, "Successfully Submitted Details in AdvertiseWithUs");
+		 	
+	 }
 	  
 	  
-	
+	  @Test
+	  public void plansandpricingAnyQuery() throws InterruptedException
+	  {
+		  logger_ss = extent.createTest("verifyPlansAndPricing");
+          ss.countrySelection();
+          String plans=ss.plansAndPricingQuery();
+          Assert.assertEquals(plans, "http://staging.wanasatime.com/PlansPricing.aspx");
+          logger_ss.log(Status.INFO, "Successfully Submitted Details in Plans and Pricing");
+		 	
+	  }
+
+
+	  
+
 	}
 

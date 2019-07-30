@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
+<testng-results skipped="0" failed="0" ignored="5" total="6" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="26860" started-at="2019-07-29T09:26:15Z" finished-at="2019-07-29T09:26:42Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="26860" started-at="2019-07-29T09:26:15Z" finished-at="2019-07-29T09:26:42Z">
+      <class name="wanasa.Emcsuite">
+        <test-method status="PASS" signature="setup(java.lang.String)[pri:0, instance:wanasa.Emcsuite@42a48628]" name="setup" is-config="true" duration-ms="13870" started-at="2019-07-29T09:26:15Z" finished-at="2019-07-29T09:26:29Z">
+=======
 <testng-results skipped="0" failed="0" total="19" passed="19">
   <reporter-output>
   </reporter-output>
@@ -8,6 +19,7 @@
     <test name="Default test" duration-ms="549038" started-at="2019-07-26T06:12:44Z" finished-at="2019-07-26T06:21:53Z">
       <class name="wanasa.HomePageTest">
         <test-method status="PASS" signature="setup(java.lang.String)[pri:0, instance:wanasa.HomePageTest@67b6d4ae]" name="setup" is-config="true" duration-ms="18884" started-at="2019-07-26T11:42:44Z" finished-at="2019-07-26T11:43:03Z">
+>>>>>>> 0db97e3c614fa39b81ad1ec80c1da8a696786c0c
           <params>
             <param index="0">
               <value>
@@ -18,6 +30,17 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
+<<<<<<< HEAD
+        <test-method status="PASS" signature="approveEvent()[pri:0, instance:wanasa.Emcsuite@42a48628]" name="approveEvent" duration-ms="12504" started-at="2019-07-29T09:26:29Z" finished-at="2019-07-29T09:26:42Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- approveEvent -->
+        <test-method status="PASS" signature="tearDown(org.testng.ITestResult)[pri:0, instance:wanasa.Emcsuite@42a48628]" name="tearDown" is-config="true" duration-ms="329" started-at="2019-07-29T09:26:42Z" finished-at="2019-07-29T09:26:42Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=approveEvent status=SUCCESS method=Emcsuite.approveEvent()[pri:0, instance:wanasa.Emcsuite@42a48628] output={null}]]]>
+=======
         <test-method status="PASS" signature="verifysignup()[pri:0, instance:wanasa.HomePageTest@67b6d4ae]" name="verifysignup" duration-ms="12149" started-at="2019-07-26T11:43:03Z" finished-at="2019-07-26T11:43:15Z">
           <reporter-output>
           </reporter-output>
@@ -297,13 +320,18 @@
             <param index="0">
               <value>
                 <![CDATA[[TestResult name=withOutSelectingSeat status=SUCCESS method=HomePageTest.withOutSelectingSeat()[pri:23, instance:wanasa.HomePageTest@67b6d4ae] output={null}]]]>
+>>>>>>> 0db97e3c614fa39b81ad1ec80c1da8a696786c0c
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
+<<<<<<< HEAD
+        <test-method status="PASS" signature="closeBrowser1(java.lang.String)[pri:0, instance:wanasa.Emcsuite@42a48628]" name="closeBrowser1" is-config="true" duration-ms="84" started-at="2019-07-29T09:26:42Z" finished-at="2019-07-29T09:26:42Z">
+=======
         <test-method status="PASS" signature="closeBrowser1(java.lang.String)[pri:0, instance:wanasa.HomePageTest@67b6d4ae]" name="closeBrowser1" is-config="true" duration-ms="1251" started-at="2019-07-26T11:51:52Z" finished-at="2019-07-26T11:51:53Z">
+>>>>>>> 0db97e3c614fa39b81ad1ec80c1da8a696786c0c
           <params>
             <param index="0">
               <value>
@@ -314,7 +342,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- closeBrowser1 -->
-      </class> <!-- wanasa.HomePageTest -->
+      </class> <!-- wanasa.Emcsuite -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
