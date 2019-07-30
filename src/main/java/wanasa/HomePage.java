@@ -1014,6 +1014,7 @@ public class HomePage extends BrowserFunctions {
 	
 	public String plansAndPricingQuery()
 	
+	
 	{
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
