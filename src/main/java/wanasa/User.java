@@ -43,6 +43,8 @@ public class User extends BrowserFunctions  {
 	By buyerCity = By.id("buyerCity");
 	By updateBuyerProfile = By.id("updateBuyerProfile");
 	By changePasswordBtn = By.id("changePasswordBtn");
+	By userdob       = By.id("buyerDOB");
+	
 	
 	
 	public void edituser() throws Exception
@@ -53,7 +55,8 @@ public class User extends BrowserFunctions  {
 		Thread.sleep(3000);
 		Thread.sleep(2000);
 		driver.findElement(profilepic).click();
-		 StringSelection ss= new StringSelection("C:\\Users\\Smsc_Tech\\Downloads\\PicsArt_03-19-02.50.30.jpg");
+		StringSelection ss= new StringSelection("C:\\Users\\Smsc_Tech\\Desktop\\sara.jpg");
+		
 		 Thread.sleep(8000);
 		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss,null);
 		 Robot robot = new Robot();
@@ -67,13 +70,15 @@ public class User extends BrowserFunctions  {
 		 driver.findElement(profilesavebtn).click();
 	     Thread.sleep(5000);
 	     
-	/*	driver.findElement(buyerLName).clear();
+	driver.findElement(buyerLName).clear();
 		Thread.sleep(3000);
 		driver.findElement(buyerLName).sendKeys("domreddy");
 		Thread.sleep(3000);
 		WebElement testDropDown = driver.findElement(By.id("buyerGender"));  
 		Select gender = new Select(testDropDown);  
-		gender.selectByValue("Female");			
+		gender.selectByValue("Female");		
+		driver.findElement(userdob).clear();
+		
 		driver.findElement(buyerState).clear();
 		Thread.sleep(3000);
 		driver.findElement(buyerState).sendKeys("hyd");
@@ -81,7 +86,7 @@ public class User extends BrowserFunctions  {
 		Thread.sleep(3000);
 		driver.findElement(buyerCity).sendKeys("hyd");
 		driver.findElement(updateBuyerProfile).click();	
-		Thread.sleep(6000);*/
+		Thread.sleep(6000);
 		}
 		catch(Exception ex)
 		{

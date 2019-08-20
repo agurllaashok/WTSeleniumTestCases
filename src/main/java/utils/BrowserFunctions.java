@@ -31,6 +31,8 @@ import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 
 public class BrowserFunctions {
+	
+	//Homeage hpp = new HomePage();
 	public static String Url= CommonMethods.passingData("url");
 	//public static String EMCUrl= CommonMethods.passingData("emcurl");
 	//public static String contactsPageUrl = "http://staging.grptalk.com/Contacts.aspx";
@@ -40,6 +42,7 @@ public class BrowserFunctions {
 	//public static Logger logger = Logger.getLogger(AudioTest.class);
 	public static String  downloadFilepath;// = "D:\\grpTalk\\TestDataFiles\\downloads\\";
 	StringBuilder sb = new StringBuilder();	
+	public static String  testcasename;
   
 
 	@BeforeTest	
@@ -90,6 +93,7 @@ public class BrowserFunctions {
 		driver.manage().window().maximize();
 
 		driver.get(Url);
+		
 		logger_ss.log(Status.INFO, "WanasaTime home page opend successfully");
 
 		Thread.sleep(5000);
@@ -97,13 +101,22 @@ public class BrowserFunctions {
 	
 	@AfterMethod
 	public void tearDown(ITestResult result) throws IOException, InterruptedException {
+		 testcasename = result.getName();
+			System.out.println("Test case name:" +testcasename);
+			
+			if(ITestResult.FAILURE==result.getStatus())
+			{
+				System.out.println("::::++++++");
+				CommonMethods.getScreenshot();
+			}
 		
 		if (result.getStatus() == ITestResult.FAILURE) {
 			System.out.println("TestCase failed");
 			String temp = CommonMethods.getScreenshot();
 			logger_ss.fail(result.getThrowable().getMessage(),
 					MediaEntityBuilder.createScreenCaptureFromPath(temp).build());
-		}else{
+		}else
+		{
 			System.out.println("TestCase passed");
 		}
 		extent.flush();

@@ -9,8 +9,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Random;
-
+//import wanasa.HomePageTest;
+import java.util.Date;
 import org.apache.commons.io.FileUtils;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -27,7 +30,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CommonMethods extends BrowserFunctions{
 	
-	
+	//HomePageTest htest = new HomePageTest();
 	public static void clickMethod(By loactor) throws InterruptedException{
 		By lc=loactor;
 		Thread.sleep(1000);
@@ -110,9 +113,19 @@ public class CommonMethods extends BrowserFunctions{
 	
 	public static String getScreenshot()
 	{
+		DateFormat date = new SimpleDateFormat("dd-MM-YYYY_HH-mm-ss");
+		Date d = new Date();
+		String dd = date.format(d);
+		
+		//System.out.println("Date is"+dd);
+	
+		
 		TakesScreenshot ts=(TakesScreenshot) driver;
 		File src=ts.getScreenshotAs(OutputType.FILE);
-		String path=System.getProperty("user.dir")+"/Screenshot/"+System.currentTimeMillis()+".png";
+		//String filename = new Simpl
+		//String path=System.getProperty("user.dir")+"/Screenshot/"+System.currentTimeMillis()+".png";
+		String path=System.getProperty("user.dir")+"/Screenshot/"+BrowserFunctions.testcasename+dd+".png";
+		
 		File destination=new File(path);
 		try 
 		{
