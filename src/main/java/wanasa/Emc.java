@@ -74,8 +74,8 @@ public class Emc extends BrowserFunctions {
 			By forgotsuccess		=	By.xpath("//*[contains(@class,'toast-message') and contains(text(),'We have sent a mail to you.Please check your mail.')]");
 			By loginbtnInForgot		=	By.id("haveAcc");
 	
- public String forgotPassword()
-	{
+      public String forgotPassword()
+	  {
 		try
 		{
 			driver.findElement(forgotlnk).click();
@@ -724,9 +724,17 @@ public class Emc extends BrowserFunctions {
 	  
 	  String url=driver.getCurrentUrl();
 	  return url;
+	}
 	 
-	   
+	   //**************Weekly Events List**************//
+	
+	
+	 By weeklyEvents		=   By.id("weeklyEvents");
+	 
+	  
+	  
+	  
 	  
 	}
 			
-	}
+	

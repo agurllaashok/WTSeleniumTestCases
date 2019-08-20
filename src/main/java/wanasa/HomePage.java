@@ -968,7 +968,7 @@ public class HomePage extends BrowserFunctions {
 	By menu1 = By.id("userMenu");
 	By profileclick = By.id("myProfile");
 	By BookingHistory = By.id("bookingHistory");
-	By Evouchers = By.id("eVouchers"); 
+	
 	//By AdvertiseWithUs = By.linkText("Advertise With Us");
 	//By logout = By.id("Logout");
 	
@@ -982,7 +982,8 @@ public class HomePage extends BrowserFunctions {
     By profilepic          =             By.id("picEditIcon");
     By profilesavebtn	   =             By.id("btnSaveImage");
 
-		// genderdropdown 
+		// Gender Drop Down 
+    
 	By gender= By.id("buyerGender");	
 	By buyerState = By.id("buyerState");
 	By buyerCity = By.id("buyerCity");
@@ -1045,6 +1046,7 @@ public class HomePage extends BrowserFunctions {
 	
 	}
 	
+
 	//booking history
 
 	By mvebookings = By.linkText("MOVIES");
@@ -1082,7 +1084,24 @@ public class HomePage extends BrowserFunctions {
     	} 
     }
 	
+    // E vouchers
+    
+    By evoucherclick		=	By.id("eVouchers");
+    By fromDateclick		=	By.id("fromDate");
+    By toDateclick			=	By.id("toDate");
+    By allClick				=   By.id("statusSelection");
+    By selectAllStatus		=	By.xpath("//*[@id='statusSelection']//*[@value='4']");
+    By selectAvailable		=	By.xpath("//*[@id='statusSelection']//*[@value='1']");
+    By selectExpired		=	By.xpath("//*[@id='statusSelection']//*[@value='3']");
+	By applyBtn				=	By.className("theme-btn");
 	
+	
+	public void eVouchers()
+	{
+		driver.findElement(menu1).click();
+		driver.findElement(evoucherclick).click();
+		
+	}
 	
 	// Negative Cases 		
 	

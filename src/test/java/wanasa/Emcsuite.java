@@ -80,8 +80,7 @@ public class Emcsuite  extends BrowserFunctions{
 		     //Assert.assertEquals(afterlogin1, "http://staging.emc.wanasatime.com/Dashboard.aspx");
         	String suc=es.eventApprove();
         	Assert.assertEquals(suc,"http://staging.emc.wanasatime.com/EventsDetailsList.aspx");
-        	
-        }
+         }
  
  
 
