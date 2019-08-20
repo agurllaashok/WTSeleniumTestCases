@@ -3,18 +3,19 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test verbose="2" name="Default test">
     <classes>
-<<<<<<< HEAD
-      <class name="wanasa.Emcsuite">
+      <class name="wanasa.HomePageTest"/>
+    </classes>
+  </test> <!-- Default test -->
+  <test name="Default test(failed)">
+    <classes>
+      <class name="wanasa.HomePageTest">
         <methods>
+          <include name="withOutSelectingSeatInSeatLayoutForNaal"/>
           <include name="tearDown"/>
           <include name="setup"/>
           <include name="closeBrowser1"/>
-          <include name="approveEvent"/>
         </methods>
-      </class> <!-- wanasa.Emcsuite -->
-=======
-      <class name="wanasa.HomePageTest"/>
->>>>>>> 0db97e3c614fa39b81ad1ec80c1da8a696786c0c
+      </class> <!-- wanasa.HomePageTest -->
     </classes>
-  </test> <!-- Default test -->
+  </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
