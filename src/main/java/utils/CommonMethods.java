@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Random;
-import wanasa.HomePageTest;
+//import wanasa.HomePageTest;
 import java.util.Date;
 import org.apache.commons.io.FileUtils;
 import org.json.simple.JSONObject;
@@ -30,7 +30,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CommonMethods extends BrowserFunctions{
 	
-	HomePageTest htest = new HomePageTest();
+	//HomePageTest htest = new HomePageTest();
 	public static void clickMethod(By loactor) throws InterruptedException{
 		By lc=loactor;
 		Thread.sleep(1000);
@@ -124,7 +124,7 @@ public class CommonMethods extends BrowserFunctions{
 		File src=ts.getScreenshotAs(OutputType.FILE);
 		//String filename = new Simpl
 		//String path=System.getProperty("user.dir")+"/Screenshot/"+System.currentTimeMillis()+".png";
-		String path=System.getProperty("user.dir")+"/Screenshot/"+HomePageTest.testcasename+dd+".png";
+		String path=System.getProperty("user.dir")+"/Screenshot/"+BrowserFunctions.testcasename+dd+".png";
 		
 		File destination=new File(path);
 		try 
