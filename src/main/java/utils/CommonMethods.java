@@ -77,7 +77,7 @@ public class CommonMethods extends BrowserFunctions{
 	
 	public static void explicitWaitForElementVisibility(By locator){
 		By element = locator;
-		WebDriverWait wait= new WebDriverWait(driver, 15);
+		WebDriverWait wait= new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(element));
 	}
 	

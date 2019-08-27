@@ -174,7 +174,7 @@ import utils.CommonMethods;
 		
 		}
 			
-		//@Test(priority=9)
+		@Test(priority=9)
 		   
 		  public void verifymovieticketbooking() throws InterruptedException
 			{
@@ -212,21 +212,22 @@ import utils.CommonMethods;
 		}	
 		
 				
-	//	@Test(priority=11) 
+	@Test(priority=11) 
 		public void verifygoogLogin() throws InterruptedException
 			{
 			    logger_ss = extent.createTest("googLogin");
 			    driver.navigate().to("http://staging.wanasatime.com");
 			    //ss.alertadvt();
 				ss.clickSignInButton();	
-				Thread.sleep(3000);
-				driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+				CommonMethods.explicitWaitForElementVisibility(ss.googleLogin);
 				String afterlogin=ss.googleLogin();
 				Assert.assertEquals(afterlogin,"http://staging.wanasatime.com/");				
 				driver.navigate().to("http://staging.wanasatime.com");
 				//ss.alertadvt();
-				driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
-				driver.findElement(ss.menu1).click();
+				//driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+				CommonMethods.explicitWaitForElementVisibility(ss.menu);
+				driver.findElement(ss.menu).click();
+				//CommonMethods.explicitWaitForElementVisibility(ss.logout);
 				driver.findElement(ss.logout).click();
 				//ss.alertadvt();
 				String URL1 = driver.getCurrentUrl();
@@ -521,7 +522,7 @@ import utils.CommonMethods;
 	  }
 	  
 
-      @Test(priority=31) 	  
+      @Test 	  
 	  public void withOutSelectingSeat() throws InterruptedException
 	  {
 		  driver.navigate().to("http://staging.wanasatime.com");
@@ -538,7 +539,7 @@ import utils.CommonMethods;
 			//ss.alertadvt();
 	  }
 
-	  @Test(priority=32)
+	  @Test
 	  public void verifyfacebookiconclick() throws InterruptedException
 	  {
 	  logger_ss = extent.createTest("verifyfacebookiconclick");
@@ -546,5 +547,98 @@ import utils.CommonMethods;
 	  //Assert.assertEquals(s1, true);	
 	  logger_ss.log(Status.INFO, "Successfully facebookiconclick.");
 	  }
+	  
+	  //Movies Filter based on Mall Selection
+	 @Test
+	 public void filterMoviesLocations() throws InterruptedException
+	 {
+		 //driver.navigate().to("http://staging.wanasatime.com");
+		 logger_ss = extent.createTest("verifyMovieLoactons");
+         ss.countrySelection();		 
+         boolean bool=ss.moviesFilter();
+         Assert.assertEquals(bool,true);
+         logger_ss.log(Status.INFO, "Filter Applied Successfully Based on Mall");
+	 }
+	 
+	 // Movies Filter based on Genre Selection
+	 
+	 @Test
+	 public void filterMoviesGenre() throws InterruptedException
+	 {
+		 logger_ss = extent.createTest("verifyMovieLoactons");
+         ss.countrySelection();		 
+         boolean bool=ss.moviesGenre();
+         Assert.assertEquals(bool,true);
+         logger_ss.log(Status.INFO, "Filter Applied Successfully Based on Genre");
+         //System.out.println("Count of the Movies"+);
+	 }
+	 
+	 // Movies Filter Based on Language
+	 
+	 @Test
+	 public void filterMoviesLang() throws InterruptedException
+	 {
+		 logger_ss = extent.createTest("verifyMovieLanguage");
+         ss.countrySelection();		 
+         boolean bool=ss.moviesLanguage();
+         Assert.assertEquals(bool,true);
+         logger_ss.log(Status.INFO, "Filter Applied Successfully Based on Language");
+	 }
+	 
+	 // Movies Filter Based on Mall,Genre and Languages
+	 
+	 @Test
+	 public void moviesAllFilters() throws InterruptedException
+	 {
+		 logger_ss = extent.createTest("verifyMovieLanguage");
+         ss.countrySelection();	
+         //ss.moviesFilter();
+        // ss.moviesGenre();
+         boolean bool=ss.movieAllFilters();
+         Assert.assertEquals(bool,true);
+         logger_ss.log(Status.INFO, "Filter Applied Successfully Based on Mall,Genre and Language");
+	
+	 }
+	 
+	 //Movies Filter Based on Timings
+	 @Test
+	 public void movieTimeingsFilter() throws InterruptedException
+	 {
+		 logger_ss = extent.createTest("verifyMovieTime");
+         ss.countrySelection();	
+         //ss.moviesFilter();
+        // ss.moviesGenre();
+         boolean bool=ss.movieFilterTime();
+         Assert.assertEquals(bool,true);
+         logger_ss.log(Status.INFO, "Filter Applied Successfully Based on Timing");
+	 
+	 }
+	 
+	 //Events Filter Based on Event Types
+	 @Test
+	 public void eventTypeFilter() throws InterruptedException
+	 {
+		 logger_ss = extent.createTest("verifyEventType");
+         ss.countrySelection();	
+         boolean bol=ss.eventFilterType();
+         Assert.assertEquals(bol,true);
+         
+         logger_ss.log(Status.INFO, "Filter Applied Successfully Based on Event Type");
+	 
+	 }
+	 
+	 //Events Filter Based on Event Category
+	 @Test
+	 public void eventCatFilter() throws InterruptedException
+	 {
+		 logger_ss = extent.createTest("verifyEventCategory");
+         ss.countrySelection();	
+         boolean bol=ss.eventFilterCategory();
+         Assert.assertEquals(bol,true);
+         
+         logger_ss.log(Status.INFO, "Filter Applied Successfully Based on Event Category");
+	  
+	 }
 	}
+	
 

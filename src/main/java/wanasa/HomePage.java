@@ -13,6 +13,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 
 import org.openqa.selenium.support.ui.Select;
@@ -520,7 +521,7 @@ public class HomePage extends BrowserFunctions {
 
 	}
 
-	// Debitcard locators
+	// Debit card locators
 
 	By debitcardbtn = By.xpath("//*[@id='btnDebitCard']");
 	By cardnumber = By.id("Ecom_Payment_Card_Number_id");
@@ -556,23 +557,29 @@ public class HomePage extends BrowserFunctions {
 	public String googleLogin() throws InterruptedException {
 		
 		driver.findElement(googleLogin).click();
-		Thread.sleep(4000);
+		//Thread.sleep(4000);
 		Set<String> AllwindowHandles = driver.getWindowHandles();
 		String w1 = (String) AllwindowHandles.toArray()[0];
 		String w2 = (String) AllwindowHandles.toArray()[1];
 		driver.switchTo().window(w2);
-		Thread.sleep(2000);
+		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+		//Thread.sleep(2000);
 		driver.findElement(googleEmail).sendKeys(CommonMethods.passingData("googEmail"));
 		driver.findElement(gNext).click();
 		driver.findElement(googlePswd).sendKeys(CommonMethods.passingData("googPswd"));
-		Thread.sleep(4000);
+		driver.manage().timeouts().implicitlyWait(40,TimeUnit.SECONDS);
+		//Thread.sleep(4000);
+		CommonMethods.explicitWaitForElementVisibility(gpNext);
 		driver.findElement(gpNext).click();
-		Thread.sleep(4000);
+		driver.manage().timeouts().implicitlyWait(40,TimeUnit.SECONDS);
+		//Thread.sleep(4000);
+		CommonMethods.explicitWaitForElementVisibility(advanced);
 		driver.findElement(advanced).click();
 		driver.findElement(goToWanasaTime).click();
 		driver.findElement(allow).click();
 		driver.switchTo().window(w1);
-		Thread.sleep(2000);
+		//driver.manage().timeouts().implicitlyWait(50,TimeUnit.SECONDS);
+	    Thread.sleep(2000);
 		String url = driver.getCurrentUrl();
 		return url;
 	}
@@ -584,14 +591,14 @@ public class HomePage extends BrowserFunctions {
 	By vijaymovie = By.xpath("//*[@href='MovieInfo.aspx?MovieId=17']");	
 	By movielist = By.xpath("//*[@src='http://staging.wanasatime.com/movie_images/NADI_ELREGAL_EL_SERIA200219092849_thumbnail.jpg']");
 	By moviesbookbutton = By.id("bookTickets");
-	By moviedateselection = By.xpath("//h3[contains(text(),'22')]");
+	By moviedateselection = By.xpath("//*[@id='movieShowDates']/td[1]/h3");
 	By showtimeselection = By.xpath("//*[@showid='8241']");
 	By alertmovieok = By.id("btnAccept");
 	By numberofseatselection = By.linkText("2");
 	By ticketcount2 = By.xpath("//*[@class='nav nav-pills members']/li");
 	By seatselectionOkclick = By.id("btnOk");
 	
-	// By seatlayoutselect = By.xpath("//*[@title='Row-G Seat-08']");
+	// By seat layout select = By.xpath("//*[@title='Row-G Seat-08']");
 	
 	By seatlayoutselect = By.xpath("//*[@id='seatNumber']//td[contains(@class,'seat available')]");
 	By error = By.xpath("*//[@id='seat_error']");
@@ -603,7 +610,6 @@ public class HomePage extends BrowserFunctions {
 	
 	
 	
-
 	public String movieticketbooking() throws InterruptedException {
 
 			driver.findElement(moviestab).click();
@@ -670,7 +676,7 @@ public class HomePage extends BrowserFunctions {
 	
 	// Quick booking 
 	
-	//By quickbookclick = By.xpath("//*[@class='quick-booking-input-docker']/h4");
+	//By Quick book click = By.xpath("//*[@class='quick-booking-input-docker']/h4");
 	
 	By movieslist = By.id("MoviesList");
 	By selectmall = By.id("CinemaList");
@@ -681,7 +687,7 @@ public class HomePage extends BrowserFunctions {
 	public String quickbooking() throws InterruptedException
 	
 	{
-		//driver.findElement(quickbookclick).click();
+		//driver.findElement(quick book click).click();
 			//driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
 			Select movies = new Select(driver.findElement(movieslist));
 			driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
@@ -1125,6 +1131,7 @@ public class HomePage extends BrowserFunctions {
 	By pwdupdateclose   = By.xpath("//button[contains(@class,'mr_10')]");
   //  By successmsgpwd  = By.xpath("//*[contains(@class,'toast-message') and contains(text(),'Password Changed Successfully')]");
 	 By successmsgp  = By.xpath("//*[contains(@class,'toast-message')]");
+	 
 	public String passwordchange() throws InterruptedException
 	{
 			/*Thread.sleep(5000);
@@ -1488,6 +1495,379 @@ public class HomePage extends BrowserFunctions {
 	}
  	}
 
-		
+	
+	// Movies Filter based on Mall Selection
+	
+	By moviesTab			=	By.id("tabMovies");
+	By moreMovies			=	By.id("lnkMoreMovies");
+	By cinemasFil			=	By.id("cinemas");
+	By cinemasFilter		= 	By.xpath("//*[@id='ddlCinemas']/a");
+	By 	allMoviesCont	    =	By.xpath("//*[@id='moviesContainer']/div");
+	By seefCinema			= 	By.xpath("//*[@id='ddlCinemas']//*[@cinemaid='1']");
+	
+	public boolean moviesFilter() throws InterruptedException
+	{
+		driver.findElement(moviesTab).click();
+		//driver.findElement(moreMovies).click();
+		WebElement xx = driver.findElement(By.id("cinemas"));
+		Actions a = new Actions(driver);
+		a.moveToElement(xx).build().perform();
+		List<WebElement> moviesfilterlist = driver.findElements(cinemasFilter);
+		//System.out.println("Moview Filter list size" +moviesfilterlist.size());
 
+		for(int i=1;i<=moviesfilterlist.size();i++) {
+		 
+		String s1 = "//div[@id='ddlCinemas']/a[";
+		int s2= i;
+		String s3="]";
+		
+		String s4 = Integer.toString(s2);
+		
+		WebElement eachmoviefilter = driver.findElement(By.xpath(s1+s4+s3));
+		
+		//System.out.println(eachmoviefliter);
+		
+		String moviefiltername = eachmoviefilter.getText();
+				//System.out.println("moviefiltername" +moviefiltername);
+		if(moviefiltername.contains(CommonMethods.passingData("cinemaLocation")))
+		{
+			eachmoviefilter.click();
+		}
+			
+		}
+					
+		List<WebElement> nowShowing = driver.findElements(allMoviesCont);
+		System.out.println("nowShowing list size" +nowShowing.size());
+		Thread.sleep(3000);
+		
+		if(nowShowing.size()>=1)
+		{
+			return true;
+		}
+		return false;
+		
+				
+	}
+	
+	// Movies filter based on Genre
+	
+	By genre				= 	By.id("genre");
+	By allGenreList			=	By.xpath("//*[@id='ddlGenresList']/a");
+
+	public boolean moviesGenre() throws InterruptedException
+	{
+		driver.findElement(moviesTab).click();
+		WebElement gen = driver.findElement(By.id("genre"));
+		Actions a = new Actions(driver);
+		a.moveToElement(gen).build().perform();
+		List<WebElement> allGenreListA = driver.findElements(allGenreList);
+		
+		for(int i=1;i<=allGenreListA.size();i++) {
+			 
+			String s1 = "//*[@id='ddlGenresList']/a[";
+			int s2= i;
+			String s3="]";
+			
+			String s4 = Integer.toString(s2);
+			
+			WebElement genremoviefilter = driver.findElement(By.xpath(s1+s4+s3));
+			
+			String moviefilternamegenre = genremoviefilter.getText();
+			if(moviefilternamegenre.contains(CommonMethods.passingData("genreName")))
+			{
+				genremoviefilter.click();
+			driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+				//Thread.sleep(2000);
+				
+			}
+		}
+			
+			  List<WebElement> nowShowing1 = driver.findElements(allMoviesCont);
+			  System.out.println("nowShowing list size" +nowShowing1.size());
+			  
+			  if(nowShowing1.size()>=1) {
+			  //System.out.println("Count of Movies"+nowShowing1); 
+				  return true;
+				  }
+						
+	return false;
+	
+	}
+	
+	// Movies Filter Based on Language
+	
+	By language				=		By.id("lang");
+	By allLanguages			=		By.xpath("//*[@id='ddlLanguage']/a");
+	
+	public boolean moviesLanguage() throws InterruptedException
+	{
+		driver.findElement(moviesTab).click();
+		WebElement lan = driver.findElement(By.id("lang"));
+		Actions a = new Actions(driver);
+		a.moveToElement(lan).build().perform();
+		List<WebElement> allLanguageList = driver.findElements(allLanguages);
+		
+		for(int i=1;i<=allLanguageList.size();i++) {
+			 
+			String s1 = "//*[@id='ddlLanguage']/a[";
+			int s2= i;
+			String s3="]";
+			
+			String s4 = Integer.toString(s2);
+			
+			WebElement movieLangfilter = driver.findElement(By.xpath(s1+s4+s3));
+			
+			String moviefilternameLang = movieLangfilter.getText();
+			if(moviefilternameLang.contains(CommonMethods.passingData("LangName")))
+			{
+				movieLangfilter.click();
+			driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+				//Thread.sleep(2000);
+				
+			}
+		}
+			
+			  List<WebElement> nowShowingLang = driver.findElements(allMoviesCont);
+			  System.out.println("nowShowing list size" +nowShowingLang.size());
+			  
+			  if(nowShowingLang.size()>=1) {
+			  //System.out.println("Count of Movies"+nowShowing1); 
+				  return true;
+				  }
+						
+	return false;
+	
+	}
+	
+	// Movies Filter Based on Mall,Genre and Language
+	
+	public boolean movieAllFilters()
+	{
+		driver.findElement(moviesTab).click();
+		WebElement mall = driver.findElement(By.id("cinemas"));
+		Actions a = new Actions(driver);
+		a.moveToElement(mall).build().perform();
+		List<WebElement> moviesfilterlist = driver.findElements(cinemasFilter);
+		for(int i=1;i<=moviesfilterlist.size();i++) {
+			 
+			String s1 = "//div[@id='ddlCinemas']/a[";
+			int s2= i;
+			String s3="]";
+			
+			String s4 = Integer.toString(s2);
+			
+			WebElement eachmoviefilter = driver.findElement(By.xpath(s1+s4+s3));
+				
+			String moviefiltername = eachmoviefilter.getText();
+					//System.out.println("moviefiltername" +moviefiltername);
+			if(moviefiltername.contains(CommonMethods.passingData("cinemaLocation")))
+			{
+				eachmoviefilter.click();
+			}
+				
+			}
+						
+			List<WebElement> nowShowing = driver.findElements(allMoviesCont);
+			System.out.println("nowShowing list size" +nowShowing.size());
+			driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+			
+			if(nowShowing.size()>=1)
+			{
+				//return true;
+			}
+		WebElement gen = driver.findElement(By.id("genre"));
+		//Actions a1 = new Actions(driver);
+		a.moveToElement(gen).build().perform();
+		List<WebElement> allGenreListA = driver.findElements(allGenreList);
+		for(int i=1;i<=allGenreListA.size();i++) {
+			 
+			String s1 = "//*[@id='ddlGenresList']/a[";
+			int s2= i;
+			String s3="]";
+			
+			String s4 = Integer.toString(s2);
+			
+			WebElement genremoviefilter = driver.findElement(By.xpath(s1+s4+s3));
+			
+			String moviefilternamegenre = genremoviefilter.getText();
+			if(moviefilternamegenre.contains(CommonMethods.passingData("genreName")))
+			{
+				genremoviefilter.click();
+			driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+				//Thread.sleep(2000);
+				
+			}
+		}
+			
+			  List<WebElement> nowShowing1 = driver.findElements(allMoviesCont);
+			  System.out.println("nowShowing list size" +nowShowing1.size());
+			  
+			  if(nowShowing1.size()>=1) {
+			  //System.out.println("Count of Movies"+nowShowing1); 
+				 // return true;
+				  }
+		WebElement lan = driver.findElement(By.id("lang"));
+		//Actions a2 = new Actions(driver);
+		a.moveToElement(lan).build().perform();
+		List<WebElement> allLanguageList = driver.findElements(allLanguages);
+		
+		for(int i=1;i<=allLanguageList.size();i++) {
+			 
+			String s1 = "//*[@id='ddlLanguage']/a[";
+			int s2= i;
+			String s3="]";
+			
+			String s4 = Integer.toString(s2);
+			
+			WebElement movieLangfilter = driver.findElement(By.xpath(s1+s4+s3));
+			
+			String moviefilternameLang = movieLangfilter.getText();
+			if(moviefilternameLang.contains(CommonMethods.passingData("LangName")))
+			{
+				movieLangfilter.click();
+			driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+				//Thread.sleep(2000);
+				
+			}
+		}
+			
+			  List<WebElement> nowShowingLang = driver.findElements(allMoviesCont);
+			  System.out.println("nowShowing list size" +nowShowingLang.size());
+			  
+			  if(nowShowingLang.size()>=1) {
+			  //System.out.println("Count of Movies"+nowShowing1); 
+				  return true;
+				  }
+						
+	return false;
+	
+	}
+	
+	// Movie filters Based on Time(ex:Morning,AfterNoon)
+	
+	By firstMovieFromList			  =		By.xpath("//*[@id='moviesContainer']/div[1]");
+	By bookTickets					  =		By.id("bookTickets");
+	By timings					      =		By.id("TimingsDiv");
+	By allTimings   			      =		By.xpath("//*[@class='dropdown-menu timeTypes']/li");
+	By thearterSection				  =		By.className("theatreName");
+	
+	public boolean movieFilterTime()
+	{
+		driver.findElement(moviesTab).click();
+		driver.findElement(firstMovieFromList).click();
+		driver.findElement(bookTickets).click();
+		WebElement timingsFil=driver.findElement(timings);
+		Actions hov=new Actions(driver);
+		hov.moveToElement(timingsFil).build().perform();
+		List<WebElement> allTimingsFil=driver.findElements(allTimings);
+		for(WebElement  timings : allTimingsFil)
+		{
+			WebElement showTiming = timings.findElement(By.xpath("./a"));
+			String session = showTiming.getText();
+			if(session.contains(CommonMethods.passingData("timeFilter")))
+			{
+				showTiming.click();
+				 driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
+			}
+		}
+		 List<WebElement> nowShowingTimings = driver.findElements(thearterSection);
+		  System.out.println("nowShowingTimings list size" +nowShowingTimings.size());
+		  
+		  if(nowShowingTimings.size()>=0) {
+		  System.out.println("Count of Movies"+nowShowingTimings.size()); 
+			  return true;
+			  }
+					
+		  return false;
+		}
+		
+		// Events Filter Based on Event Type
+	By eventTypesAll		= 		By.xpath("//*[@id='EventTypes']/li");
+	By eventsAlign			=		By.className("Events_align");
+	
+	public boolean eventFilterType() throws InterruptedException
+	{
+		driver.findElement(eventstab).click();
+		List<WebElement> allTypesFil=driver.findElements(eventTypesAll);
+		System.out.println("size of event types :"+allTypesFil.size());
+		for(WebElement  types : allTypesFil)
+		{
+			WebElement eventTypes=types.findElement(By.xpath("./a"));
+			String session = eventTypes.getText();
+			System.out.println("session type"+session);
+			String s1 = session.toLowerCase();
+			String s2 = CommonMethods.passingData("typeFilterEvent").toLowerCase();
+			
+			if(s1.contains(s2))
+			{
+				Actions a=new Actions(driver);
+				a.moveToElement(eventTypes).build().perform();
+				eventTypes.click();
+				 driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
+				 break;
+			}
+		}
+		 List<WebElement> showingEvents = driver.findElements(eventsAlign);
+		  System.out.println("showingEvents list size" +showingEvents.size());
+		  
+		  if(showingEvents.size()>=0) {
+		  System.out.println("Count of Events"+showingEvents.size()); 
+		  driver.manage().timeouts().implicitlyWait(30,TimeUnit.SECONDS);
+		//Thread.sleep(6000);
+			  return true;
+			  }
+					
+		  return false;
+	}
+	
+	// Events Filter Based on Category
+	
+	By category  				 = 			By.id("Category");
+	By eventCategoryList		 =			By.xpath("//*[@id='eventCategory']/a");
+	
+	public boolean eventFilterCategory() throws InterruptedException
+	{
+		driver.findElement(eventstab).click();
+		driver.findElement(category).click();
+		//JavascriptExecutor js = (JavascriptExecutor) driver;
+		//js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		List<WebElement> allTypesFilCate=driver.findElements(eventCategoryList);
+		System.out.println("size of event categories :"+allTypesFilCate.size());
+		for(int i=1;i<=allTypesFilCate.size();i++) {
+			 
+			String s1 = "//*[@id='eventCategory']/a[";
+			int s2= i;
+			String s3="]";
+			
+			String s4 = Integer.toString(s2);
+			
+			WebElement eventCatfilter = driver.findElement(By.xpath(s1+s4+s3));
+			
+			String eventfilterCat = eventCatfilter.getText();
+			if(eventfilterCat.contains(CommonMethods.passingData("catFilter")))
+			{
+				eventCatfilter.click();
+			driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+				//Thread.sleep(2000);
+				
+			}
+		}
+				
+		
+		 List<WebElement> showingEvents = driver.findElements(eventsAlign);
+		  System.out.println("showingEvents list size" +showingEvents.size());
+		  
+		  if(showingEvents.size()>=0) {
+		  System.out.println("Count of Events"+showingEvents.size()); 
+		  //System.out.println("Event Name"+showingEvents);
+		  driver.manage().timeouts().implicitlyWait(30,TimeUnit.SECONDS);
+		//Thread.sleep(6000);
+			  return true;
+			  }
+					
+		  return false;
+	}
 }
+	
+		
+	
