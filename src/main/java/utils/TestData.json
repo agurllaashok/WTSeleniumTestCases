@@ -4,12 +4,12 @@
 	"EmcPassword"							:		"manjusha1",
     "Password"								:		"pallavi00",
     "mobile" 								:		"12345678",
-    "vemail"								: 		"harshitha.basani@smscountry.com",
+    "vemail"								: 		"pallavi.domreddy@smscountry.com",
     "vpwd"							    	: 		"WanasaTime",
     "url"									:		"http://staging.wanasatime.com",
     "emcurl"								:		"http://staging.emc.wanasatime.com",
     "downloadFilepath"						:		"D:\\grpTalk\\TestDataFiles\\downloads\\",
-    "evoucher"                              :        "496B6F85EE",
+    "evoucher"                              :       "2EAF19F4A5",
     "evoucherP"                             :       "70D05B43FF",
     "CardNumber"							:		"2222220123456789",
     "CardName"								:		"manjusha",
@@ -21,7 +21,14 @@
     "masterBQ"								:       "5555555555554444",
     "loc"									:       "bahraiN",  
     "fromdate"                              :		"12/11/2018",
-     "todate"                              :		"05/08/2019",
+     "todate"                               :		"05/08/2019",
      "userDOB"	 							: 		"12/12/1995",
-     "newpwdchange"							:		"pallavi00"
+     "newpwdchange"							:		"pallavi00" ,
+     "movienamevv"                          :      "URI: THE SURGICAL STRIKE",
+     "MovieBookingDate"						:       "06",
+     "MovieBokkingTime"						:       "2:45PM",
+     "numberofseats"						:       "2",
+     "changeinnumberofseats"                :      "6" ,
+     "promocode"							:       "band00"
+     
 }

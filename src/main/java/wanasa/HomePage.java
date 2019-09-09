@@ -5,10 +5,15 @@ import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
+
+import org.codehaus.groovy.runtime.dgmimpl.arrays.IntegerArrayGetAtMetaMethod;
+import org.omg.CORBA.OMGVMCID;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -18,6 +23,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import utils.BrowserFunctions;
 import utils.CommonMethods;
+import utils.Dummyclass;
 
 
 
@@ -29,7 +35,7 @@ public class HomePage extends BrowserFunctions {
 		boolean advtsexists = driver.findElement(advts).isDisplayed();
 		if(advtsexists==true)
 		{
-		/*	WebElement advt = driver.findElement(advts);
+			/*	WebElement advt = driver.findElement(advts);
 			Actions a = new Actions(driver);
 			a.moveToElement(advt);*/
 			CommonMethods.explicitWaitForElementVisibility(advtsclose);
@@ -37,13 +43,13 @@ public class HomePage extends BrowserFunctions {
 			System.out.println("Advts closed");
 		}
 	}
-	
+
 	// select region
 	By location = By.xpath("//span[@class='fa fa-map-marker']");
 	By region = By.className("region");
 
 	//Bahrain
-	
+
 	public void countrySelection() throws InterruptedException {
 		// CommonMethods.clickMethod(location);
 		driver.findElement(location).click();
@@ -53,9 +59,9 @@ public class HomePage extends BrowserFunctions {
 		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
 
 	}
-	
+
 	//Qatar
-	
+
 	public void countrySelectionqar() throws InterruptedException {
 		// CommonMethods.clickMethod(location);
 		driver.findElement(location).click();
@@ -63,10 +69,10 @@ public class HomePage extends BrowserFunctions {
 		listcountry.get(1).click();
 
 	}
-	
+
 
 	// Signin
-	
+
 	By signinclick = By.id("anchorLogin");
 	By signinemail = By.id("email");
 	By signinpassword = By.id("password");
@@ -101,7 +107,7 @@ public class HomePage extends BrowserFunctions {
 	public String signinWanasaTimeCredentials() 
 	{
 		try {
-			
+
 			driver.findElement(signinemail).clear();
 			driver.findElement(signinpassword).clear();
 			driver.findElement(signinemail).sendKeys(CommonMethods.passingData("EnterMail"));
@@ -118,10 +124,11 @@ public class HomePage extends BrowserFunctions {
 		String url = driver.getCurrentUrl();
 		return url;
 	}
-	
-	
+
+
 	public void login()
 	{
+		driver.findElement(signinclick).click();
 		driver.findElement(signinemail).sendKeys(CommonMethods.passingData("EnterMail"));
 		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
 		driver.findElement(signinpassword).sendKeys(CommonMethods.passingData("Password"));
@@ -131,11 +138,20 @@ public class HomePage extends BrowserFunctions {
 		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
 	}
 
+
+	public void logout()
+	{
+		driver.navigate().to("http://staging.wanasatime.com");
+		//ss.alertadvt();
+		driver.findElement(menu).click();
+		driver.findElement(logout).click();
+	}
+
 	public String successMsg() {
 		return driver.findElement(successMsg).getText();
 	}
-	
-	
+
+
 	public void signin()
 	{
 		driver.findElement(signinemail).clear();
@@ -150,7 +166,7 @@ public class HomePage extends BrowserFunctions {
 	}
 
 	// Footerlinks
-	
+
 	By aboutus = By.linkText("About");
 	By AdvertiseWithUs = By.linkText("Advertise With Us");
 	By FAQ = By.linkText("FAQs");
@@ -211,14 +227,14 @@ public class HomePage extends BrowserFunctions {
 	}
 
 	// Confirmation.aspx
-	
+
 	By txtPaymentMobile = By.id("txtPaymentMobile");
 	By txtPaymentEmail = By.id("txtPaymentEmail");
 	By ticketconfirmtext = By.xpath("//*[@id='successMsg']//h4");
 	By tktcanceltext = By.xpath("//*[@id='failedMsg']//h4");
 
 	// Signup
-	
+
 	By sinupclick = By.id("lnkSignUp");
 	By username = By.id("RegisterUser");
 	By email = By.id("RegisterEmail");
@@ -233,30 +249,30 @@ public class HomePage extends BrowserFunctions {
 
 	public String signup() throws InterruptedException {
 
-			clickSignInButton();
-			Thread.sleep(2000);
-			driver.findElement(sinupclick).click();
-			driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
-			CommonMethods cm = new CommonMethods();
-			driver.findElement(username).sendKeys(cm.getSaltString1());
-			driver.findElement(email).sendKeys(cm.getSaltString1() + "@gmail.com");
-			driver.findElement(prefix).click();
-			driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
-			Actions ACT = new Actions(driver);
-			ACT.moveToElement(driver.findElement(By.xpath("//*[@id='countrydropup']//*[@style='padding: 5px 20px;']"))).perform();					
-			driver.findElement(By.xpath("//*[@id='countrydropup']//*[@style='padding: 5px 20px;']")).click();
-			driver.findElement(By.id("customCountryPrefix")).sendKeys("91");
-			driver.findElement(mobilenumber).sendKeys("9848" + cm.getSaltString());
-			driver.findElement(password).sendKeys("pallavi22");
-			driver.findElement(repassword).sendKeys("pallavi22");
-			driver.findElement(signupclick).click();
-		
+		clickSignInButton();
+		Thread.sleep(2000);
+		driver.findElement(sinupclick).click();
+		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
+		CommonMethods cm = new CommonMethods();
+		driver.findElement(username).sendKeys(cm.getSaltString1());
+		driver.findElement(email).sendKeys(cm.getSaltString1() + "@gmail.com");
+		driver.findElement(prefix).click();
+		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
+		Actions ACT = new Actions(driver);
+		ACT.moveToElement(driver.findElement(By.xpath("//*[@id='countrydropup']//*[@style='padding: 5px 20px;']"))).perform();					
+		driver.findElement(By.xpath("//*[@id='countrydropup']//*[@style='padding: 5px 20px;']")).click();
+		driver.findElement(By.id("customCountryPrefix")).sendKeys("91");
+		driver.findElement(mobilenumber).sendKeys("9848" + cm.getSaltString());
+		driver.findElement(password).sendKeys("pallavi22");
+		driver.findElement(repassword).sendKeys("pallavi22");
+		driver.findElement(signupclick).click();
+
 		return driver.findElement(signupsuccess).getText();
 
 	}
 
 	// Forgot password
-	
+
 	By forgotclick = By.id("lnkForgot");
 	By enteremail = By.id("txtForgotEmail");
 	By click = By.id("btnForgot");
@@ -267,18 +283,18 @@ public class HomePage extends BrowserFunctions {
 		//WebDriverWait wait=new WebDriverWait(driver, 20);
 		driver.findElement(signinclick).click();
 		Thread.sleep(2000);
-        driver.findElement(forgotclick).click();
+		driver.findElement(forgotclick).click();
 		driver.findElement(enteremail).sendKeys(CommonMethods.passingData("EnterMail"));
 		/*WebElement ele2= wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("enteremail")));
         (ele2).sendKeys(CommonMethods.passingData("EnterMail"));*/
 		driver.findElement(click).click();
 		return driver.findElement(forgotpwdsuccessmsg).getText();
 	}
-	
-	
+
+
 
 	// Bahrain musicband href="night-life/bahrain-music-band"
-	
+
 	By eventbookBHDMusic = By.xpath("//h4[contains(text(),'Bahrain Music Band')]");
 	By Eventbookclickimg = By.xpath("//*[@src='http://staging.wanasatime.com/EventPosters/bmb_0905201910540917879.jpg']");
 	By okButtonOnOverlay = By.id("btnAccept");
@@ -293,7 +309,7 @@ public class HomePage extends BrowserFunctions {
 	By sucatplatchild = By.id("340");
 	By btnproceedfinal = By.id("btnProceed");
 	By btnforpay = By.id("btnProceed");
-	
+
 	By successMsg = By.xpath("//*[@id='successMsg']//h4[1]");
 
 	// E-Voucher
@@ -301,15 +317,15 @@ public class HomePage extends BrowserFunctions {
 	By errorvoucher = By.xpath("//[*contains(@class,'toast-message') and contains(text(),'Enter a E-Voucher Code')]");
 	By errorinvalidevoucher = By
 			.xpath("//[*contains(@class,'toast-message') and contains(text(),'Invalid E-Voucher')]");
-	
-	
-//Free ticket
-	
+	By voucherapplymulmsg = By.xpath("//[*contains(@class,'toast-message') and contains(text(),'Only One Voucher Per Transaction')]");
+
+	//Free ticket toast-message Only One Voucher Per Transaction
+
 	public String BookTicketevents() 
 	{
 		try {
 			CommonMethods.explicitWaitForElementVisibility(eventstab);
-			 driver.findElement(eventstab).click();
+			driver.findElement(eventstab).click();
 			// driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
 			//driver.navigate().to("http://staging.wanasatime.com/night-life/bahrain-music-band");			 
 			//alertadvt();
@@ -327,98 +343,132 @@ public class HomePage extends BrowserFunctions {
 			driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
 			driver.findElement(btnproceedfinal).click();
 			driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
-			 //driver.findElement(txtPaymentMobile).sendKeys(CommonMethods.passingData("mobile"));
-			 //driver.findElement(txtPaymentEmail).sendKeys(CommonMethods.passingData("EnterMail"));
+			//driver.findElement(txtPaymentMobile).sendKeys(CommonMethods.passingData("mobile"));
+			//driver.findElement(txtPaymentEmail).sendKeys(CommonMethods.passingData("EnterMail"));
 			driver.findElement(btnforpay).click();
 			driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
 		} catch (Exception e) {
 		}
 		return driver.findElement(ticketconfirmtext).getText();
 	}
-	
-	
+
+
 	// Ticket Booking with Debit card Method multi subcat
 
-		public String eventticketBookingWithDebitCard() {
-			try {
-				CommonMethods.explicitWaitForElementVisibility(eventstab);
-				 driver.findElement(eventstab).click();			 			
-				driver.findElement(eventbookBHDMusic).click();
-				driver.findElement(eventbookingclick).click();				
-				driver.findElement(okButtonOnOverlay).click();
-				driver.findElement(dateselection).click();
-				driver.findElement(next).click();
-				driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
-				driver.findElement(selectcategoryvip).click();
-				driver.findElement(ticketcountsubvipaudlut1).click();
-				driver.findElement(ticketcountsubvipchild2).click();
-				driver.findElement(btnproceedfinal).click();
-			    //driver.findElement(txtPaymentMobile).sendKeys(CommonMethods.passingData("mobile"));
-				//driver.findElement(txtPaymentEmail).sendKeys(CommonMethods.passingData("EnterMail"));				
-				driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
-				debitpayevents();
-				driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
-			} catch (Exception e) {
+	public String eventticketBookingWithDebitCard() throws InterruptedException {
 
-			}
+			CommonMethods.explicitWaitForElementVisibility(eventstab);
+			driver.findElement(eventstab).click();
+			//driver.navigate().to("http://staging.wanasatime.com/night-life/bahrain-music-band");
+			//alertadvt();
+			driver.findElement(bhdmusiceventclick).click();
+			driver.findElement(eventbookingclick).click();
+			driver.findElement(okButtonOnOverlay).click();
+			driver.findElement(dateselection).click();
+			driver.findElement(next).click();
+			driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
+			driver.findElement(selectcategoryvip).click();
+			driver.findElement(ticketcountsubvipaudlut1).click();	
+			driver.findElement(btnproceedfinal).click();
+			//driver.findElement(txtPaymentMobile).sendKeys(CommonMethods.passingData("mobile"));
+			//driver.findElement(txtPaymentEmail).sendKeys(CommonMethods.passingData("EnterMail"));				
+			driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
+			debitpayevents();
+			driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
 			return driver.findElement(ticketconfirmtext).getText();
-		}
+	}
+
+
+	public String BookTicketeventsVoucher() throws InterruptedException
+	{
+
+		CommonMethods.explicitWaitForElementVisibility(eventstab);
+		driver.findElement(eventstab).click();
+		//driver.navigate().to("http://staging.wanasatime.com/night-life/bahrain-music-band");
+		//alertadvt();
+		driver.findElement(bhdmusiceventclick).click();
+		driver.findElement(eventbookingclick).click();
+		driver.findElement(okButtonOnOverlay).click();
+		driver.findElement(dateselection).click();
+		driver.findElement(next).click();
+		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
+		driver.findElement(selectcategoryvip).click();
+		driver.findElement(ticketcountsubvipaudlut1).click();	
+		driver.findElement(btnproceedfinal).click();
+		//driver.findElement(txtPaymentMobile).sendKeys(CommonMethods.passingData("mobile"));
+		driver.findElement(txtPaymentEmail).clear();
+		driver.findElement(txtPaymentEmail).sendKeys(CommonMethods.passingData("vemail"));
+		driver.findElement(voucher).click();
+		driver.findElement(voucher).sendKeys(CommonMethods.passingData("evoucher"));			
+		driver.findElement(evoucheraplybtn).click();
+		Thread.sleep(3000);
+		driver.findElement(btnforpay).click();
+		return driver.findElement(ticketconfirmtext).getText();
+	}
 	
+	
+	public String BookTicketeventspartial() throws InterruptedException
+	{
 
-		public String BookTicketeventsVoucher() throws InterruptedException
-		  {
-
-				// driver.findElement(eventstab).click();
-				// driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
-				driver.navigate().to("http://staging.wanasatime.com/night-life/bahrain-music-band");
-				alertadvt();
-				driver.findElement(eventbookingclick).click();
-				driver.findElement(okButtonOnOverlay).click();
-				driver.findElement(dateselection).click();
-				driver.findElement(next).click();
-				driver.findElement(selectcategoryvip).click();
-				driver.findElement(ticketcountsubvipaudlut1).click();			
-				driver.findElement(btnproceedfinal).click();
-				//driver.findElement(txtPaymentMobile).sendKeys(CommonMethods.passingData("mobile"));
-				driver.findElement(txtPaymentEmail).clear();
-				driver.findElement(txtPaymentEmail).sendKeys(CommonMethods.passingData("vemail"));
-				driver.findElement(voucher).click();
-				driver.findElement(voucher).sendKeys(CommonMethods.passingData("evoucher"));			
-				driver.findElement(evoucheraplybtn).click();
-				Thread.sleep(3000);
-				driver.findElement(btnforpay).click();
-				return driver.findElement(ticketconfirmtext).getText();
-		}	
-		public String BookTicketeventspartial() {
-			try {
-				driver.findElement(eventstab).click();
-				driver.navigate().to("http://staging.wanasatime.com/night-life/bahrain-music-band");
-				alertadvt();
-				driver.findElement(eventbookingclick).click();
-				driver.findElement(okButtonOnOverlay).click();
-				driver.findElement(dateselection).click();
-				driver.findElement(next).click();
-				driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
-				driver.findElement(selectcategoryvip).click();
-				driver.findElement(ticketcountsubvipaudlut1).click();	
-				driver.findElement(btnproceedfinal).click();
-				driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
-				driver.findElement(txtPaymentEmail).clear();
-				driver.findElement(txtPaymentMobile).sendKeys(CommonMethods.passingData("mobile"));
-				driver.findElement(txtPaymentEmail).sendKeys(CommonMethods.passingData("vemail"));
-				driver.findElement(voucher).sendKeys(CommonMethods.passingData("evoucherP"));
-				driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
-				driver.findElement(evoucheraplybtn).click();
-				driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
-				debitpayevents();
-			} catch (Exception e) {
-			}
+			CommonMethods.explicitWaitForElementVisibility(eventstab);
+			driver.findElement(eventstab).click();
+			//driver.navigate().to("http://staging.wanasatime.com/night-life/bahrain-music-band");
+			//alertadvt();
+			driver.findElement(bhdmusiceventclick).click();
+			driver.findElement(eventbookingclick).click();
+			driver.findElement(okButtonOnOverlay).click();
+			driver.findElement(dateselection).click();
+			driver.findElement(next).click();
+			driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
+			driver.findElement(selectcategoryvip).click();
+			driver.findElement(ticketcountsubvipaudlut1).click();	
+			driver.findElement(btnproceedfinal).click();
+			driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
+			driver.findElement(txtPaymentEmail).clear();
+			driver.findElement(txtPaymentMobile).sendKeys(CommonMethods.passingData("mobile"));
+			driver.findElement(txtPaymentEmail).sendKeys(CommonMethods.passingData("vemail"));
+			driver.findElement(voucher).sendKeys(CommonMethods.passingData("evoucherP"));
+			driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
+			driver.findElement(evoucheraplybtn).click();
+			driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
+			debitpayevents();
 			return driver.findElement(ticketconfirmtext).getText();
-		}
+	}
+
+	//promocode/voucher ---- coupon code nagative case (any one should be applied 
+	
+	
+	By bhdmusiceventclick = By.xpath("//div[@id='AlleventsContainer']//p[1]");
+	
+	public String vouchermultiple()
+	{
 		
-	
+		driver.findElement(eventstab).click();
+		//driver.navigate().to("http://staging.wanasatime.com/night-life/bahrain-music-band");
+		//alertadvt();
+		driver.findElement(bhdmusiceventclick).click();
+		driver.findElement(eventbookingclick).click();
+		driver.findElement(okButtonOnOverlay).click();
+		driver.findElement(dateselection).click();
+		driver.findElement(next).click();
+		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
+		driver.findElement(selectcategoryvip).click();
+		driver.findElement(ticketcountsubvipaudlut1).click();	
+		driver.findElement(btnproceedfinal).click();
+		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
+		driver.findElement(txtPaymentEmail).clear();
+		driver.findElement(txtPaymentMobile).sendKeys(CommonMethods.passingData("mobile"));
+		driver.findElement(txtPaymentEmail).sendKeys(CommonMethods.passingData("vemail"));
+		driver.findElement(voucher).sendKeys(CommonMethods.passingData("evoucher"));
+		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;		
+		driver.findElement(evoucheraplybtn).click();
+		driver.findElement(voucher).sendKeys(CommonMethods.passingData("evoucher"));
+		driver.findElement(evoucheraplybtn).click();
+		return driver.findElement(voucherapplymulmsg).getText();
+	}
+
 	// Event ticket book -Qatar 
-		
+
 	By littlesing	 	= By.xpath("//*[@href='events/littleSingers']");
 	By silvercat 		= By.xpath("//div[@id='EventCatgeory']//button[2]");
 	By custname 		= By.id("txtCustomerName");
@@ -429,13 +479,13 @@ public class HomePage extends BrowserFunctions {
 	By expyear 			= By.id("card_expiry_year");
 	By cvv 				= By.id("card_cvn");
 	By pay 				= By.xpath("//input[@name='commit']");
-	
+
 	//(Single day event book with CBQ-visa) - Qatar
-	
+
 	public String eventbookvisa() throws InterruptedException
 	{
-		
-	    JavascriptExecutor js = (JavascriptExecutor) driver;
+
+		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("window.scrollBy(0,600)");
 		driver.findElement(littlesing).click();
 		driver.findElement(eventbookingclick).click();
@@ -444,41 +494,41 @@ public class HomePage extends BrowserFunctions {
 		driver.findElement(btnproceedfinal).click();
 		driver.findElement(custname).sendKeys("pallavi");
 		//driver.findElement(txtPaymentMobile).sendKeys(CommonMethods.passingData("mobile"));
-        // driver.findElement(txtPaymentEmail).sendKeys(CommonMethods.passingData("EnterMail"));
+		// driver.findElement(txtPaymentEmail).sendKeys(CommonMethods.passingData("EnterMail"));
 		driver.findElement(btnforpay).click();
 		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
-		 driver.findElement(visacard).click();
-		 driver.findElement(cardnum).sendKeys(CommonMethods.passingData("visaCBQ"));
-		 driver.findElement(expmonth).click();
-		 Select month = new Select(driver.findElement(expmonth));
-		 month.selectByValue("04");
-		 driver.findElement(expyear).click();
-		 Select year = new Select(driver.findElement(expyear));
-		 year.selectByValue("2021");
-		 driver.findElement(cvv).sendKeys("123");
-		 driver.findElement(pay).click();
-		 driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
-	
+		driver.findElement(visacard).click();
+		driver.findElement(cardnum).sendKeys(CommonMethods.passingData("visaCBQ"));
+		driver.findElement(expmonth).click();
+		Select month = new Select(driver.findElement(expmonth));
+		month.selectByValue("04");
+		driver.findElement(expyear).click();
+		Select year = new Select(driver.findElement(expyear));
+		year.selectByValue("2021");
+		driver.findElement(cvv).sendKeys("123");
+		driver.findElement(pay).click();
+		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
+
 		return driver.findElement(ticketconfirmtext).getText();
 	}
-	
-	
-	
-	
+
+
+
+
 	//(Multiple day event book with CBQ-Mastercard) - Qatar
-	
+
 	By parent	 		 = By.xpath("//*[@href='science-and-technology/ParentTrainig']");
 	By bookingdate		 = By.xpath("//*[@recurringid='1969']");
 	By bookingdateslot 	 = By.xpath("//*[@recurringid='1970']");
 	By silvercate		 = By.xpath("//div[@class='Block2']//button[2]");
-	
-	
-	
-	
+
+
+
+
 	public String eventbookmaster() throws InterruptedException
 	{
-		
-	    JavascriptExecutor js = (JavascriptExecutor) driver;
+
+		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("window.scrollBy(0,600)");
 		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
 		driver.findElement(parent).click();
@@ -494,21 +544,21 @@ public class HomePage extends BrowserFunctions {
 		//driver.findElement(txtPaymentEmail).sendKeys(CommonMethods.passingData("EnterMail"));
 		driver.findElement(btnforpay).click();
 		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
-		 driver.findElement(master).click();
-		 driver.findElement(cardnum).sendKeys(CommonMethods.passingData("masterBQ"));
-		 driver.findElement(expmonth).click();
-		 Select month = new Select(driver.findElement(expmonth));
-		 month.selectByValue("04");
-		 driver.findElement(expyear).click();
-		 Select year = new Select(driver.findElement(expyear));
-		 year.selectByValue("2021");
-		 driver.findElement(cvv).sendKeys("123");
-		 driver.findElement(pay).click();
-		 driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
-	
+		driver.findElement(master).click();
+		driver.findElement(cardnum).sendKeys(CommonMethods.passingData("masterBQ"));
+		driver.findElement(expmonth).click();
+		Select month = new Select(driver.findElement(expmonth));
+		month.selectByValue("04");
+		driver.findElement(expyear).click();
+		Select year = new Select(driver.findElement(expyear));
+		year.selectByValue("2021");
+		driver.findElement(cvv).sendKeys("123");
+		driver.findElement(pay).click();
+		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
+
 		return driver.findElement(ticketconfirmtext).getText();
 	}
-	
+
 
 	// By Fb login = By.id("loginBtn1");
 
@@ -539,7 +589,7 @@ public class HomePage extends BrowserFunctions {
 
 
 	// Google Sign in Locators
-	
+
 	//By menug = By.id("userMenu");
 	By logoutg = By.id("Logout");
 	By googleLogin = By.id("connectGoogle");
@@ -554,7 +604,7 @@ public class HomePage extends BrowserFunctions {
 	// Google Login method
 
 	public String googleLogin() throws InterruptedException {
-		
+
 		driver.findElement(googleLogin).click();
 		Thread.sleep(4000);
 		Set<String> AllwindowHandles = driver.getWindowHandles();
@@ -572,13 +622,14 @@ public class HomePage extends BrowserFunctions {
 		driver.findElement(goToWanasaTime).click();
 		driver.findElement(allow).click();
 		driver.switchTo().window(w1);
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
+		//CommonMethods.explicitWaitForElementVisibility(menu1);
 		String url = driver.getCurrentUrl();
 		return url;
 	}
 
 	// Movies
-	
+
 	By moviestab = By.id("tabMovies");
 	By eventstab = By.xpath("//a[@id='tabEvents']");
 	By vijaymovie = By.xpath("//*[@href='MovieInfo.aspx?MovieId=17']");	
@@ -588,90 +639,1328 @@ public class HomePage extends BrowserFunctions {
 	By showtimeselection = By.xpath("//*[@showid='8241']");
 	By alertmovieok = By.id("btnAccept");
 	By numberofseatselection = By.linkText("2");
-	By ticketcount2 = By.xpath("//*[@class='nav nav-pills members']/li");
+	By ticketcount2 = By.xpath("//*[@class='nav nav-pills members']/li/a");
 	By seatselectionOkclick = By.id("btnOk");
-	
+
 	// By seatlayoutselect = By.xpath("//*[@title='Row-G Seat-08']");
-	
-	By seatlayoutselect = By.xpath("//*[@id='seatNumber']//td[contains(@class,'seat available')]");
+
+	//By seatlayoutselect = By.xpath("//*[@id='seatNumber']//td[contains(@class,'seat available')]");
+	By seatlayoutselect = By.xpath("//td[contains(@class,'seat available')]") ;
 	By error = By.xpath("*//[@id='seat_error']");
 	By proceedbutton = By.id("btnPay");
 	By proceedpaymovie = By.id("btnPay");
 	By voucher = By.id("eVoucher");
 	By moviespayproceed = By.id("btnPaymentProceed");
 	By ticketsuccess = By.xpath("//*[@id='onSuccess']/h4");
-	
-	
-	
 
-	public String movieticketbooking() throws InterruptedException {
 
-			driver.findElement(moviestab).click();
-			// driver.navigate().to("http://staging.wanasatime.com/Movies.aspx");
-			driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
-			driver.findElement(movielist).click();
-			driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
-			driver.findElement(moviesbookbutton).click();
-			driver.findElement(moviedateselection).click();
-			driver.findElement(showtimeselection).click();
-			driver.findElement(alertmovieok).click();	
-			Thread.sleep(4000);
-			List<WebElement> seatselection = driver.findElements(ticketcount2);			
-			System.out.println("Max seat can book by you :"+seatselection.size());
-			for(WebElement seat : seatselection)
+
+
+	/*public String movieticketbooking() throws InterruptedException {
+
+		driver.findElement(moviestab).click();
+		// driver.navigate().to("http://staging.wanasatime.com/Movies.aspx");
+		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
+		driver.findElement(movielist).click();
+		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
+		driver.findElement(moviesbookbutton).click();
+		driver.findElement(moviedateselection).click();
+		driver.findElement(showtimeselection).click();
+		driver.findElement(alertmovieok).click();	
+		Thread.sleep(4000);
+		List<WebElement> seatselection = driver.findElements(ticketcount2);			
+		System.out.println("Max seat can book by you :"+seatselection.size());
+		for(WebElement seat : seatselection)
+		{
+			String seatnumber = seat.getText();
+			System.out.println(seatnumber);
+			if(seatnumber.equalsIgnoreCase("1"))
 			{
-				String seatnumber = seat.getText();
-				System.out.println(seatnumber);
-				if(seatnumber.equalsIgnoreCase("1"))
-				{
-					seat.click();
-					Thread.sleep(4000);
-					driver.findElement(seatselectionOkclick).click();
-				
-				}
+				seat.click();
+				Thread.sleep(4000);
+				driver.findElement(seatselectionOkclick).click();
+
 			}
-			
-			Thread.sleep(2000);
-			List<WebElement> seatsselection =  driver.findElements(seatlayoutselect);
-			System.out.println("Avalaible seats are :" +seatsselection.size());
-			for(WebElement seat11 : seatsselection)
+		}
+
+		Thread.sleep(2000);
+		List<WebElement> seatsselection =  driver.findElements(seatlayoutselect);
+		System.out.println("Avalaible seats are :" +seatsselection.size());
+		for(WebElement seat11 : seatsselection)
+		{
+			Actions a = new Actions(driver);
+			a.moveToElement(seat11).build().perform();
+			seat11.click();
+			driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
+
+			WebElement paybutton = driver.findElement(proceedbutton);
+			boolean pp = paybutton.isDisplayed();
+			if(pp==true)
 			{
-				Actions a = new Actions(driver);
-					a.moveToElement(seat11).build().perform();
-					seat11.click();
-					driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
-					
-					WebElement paybutton = driver.findElement(proceedbutton);
-					boolean pp = paybutton.isDisplayed();
-					if(pp==true)
-					{
-						paybutton.click();
-						//driver.findElement(txtPaymentMobile).sendKeys(CommonMethods.passingData("mobile"));
-						//driver.findElement(txtPaymentEmail).sendKeys(CommonMethods.passingData("EnterMail"));
-						debitpaymovies();
-						Thread.sleep(2000);
-						System.out.println("done");
-						break;
-					}
-					
-					else
-					{
-						System.out.println("Notification is diplayed as: 'Please select a seat beside the selected seat(s)'");
-						seat11.click();
-					}
-							
+				paybutton.click();
+				//driver.findElement(txtPaymentMobile).sendKeys(CommonMethods.passingData("mobile"));
+				//driver.findElement(txtPaymentEmail).sendKeys(CommonMethods.passingData("EnterMail"));
+				debitpaymovies();
+				Thread.sleep(2000);
+				System.out.println("done");
+				break;
 			}
 
-			return driver.findElement(ticketsuccess).getText();
+			else
+			{
+				System.out.println("Notification is diplayed as: 'Please select a seat beside the selected seat(s)'");
+				seat11.click();
+			}
 
+		}
+
+		return driver.findElement(ticketsuccess).getText();
+
+	}
+
+	//By movieclick = By.partialLinkText("Movies");
+	By movieclick = By.id("tabMovies");
+	By nowplayinglist = By.xpath("//div[@id='moviesContainer']/div");
+	By bookbutton = By.partialLinkText("Book");
+	By showdates = By.xpath("//tr[@id='movieShowDates']/td/h3");
+	By showtimes = By.xpath("//div[@class='boxTheatre']//div[@class='col-md-7 timings text-right mobLeft']//button");
+	//By multiplex = By.xpath("//div[@id='showTimingsDiv']//div//b");
+
+	
+	
+	public void movietabselection()
+	{
+		driver.findElement(movieclick).click();
 	}
 	
 	
 	
+
+	public void nowplayingmovieselection() throws InterruptedException
+	{
+		//driver.findElement(movieclick).click();
+		//System.out.println("Movie is clicked");
+
+		List<WebElement> nowplayinglists = driver.findElements(nowplayinglist);
+		System.out.println("Now Showing Movie Count :" +nowplayinglists.size());
+
+		for(WebElement nowplayingsinglemovie : nowplayinglists)
+		{
+			String movienamexx = nowplayingsinglemovie.findElement(By.xpath("./div/div/h4/a")).getText();
+			System.out.println("Movie Name is " +movienamexx);
+
+			String movienamefromlist = movienamexx.toLowerCase();	
+			String movienamefromjson = CommonMethods.passingData("movienamevv").toLowerCase();								
+			if(movienamefromlist.contains(movienamefromjson))
+			{
+				nowplayingsinglemovie.click();
+				driver.findElement(moviesbookbutton).click();
+				List<WebElement> Mshowdates = driver.findElements(showdates);
+				System.out.println("all show dates:" +Mshowdates.size());	
+
+
+				for(WebElement movieshowdates   : Mshowdates )
+				{
+					String msd  = movieshowdates.getText();
+					System.out.println("Showdate " +msd);
+					if(msd.equalsIgnoreCase(CommonMethods.passingData("MovieBookingDate")))
+					{								
+						movieshowdates.click();								
+						System.out.println("selected");
+						List<WebElement> Stimes = driver.findElements(showtimes);
+						System.out.println("showtimes"+Stimes.size());
+						for (WebElement ShowTimings : Stimes)
+						{
+							String ST = ShowTimings.getText();
+							System.out.println("Selectebledate " +ST);
+							if(ST.equalsIgnoreCase(CommonMethods.passingData("MovieBokkingTime")))
+							{
+								System.out.println();
+								ShowTimings.click();										
+								driver.findElement(alertmovieok).click();
+
+								//Total Number of Seat that user can select 
+
+								List<WebElement> seatselection = driver.findElements(ticketcount2);			
+								System.out.println("Max seat can book by you :"+seatselection.size());
+
+								//for loop to select the seat based on user wish
+
+								for(int i=1;i<=seatselection.size();i++)
+								{
+									String s1 = "//*[@class='nav nav-pills members']/li[";
+									int s2=i;
+									String s3="]/a";
+
+
+									String s4= Integer.toString(s2);
+
+
+									WebElement seat1 = driver.findElement(By.xpath(s1+s4+s3));
+
+									String seatnumber123 = seat1.getAttribute("href");
+									String[] xxx = seatnumber123.split("person");
+									int count = xxx.length;
+									String seatnumber = xxx[1];
+									System.out.println("Seat Number is : " +seatnumber);
+
+									if(seatnumber.equalsIgnoreCase(CommonMethods.passingData("numberofseats")))
+									{
+										System.out.println("@-----------");
+										Actions aaa = new Actions(driver);
+
+										Thread.sleep(3000);
+										aaa.moveToElement(seat1).build().perform();
+										Thread.sleep(3000);
+										seat1.click();
+
+										Thread.sleep(5000);
+										driver.findElement(seatselectionOkclick).click();
+										break;
+
+									}
+
+								}
+
+								Thread.sleep(2000);
+								List<WebElement> seatsselection =  driver.findElements(seatlayoutselect);
+								System.out.println("Avalaible seats are :" +seatsselection.size());
+								for(WebElement seat11 : seatsselection)
+								{
+									Actions a = new Actions(driver);
+									a.moveToElement(seat11).build().perform();
+									seat11.click();
+									driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;												
+									WebElement paybutton = driver.findElement(proceedbutton);
+									boolean pp = paybutton.isDisplayed();
+									if(pp==true)
+									{
+										paybutton.click();
+										driver.findElement(txtPaymentMobile).sendKeys(CommonMethods.passingData("mobile"));
+										driver.findElement(txtPaymentEmail).sendKeys(CommonMethods.passingData("EnterMail"));
+										//debitpaymovies();
+										Thread.sleep(2000);
+										System.out.println("done");
+										break;
+									}
+
+									else
+									{
+										System.out.println("Notification is diplayed as: 'Please select a seat beside the selected seat(s)'");
+										seat11.click();
+									}
+
+								}
+								break;
+							}
+						}
+						break;
+					}
+				}
+				break;
+			}
+
+		}
+	}
+
+
+
+
+
+
+	//More than seat selection then opt ...
+
+	public void movieseatselectionerrorpopup() throws InterruptedException
+	{
+
+		driver.findElement(movieclick).click();
+
+		List<WebElement> nowplayinglists = driver.findElements(nowplayinglist);
+		System.out.println("Now Showing Movie Count :" +nowplayinglists.size());
+
+		for(WebElement nowplayingsinglemovie : nowplayinglists)
+		{
+
+			int flag=0;
+			String movienamexx = nowplayingsinglemovie.findElement(By.xpath("./div/div/h4/a")).getText();
+			System.out.println("Movie Name is " +movienamexx);
+
+			String aa = movienamexx.toLowerCase();	
+			String bb = CommonMethods.passingData("movienamevv").toLowerCase();								
+			if(aa.contains(bb))
+			{
+				nowplayingsinglemovie.click();
+				driver.findElement(moviesbookbutton).click();
+				List<WebElement> Mshowdates = driver.findElements(showdates);
+				System.out.println("all show dates:" +Mshowdates.size());	
+
+
+				for(WebElement movieshowdates   : Mshowdates )
+				{
+					String msd  = movieshowdates.getText();
+					System.out.println("Showdate " +msd);
+					if(msd.equalsIgnoreCase(CommonMethods.passingData("MovieBookingDate")))
+					{								
+						movieshowdates.click();								
+						System.out.println("selected");
+						List<WebElement> Stimes = driver.findElements(showtimes);
+						System.out.println("showtimes"+Stimes.size());
+						for (WebElement ShowTimings : Stimes)
+						{
+							String ST = ShowTimings.getText();
+							System.out.println("Selectebledate " +ST);
+							if(ST.equalsIgnoreCase(CommonMethods.passingData("MovieBokkingTime")))
+							{
+								System.out.println();
+								ShowTimings.click();										
+								driver.findElement(alertmovieok).click();
+
+								//Total Number of Seat that user can select 
+
+								List<WebElement> seatselection = driver.findElements(ticketcount2);			
+								System.out.println("Max seat can book by you :"+seatselection.size());
+								WebElement seat1;
+								//for loop to select the seat based on user wish
+
+								for(int i=1;i<=seatselection.size();i++)
+								{
+									String s11 = "//*[@class='nav nav-pills members']/li[";
+									int s22=i;
+									String s33="]/a";
+
+
+									String s44= Integer.toString(s22);
+
+
+									seat1 = driver.findElement(By.xpath(s11+s44+s33));
+
+									String seatnumber12345 = seat1.getAttribute("href");
+									String[] xxx = seatnumber12345.split("person");
+									int count = xxx.length;
+									String seatnumber = xxx[1];
+									System.out.println("Seat Number is : " +seatnumber);
+
+									if(seatnumber.equalsIgnoreCase(CommonMethods.passingData("numberofseats")))
+									{
+										System.out.println("@-----------");
+										Thread.sleep(3000);
+										seat1.click();
+										Thread.sleep(5000);
+										driver.findElement(seatselectionOkclick).click();
+
+										List<WebElement> seatsselection =  driver.findElements(seatlayoutselect);
+										System.out.println("Avalaible seats are :" +seatsselection.size());
+
+										for(WebElement seat11 : seatsselection)
+										{
+											System.out.println("////////" +seat11);
+											Actions a = new Actions(driver);
+
+											Thread.sleep(3000);
+											a.moveToElement(seat11).build().perform();
+											seat11.click();
+
+
+											for(int k=0;k<=seatsselection.size();k++)
+											{
+												String m1="//td[contains(@class,'seat available')][";
+												String m3="]";
+												int m2 = Integer.parseInt(seatnumber)+1;
+												System.out.println("M2 is" +m2);
+												String m4 = Integer.toString(m2);
+
+												driver.findElement(By.xpath(m1+m4+m3)).click();
+												//Thread.sleep(1000);
+
+												WebElement tm = driver.findElement(By.xpath("//div[@class='toast toast-error']/div"));
+												boolean tmm = tm.isDisplayed();
+												if(tmm==true)
+												{
+													String toastmessage = tm.getText();
+													System.out.println("Toast Message :" +toastmessage);
+													flag=1;
+													break;
+
+												}
+											}
+											if(flag==1)
+											{
+												break;
+											}	
+
+										}	
+
+									}
+									if(flag==1)
+									{
+										break;
+									}	
+
+
+								}
+							}
+							if(flag==1)
+							{
+								break;
+							}
+						}
+					}
+
+					if(flag==1)
+					{
+						break;
+					}
+				}
+
+			}
+			if(flag==1)
+			{
+				break;
+			}
+		}
+
+
+
+	}
+
+
+
+
+	// Seat Class Type --> Xpath :
+
+	By classtype = By.xpath("//*[@id='noOfSeats']/div[2]/table/tbody/tr/td");
+
+	List<WebElement> classgrade;
+
+
+
+
+
+	public void pricecomparemovies() throws InterruptedException
+	{
+
+
+		driver.findElement(movieclick).click();
+
+		List<WebElement> nowplayinglists = driver.findElements(nowplayinglist);
+		System.out.println("Now Showing Movie Count :" +nowplayinglists.size());
+
+		for(WebElement nowplayingsinglemovie : nowplayinglists)
+		{
+
+			int flag=0;
+			String movienamexx = nowplayingsinglemovie.findElement(By.xpath("./div/div/h4/a")).getText();
+			System.out.println("Movie Name is " +movienamexx);
+
+			String aa = movienamexx.toLowerCase();	
+			String bb = CommonMethods.passingData("movienamevv").toLowerCase();								
+			if(aa.contains(bb))
+			{
+				nowplayingsinglemovie.click();
+				driver.findElement(moviesbookbutton).click();
+				List<WebElement> Mshowdates = driver.findElements(showdates);
+				System.out.println("all show dates:" +Mshowdates.size());	
+
+
+				for(WebElement movieshowdates   : Mshowdates )
+				{
+					String msd  = movieshowdates.getText();
+					System.out.println("Showdate " +msd);
+					if(msd.equalsIgnoreCase(CommonMethods.passingData("MovieBookingDate")))
+					{								
+						movieshowdates.click();								
+						System.out.println("selected");
+						List<WebElement> Stimes = driver.findElements(showtimes);
+						System.out.println("showtimes"+Stimes.size());
+						for (WebElement ShowTimings : Stimes)
+						{
+							String ST = ShowTimings.getText();
+							System.out.println("Selectebledate " +ST);
+							if(ST.equalsIgnoreCase(CommonMethods.passingData("MovieBokkingTime")))
+							{
+								System.out.println();
+								ShowTimings.click();										
+								driver.findElement(alertmovieok).click();
+
+								//Total Number of Seat that user can select 
+
+								List<WebElement> seatselection = driver.findElements(ticketcount2);			
+								System.out.println("Max seat can book by you :"+seatselection.size());
+								WebElement seat1;
+								//for loop to select the seat based on user wish
+
+								for(int i=1;i<=seatselection.size();i++)
+								{
+									String s11 = "//*[@class='nav nav-pills members']/li[";
+									int s22=i;
+									String s33="]/a";
+
+
+									String s44= Integer.toString(s22);
+
+
+									seat1 = driver.findElement(By.xpath(s11+s44+s33));
+
+									String seatnumber12345 = seat1.getAttribute("href");
+									String[] xxx = seatnumber12345.split("person");
+									int count = xxx.length;
+									String seatnumber = xxx[1];
+									System.out.println("Seat Number is : " +seatnumber);
+
+									if(seatnumber.equalsIgnoreCase(CommonMethods.passingData("numberofseats")))
+									{
+										System.out.println("@-----------");
+										Thread.sleep(3000);
+										seat1.click();
+										Thread.sleep(5000);
+										driver.findElement(seatselectionOkclick).click();
+
+										List<WebElement> seatsselection =  driver.findElements(seatlayoutselect);
+										System.out.println("Avalaible seats are :" +seatsselection.size());
+
+										for(WebElement seat11 : seatsselection)
+										{
+											System.out.println("////////" +seat11);
+											Actions a = new Actions(driver);
+
+											Thread.sleep(3000);
+											a.moveToElement(seat11).build().perform();
+											seat11.click();
+											WebElement proceedpaybtn = driver.findElement(By.id("btnPay"));
+											if(proceedpaybtn.isDisplayed())
+											{
+												WebElement ticketnumber = driver.findElement(By.id("TicketsSelected"));
+												String ticketprice = ticketnumber.getText();
+												System.out.println("No. of Tickets selected * Price is : " +ticketprice);
+												String tp = ticketprice.trim();
+																System.out.println("-----------" +tp);
+
+												String[] ticketdetails = ticketprice.split(" ");
+												int ll = ticketdetails.length;
+												System.out.println(ll);
+												System.out.println("Number of Tickets selected : " +ticketdetails[0] + "---" + ticketdetails[4] + "---" + ticketdetails[7]);
+												System.out.println("=======" +ticketdetails[0]);
+												System.out.println("=======" +CommonMethods.passingData("numberofseats") );
+
+
+												if(CommonMethods.passingData("numberofseats").equalsIgnoreCase(ticketdetails[0]))
+												{
+													System.out.println("}}}}]");
+													float totalprice =  (Float.parseFloat(ticketdetails[4]) * Integer.parseInt(seatnumber));
+													System.out.println("@]]]]]]"+totalprice);
+													//float totalprice1= Math.round((totalprice*100.0)/100.0);
+
+													String roundedTotalPrice=String.format("%.2f", totalprice);
+
+
+													System.out.println("Total price after rounded"+roundedTotalPrice);
+													String priceis = ticketnumber.findElement(By.xpath("./b")).getText();
+													System.out.println("Ticket from web" +priceis);
+													
+													String pricefinal = priceis.split(" ")[1].trim();
+
+
+
+
+													if(roundedTotalPrice.trim().equals(pricefinal))
+													{
+														System.out.println("Prices are Same");
+													}
+
+													else
+													{
+														System.out.println("+++++++++++++++");
+													}
+
+												}
+
+												else
+												{
+													System.out.println("SeatNumber and Ticket details are getting mismatch");
+												}
+
+												flag=1;
+												//String totalprice = driver.findElement(b) 
+												break;
+
+
+											}
+
+											else
+											{
+												seat11.click();
+											}
+
+
+										}	
+
+									}
+									if(flag==1)
+									{
+										break;
+									}	
+
+
+								}
+							}
+							if(flag==1)
+							{
+								break;
+							}
+						}
+					}
+
+					if(flag==1)
+					{
+						break;
+					}
+				}
+
+			}
+			if(flag==1)
+			{
+				break;
+			}
+		}
+
+
+	}
+
+	public void changeticketsnumberfromseatlayoutpage() throws InterruptedException
+	{
+
+
+		driver.findElement(movieclick).click();
+
+		List<WebElement> nowplayinglists = driver.findElements(nowplayinglist);
+		System.out.println("Now Showing Movie Count :" +nowplayinglists.size());
+
+		for(WebElement nowplayingsinglemovie : nowplayinglists)
+		{
+
+			int flag=0;
+			String movienamexx = nowplayingsinglemovie.findElement(By.xpath("./div/div/h4/a")).getText();
+			System.out.println("Movie Name is " +movienamexx);
+
+			String aa = movienamexx.toLowerCase();	
+			String bb = CommonMethods.passingData("movienamevv").toLowerCase();								
+			if(aa.contains(bb))
+			{
+				nowplayingsinglemovie.click();
+				driver.findElement(moviesbookbutton).click();
+				List<WebElement> Mshowdates = driver.findElements(showdates);
+				System.out.println("all show dates:" +Mshowdates.size());	
+
+
+				for(WebElement movieshowdates   : Mshowdates )
+				{
+					String msd  = movieshowdates.getText();
+					System.out.println("Showdate " +msd);
+					if(msd.equalsIgnoreCase(CommonMethods.passingData("MovieBookingDate")))
+					{								
+						movieshowdates.click();								
+						System.out.println("selected");
+						List<WebElement> Stimes = driver.findElements(showtimes);
+						System.out.println("showtimes"+Stimes.size());
+						for (WebElement ShowTimings : Stimes)
+						{
+							String ST = ShowTimings.getText();
+							System.out.println("Selectebledate " +ST);
+							if(ST.equalsIgnoreCase(CommonMethods.passingData("MovieBokkingTime")))
+							{
+								System.out.println();
+								ShowTimings.click();										
+								driver.findElement(alertmovieok).click();
+
+								//Total Number of Seat that user can select 
+
+								List<WebElement> seatselection = driver.findElements(ticketcount2);			
+								System.out.println("Max seat can book by you :"+seatselection.size());
+								WebElement seat1;
+								//for loop to select the seat based on user wish
+
+								for(int i=1;i<=seatselection.size();i++)
+								{
+									String s11 = "//*[@class='nav nav-pills members']/li[";
+									int s22=i;
+									String s33="]/a";
+									String s55="]";
+
+									String s44= Integer.toString(s22);
+
+
+									seat1 = driver.findElement(By.xpath(s11+s44+s33));
+
+									String seatnumber12345 = seat1.getAttribute("href");
+									System.out.println("Seatnumber12345" +seatnumber12345);
+									String[] xxx = seatnumber12345.split("person");
+									int count = xxx.length;
+									String seatnumber = xxx[1];
+									System.out.println("Seat Number is : " +seatnumber);
+
+									if(seatnumber.equalsIgnoreCase(CommonMethods.passingData("numberofseats")))
+									{
+										System.out.println("@-----------");
+										
+										Thread.sleep(3000);
+										seat1.click();
+										Thread.sleep(5000);
+										driver.findElement(seatselectionOkclick).click();
+										Thread.sleep(3000);
+										
+										driver.findElement(By.id("noOfTicketsSpan")).click();
+										String changenumber = CommonMethods.passingData("changeinnumberofseats");
+										s22 = Integer.parseInt(changenumber);
+										System.out.println("//////" +s22);
+										
+										s44= Integer.toString(s22);
+										
+										WebElement seatvalue = driver.findElement(By.xpath(s11+s44+s33));
+										System.out.println("---------++++ " +seatvalue);
+											
+										String seatnum = seatvalue.getAttribute("href");
+										System.out.println("Seatnum : " +seatnum);
+										
+										String[] persnvalue123 = seatnum.split("person");
+										int count123 = persnvalue123.length;
+										String seatchangevalu = persnvalue123[1]; 
+										System.out.println("[[[[[" +count123);
+										
+										//String seatnumberxxx = persnvalue123[1];
+										System.out.println("Seat Number is : " +seatchangevalu);
+										
+										
+											if(seatchangevalu.equalsIgnoreCase(changenumber))
+											{
+												
+												System.out.println("------------##");
+												Thread.sleep(5000);
+												seatvalue.click();
+												driver.findElement(seatselectionOkclick).click();
+												
+												Thread.sleep(5000);
+												List<WebElement> seatsselection =  driver.findElements(seatlayoutselect);
+												System.out.println("Avalaible seats are :" +seatsselection.size());
+
+												for(WebElement seat11 : seatsselection)
+												{
+													System.out.println("////////" +seat11);
+													Actions a = new Actions(driver);
+
+													Thread.sleep(3000);
+													a.moveToElement(seat11).build().perform();
+													seat11.click();
+													Thread.sleep(10000);
+													WebElement proceedpaybtn = driver.findElement(By.id("btnPay"));
+													if(proceedpaybtn.isDisplayed())
+													{
+														WebElement ticketnumber123 = driver.findElement(By.id("TicketsSelected"));
+														String ticketprice123 = ticketnumber123.getText();
+														System.out.println("No. of Tickets selected * Price is : " +ticketprice123);
+														String tp = ticketprice.trim();
+																		System.out.println("-----------" +tp);
+
+														String[] ticketdetails123 = ticketprice123.split(" ");
+														int ll = ticketdetails123.length;
+														System.out.println(ll);
+														System.out.println("Number of Tickets selected : " +ticketdetails123[0] + "---" + ticketdetails123[4] + "---" + ticketdetails123[7]);
+														System.out.println("=======" +ticketdetails123[0]);
+														System.out.println("=======" +CommonMethods.passingData("changeinnumberofseats") );
+
+
+														if(CommonMethods.passingData("changeinnumberofseats").equalsIgnoreCase(ticketdetails123[0]))
+														{
+															System.out.println("}}}}]------");
+															
+															float cc =  (Float.parseFloat(ticketdetails123[4]));
+															System.out.println("CC is " +cc);
+															int c1 = Integer.parseInt(seatchangevalu);
+															System.out.println("c1" +c1);
+															
+															float totalprice123 = cc * c1;
+															System.out.println("@]]]]]]"+totalprice123);
+															//float totalprice1= Math.round((totalprice*100.0)/100.0);
+
+															String roundedTotalPrice123=String.format("%.2f", totalprice123);
+
+
+															System.out.println("Total price after rounded"+roundedTotalPrice123);
+															String priceis123 = ticketnumber123.findElement(By.xpath("./b")).getText();
+															System.out.println("Ticket from web" +priceis123);
+															
+															String pricefinal123 = priceis123.split(" ")[1].trim();
+
+
+
+
+															if(roundedTotalPrice123.trim().equals(pricefinal123))
+															{
+																System.out.println("Prices are Same");
+															}
+
+															else
+															{
+																System.out.println("+++++++++++++++");
+															}
+
+														}
+
+														else
+														{
+															System.out.println("SeatNumber and Ticket details are getting mismatch");
+														}
+
+														flag=1;
+														//String totalprice = driver.findElement(b) 
+														break;
+
+
+													}
+													
+													
+													
+											break;
+											}
+										
+										flag=1;
+										
+											}
+
+											if(flag==1)
+											{
+												break;
+											}	
+
+									}
+									if(flag==1)
+									{
+										break;
+									}	
+
+
+								}
+							}
+							if(flag==1)
+							{
+								break;
+							}
+						}
+					}
+
+					if(flag==1)
+					{
+						break;
+					}
+				}
+
+			}
+			if(flag==1)
+			{
+				break;
+			}
+		}
+
+
+	}
+
+
+		
+		*/
+		
+		//==============================================
+		
+		
+	//By movieclick = By.partialLinkText("Movies");
+	By movieclick = By.id("tabMovies");
+	By nowplayinglist = By.xpath("//div[@id='moviesContainer']/div");
+	By bookbutton = By.partialLinkText("Book");
+	By showdates = By.xpath("//tr[@id='movieShowDates']/td/h3");
+	By showtimes = By.xpath("//div[@class='boxTheatre']//div[@class='col-md-7 timings text-right mobLeft']//button");
+	//By multiplex = By.xpath("//div[@id='showTimingsDiv']//div//b");
+	
+	
+	
+	public void movietabselection()
+	{
+		driver.findElement(movieclick).click();
+	}
+	
+	
+	
+	 // #2 :  Now pLaying list -> 
+	
+
+	public void nowplayingmovieselection() throws InterruptedException
+	{
+		
+		List<WebElement> nowplayinglists = driver.findElements(nowplayinglist);
+		System.out.println("Now Showing Movie Count :" +nowplayinglists.size());
+
+		for(WebElement nowplayingsinglemovie : nowplayinglists)
+		{
+			String movienamexx = nowplayingsinglemovie.findElement(By.xpath("./div/div/h4/a")).getText();
+			System.out.println("Movie Name is " +movienamexx);
+
+			String movienamefromlist = movienamexx.toLowerCase();	
+			String movienamefromjson = CommonMethods.passingData("movienamevv").toLowerCase();								
+			if(movienamefromlist.contains(movienamefromjson))
+			{
+				nowplayingsinglemovie.click();
+				driver.findElement(moviesbookbutton).click();
+				break;
+				
+			}	
+			
+		}
+		
+	}
+			
+	
+	public void moviedateselection() 
+	{
+			
+					// List of Show Date Details :
+					List<WebElement> Mshowdates = driver.findElements(showdates);
+					System.out.println("all show dates:" +Mshowdates.size());	
+
+						for(WebElement movieshowdates   : Mshowdates )
+						{
+							String msd  = movieshowdates.getText();
+							System.out.println("Showdate " +msd);
+								if(msd.equalsIgnoreCase(CommonMethods.passingData("MovieBookingDate")))
+									{								
+											movieshowdates.click();								
+											System.out.println("selected");
+											break;
+							
+									}
+						}
+	}		
+					
+	
+	
+	public void movietimeselection()
+	{
+	
+			// List of Show Time  Details :
+						
+						List<WebElement> Stimes = driver.findElements(showtimes);
+						System.out.println("showtimes"+Stimes.size());
+						for (WebElement ShowTimings : Stimes)
+						{
+							String ST = ShowTimings.getText();
+							System.out.println("Selectebledate " +ST);
+							if(ST.equalsIgnoreCase(CommonMethods.passingData("MovieBokkingTime")))
+							{
+								System.out.println();
+								ShowTimings.click();										
+								driver.findElement(alertmovieok).click();
+								break;
+							}
+						}
+	}
+								
+	
+	String seatnumber;
+	
+	public void numberoftickets() throws InterruptedException
+	{
+	
+								//Total Number of Seat that user can select (1, 2 ,3 ,4 , 5, 6)
+
+								List<WebElement> seatselection = driver.findElements(ticketcount2);			
+								System.out.println("Max seat can book by you :"+seatselection.size());
+
+								//for loop to select the seat based on user wish
+
+								for(int i=1;i<=seatselection.size();i++)
+								{
+									String s1 = "//*[@class='nav nav-pills members']/li[";
+									int s2=i;
+									String s3="]/a";
+									String s4= Integer.toString(s2);
+									WebElement seat1 = driver.findElement(By.xpath(s1+s4+s3));
+									String seatnumber123 = seat1.getAttribute("href");
+									String[] xxx = seatnumber123.split("person");
+									int count = xxx.length;
+									 seatnumber = xxx[1];
+									System.out.println("Seat Number is : " +seatnumber);
+									if(seatnumber.equalsIgnoreCase(CommonMethods.passingData("numberofseats")))
+									{
+										System.out.println("@-----------");
+										Actions aaa = new Actions(driver);
+
+										Thread.sleep(3000);
+										aaa.moveToElement(seat1).build().perform();
+										Thread.sleep(3000);
+										seat1.click();
+
+										Thread.sleep(5000);
+										driver.findElement(seatselectionOkclick).click();
+										break;
+
+									}
+
+								}
+								
+	}				
+
+	
+	
+	public void movieseatselection() throws InterruptedException
+	{
+		
+								// User Can Select the Available Seat
+								Thread.sleep(2000);
+								List<WebElement> seatsselection =  driver.findElements(seatlayoutselect);
+								System.out.println("Avalaible seats are :" +seatsselection.size());
+								for(WebElement seat11 : seatsselection)
+								{
+									Actions a = new Actions(driver);
+									a.moveToElement(seat11).build().perform();
+									seat11.click();
+									driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;												
+									WebElement paybutton = driver.findElement(proceedbutton);
+									boolean pp = paybutton.isDisplayed();
+									if(pp==true)
+									{
+										paybutton.click();
+										driver.findElement(txtPaymentMobile).sendKeys(CommonMethods.passingData("mobile"));
+										driver.findElement(txtPaymentEmail).sendKeys(CommonMethods.passingData("EnterMail"));
+										debitpaymovies();
+										Thread.sleep(2000);
+										System.out.println("done");
+										break;
+									}
+
+									else
+									{
+										System.out.println("Notification is diplayed as: 'Please select a seat beside the selected seat(s)'");
+										Thread.sleep(3000);
+										seat11.click();
+										Thread.sleep(3000);
+									}
+
+								}
+	}							
+
+
+
+
+	//More than seat selection then opt ...
+
+	public void movieseatselectionerrorpopup() throws InterruptedException
+	{
+
+		HomePage hp = new HomePage();
+		hp.movietabselection();
+		hp.nowplayingmovieselection();
+		hp.moviedateselection();
+		hp.movietimeselection();
+		hp.numberoftickets();
+		hp.movieseatselection();
+		
+
+	}	
+	
+	
+	//Price Comparison Method :
+	
+	
+	public void pricecomparemovies() throws InterruptedException
+	{
+		/* HomePage hp = new HomePage();
+		hp.movietabselection();
+		hp.nowplayingmovieselection();
+		hp.moviedateselection();
+		hp.movietimeselection();
+		hp.numberoftickets();
+		hp.movieseatselection();*/
+		WebElement proceedpaybtn = driver.findElement(By.id("btnPay"));
+		
+			if(proceedpaybtn.isDisplayed())
+				{
+						WebElement ticketnumber = driver.findElement(By.id("TicketsSelected"));
+						String ticketprice = ticketnumber.getText();
+						System.out.println("No. of Tickets selected * Price is : " +ticketprice);
+						String[] ticketdetails = ticketprice.split(" ");
+						int ll = ticketdetails.length;
+						System.out.println(ll);
+						System.out.println("Number of Tickets selected : " +ticketdetails[0] + "---" + ticketdetails[4] + "---" + ticketdetails[7]);
+						System.out.println("=======" +ticketdetails[0]);
+						System.out.println("=======" +CommonMethods.passingData("numberofseats") );
+											
+											if(CommonMethods.passingData("numberofseats").equalsIgnoreCase(ticketdetails[0]))
+												{
+													
+													
+													//seatnumber is global variable ;
+												
+													float totalprice =  (Float.parseFloat(ticketdetails[4]) * Integer.parseInt(seatnumber));
+													System.out.println("@]]]]]]"+totalprice);
+													String roundedTotalPrice=String.format("%.2f", totalprice);
+													System.out.println("Total price after rounded"+roundedTotalPrice);
+													String priceis = ticketnumber.findElement(By.xpath("./b")).getText();
+													System.out.println("Ticket from web" +priceis);
+													
+													String pricefinal = priceis.split(" ")[1].trim();
+
+													if(roundedTotalPrice.trim().equals(pricefinal))
+													{
+														System.out.println("Prices are Same");
+													}
+
+													else
+													{
+														System.out.println("+++++++++++++++");
+													}
+
+												}
+
+											else
+												{
+													System.out.println("SeatNumber and Ticket details are getting mismatch");
+												}
+
+												
+
+
+											}
+			
+	}
+
+											
+	
+	//Change Seat number and Price comparison Method
+	
+	
+	
+	public void changeticketsnumberfromseatlayoutpage() throws InterruptedException
+	{
+		
+		HomePage hp = new HomePage();
+		hp.movietabselection();
+		hp.nowplayingmovieselection();
+		hp.moviedateselection();
+		hp.movietimeselection();
+		/*hp.numberoftickets();
+		hp.movieseatselection();*/
+	
+								//Total Number of Seat that user can select 
+								int flag=1;
+								List<WebElement> seatselection = driver.findElements(ticketcount2);			
+								System.out.println("Max seat can book by you :"+seatselection.size());
+								WebElement seat1;
+								//for loop to select the seat based on user wish
+
+								for(int i=1;i<=seatselection.size();i++)
+								{
+									String s11 = "//*[@class='nav nav-pills members']/li[";
+									int s22=i;
+									String s33="]/a";
+									String s55="]";
+
+									String s44= Integer.toString(s22);
+
+
+									seat1 = driver.findElement(By.xpath(s11+s44+s33));
+
+									String seatnumber12345 = seat1.getAttribute("href");
+									System.out.println("Seatnumber12345" +seatnumber12345);
+									String[] xxx = seatnumber12345.split("person");
+									int count = xxx.length;
+									String seatnumber = xxx[1];
+									System.out.println("Seat Number is : " +seatnumber);
+
+									if(seatnumber.equalsIgnoreCase(CommonMethods.passingData("numberofseats")))
+									{
+										System.out.println("@-----------");
+										
+										Thread.sleep(3000);
+										seat1.click();
+										Thread.sleep(5000);
+										driver.findElement(seatselectionOkclick).click();
+										Thread.sleep(3000);
+										
+										driver.findElement(By.id("noOfTicketsSpan")).click();
+										String changenumber = CommonMethods.passingData("changeinnumberofseats");
+										s22 = Integer.parseInt(changenumber);
+										System.out.println("//////" +s22);
+										
+										s44= Integer.toString(s22);
+										
+										WebElement seatvalue = driver.findElement(By.xpath(s11+s44+s33));
+										System.out.println("---------++++ " +seatvalue);
+											
+										String seatnum = seatvalue.getAttribute("href");
+										System.out.println("Seatnum : " +seatnum);
+										
+										String[] persnvalue123 = seatnum.split("person");
+										int count123 = persnvalue123.length;
+										String seatchangevalu = persnvalue123[1]; 
+										System.out.println("[[[[[" +count123);
+										
+										//String seatnumberxxx = persnvalue123[1];
+										System.out.println("Seat Number is : " +seatchangevalu);
+										
+										
+											if(seatchangevalu.equalsIgnoreCase(changenumber))
+											{
+												
+												System.out.println("------------##");
+												Thread.sleep(5000);
+												seatvalue.click();
+												driver.findElement(seatselectionOkclick).click();
+												
+												Thread.sleep(5000);
+												List<WebElement> seatsselection =  driver.findElements(seatlayoutselect);
+												System.out.println("Avalaible seats are :" +seatsselection.size());
+
+												for(WebElement seat11 : seatsselection)
+												{
+													System.out.println("////////" +seat11);
+													Actions a = new Actions(driver);
+
+													Thread.sleep(3000);
+													a.moveToElement(seat11).build().perform();
+													seat11.click();
+													Thread.sleep(10000);
+													WebElement proceedpaybtn = driver.findElement(By.id("btnPay"));
+													if(proceedpaybtn.isDisplayed())
+													{
+														WebElement ticketnumber123 = driver.findElement(By.id("TicketsSelected"));
+														String ticketprice123 = ticketnumber123.getText();
+														System.out.println("No. of Tickets selected * Price is : " +ticketprice123);
+														/*String tp = ticketprice.trim();
+																		System.out.println("-----------" +tp);*/
+
+														String[] ticketdetails123 = ticketprice123.split(" ");
+														int ll = ticketdetails123.length;
+														System.out.println(ll);
+														System.out.println("Number of Tickets selected : " +ticketdetails123[0] + "---" + ticketdetails123[4] + "---" + ticketdetails123[7]);
+														System.out.println("=======" +ticketdetails123[0]);
+														System.out.println("=======" +CommonMethods.passingData("changeinnumberofseats") );
+
+
+														if(CommonMethods.passingData("changeinnumberofseats").equalsIgnoreCase(ticketdetails123[0]))
+														{
+															System.out.println("}}}}]------");
+															
+															float cc =  (Float.parseFloat(ticketdetails123[4]));
+															System.out.println("CC is " +cc);
+															int c1 = Integer.parseInt(seatchangevalu);
+															System.out.println("c1" +c1);
+															
+															float totalprice123 = cc * c1;
+															System.out.println("@]]]]]]"+totalprice123);
+															//float totalprice1= Math.round((totalprice*100.0)/100.0);
+
+															String roundedTotalPrice123=String.format("%.2f", totalprice123);
+
+
+															System.out.println("Total price after rounded"+roundedTotalPrice123);
+															String priceis123 = ticketnumber123.findElement(By.xpath("./b")).getText();
+															System.out.println("Ticket from web" +priceis123);
+															
+															String pricefinal123 = priceis123.split(" ")[1].trim();
+
+
+
+
+															if(roundedTotalPrice123.trim().equals(pricefinal123))
+															{
+																System.out.println("Prices are Same");
+															}
+
+															else
+															{
+																System.out.println("+++++++++++++++");
+															}
+
+														}
+
+														else
+														{
+															System.out.println("SeatNumber and Ticket details are getting mismatch");
+														}
+
+														flag=1;
+														//String totalprice = driver.findElement(b) 
+														break;
+
+
+													}
+													
+													
+													
+											break;
+											}
+										
+										flag=1;
+										
+											}
+
+											if(flag==1)
+											{
+												break;
+											}	
+
+									}
+								
+								}
+							
+			}
+		
+
+
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		//=======================================
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
 	// Quick booking 
-	
+
 	//By quickbookclick = By.xpath("//*[@class='quick-booking-input-docker']/h4");
-	
+
 	By movieslist = By.id("MoviesList");
 	By selectmall = By.id("CinemaList");
 	By selectdate = By.id("ShowDates");
@@ -679,77 +1968,78 @@ public class HomePage extends BrowserFunctions {
 	By booknow = By.id("BookNow");
 
 	public String quickbooking() throws InterruptedException
-	
+
 	{
 		//driver.findElement(quickbookclick).click();
-			//driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
-			Select movies = new Select(driver.findElement(movieslist));
-			driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
-			movies.selectByVisibleText("21 ST NOOTTAANDU");
-			Select malls = new Select(driver.findElement(selectmall));
-			driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
-			malls.selectByVisibleText("Cineco Seef - Seef Area");
-			Select date = new Select(driver.findElement(selectdate));
-			driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
-			date.selectByVisibleText("Thursday, 22 Aug");
-			Select time = new Select(driver.findElement(selecttime));
-			driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
-			time.selectByVisibleText("11:00AM-Cinema 10");
-			driver.findElement(booknow).click();
-			driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
-			driver.findElement(alertmovieok).click();
-			Thread.sleep(4000);
-			List<WebElement> seatselection = driver.findElements(ticketcount2);			
-			System.out.println("Max seat can book by you :"+seatselection.size());
-			for(WebElement seat : seatselection)
+		//driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
+		Select movies = new Select(driver.findElement(movieslist));
+		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
+		movies.selectByVisibleText("21 ST NOOTTAANDU");
+		Select malls = new Select(driver.findElement(selectmall));
+		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
+		malls.selectByVisibleText("Cineco Seef - Seef Area");
+		Select date = new Select(driver.findElement(selectdate));
+		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
+		date.selectByVisibleText("Thursday, 22 Aug");
+		Select time = new Select(driver.findElement(selecttime));
+		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
+		time.selectByVisibleText("11:00AM-Cinema 10");
+		driver.findElement(booknow).click();
+		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
+		driver.findElement(alertmovieok).click();
+		Thread.sleep(4000);
+		List<WebElement> seatselection = driver.findElements(ticketcount2);			
+		System.out.println("Max seat can book by you :"+seatselection.size());
+		for(WebElement seat : seatselection)
+		{
+			String seatnumber = seat.getText();
+			if(seatnumber.equalsIgnoreCase("1"))
 			{
-				String seatnumber = seat.getText();
-				if(seatnumber.equalsIgnoreCase("1"))
-				{
-					seat.click();
-					Thread.sleep(4000);
-					driver.findElement(seatselectionOkclick).click();
-				
-				}
-			}
-			
-			Thread.sleep(2000);
-			List<WebElement> seatsselection =  driver.findElements(seatlayoutselect);
-			System.out.println("Avalaible seats are :" +seatsselection.size());
-			for(WebElement seat11 : seatsselection)
-			{
-				Actions a = new Actions(driver);
-					a.moveToElement(seat11).build().perform();
-					seat11.click();
-					driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
-					
-					WebElement paybutton = driver.findElement(proceedbutton);
-					boolean pp = paybutton.isDisplayed();
-					if(pp==true)
-					{
-						paybutton.click();
-						//driver.findElement(txtPaymentMobile).sendKeys(CommonMethods.passingData("mobile"));
-						//driver.findElement(txtPaymentEmail).sendKeys(CommonMethods.passingData("EnterMail"));
+				seat.click();
+				Thread.sleep(4000);
+				driver.findElement(seatselectionOkclick).click();
 
-						debitpaymovies();
-						Thread.sleep(4000);
-						System.out.println("done");
-						break;
-					}
-					
-					else
-					{
-						System.out.println("Notification is diplayed as: 'Please select a seat beside the selected seat(s)'");
-						seat11.click();
-					}
-							
-					} 
+			}
+		}
+
+		Thread.sleep(2000);
+		List<WebElement> seatsselection =  driver.findElements(seatlayoutselect);
+		System.out.println("Avalaible seats are :" +seatsselection.size());
+		for(WebElement seat11 : seatsselection)
+		{
+			Actions a = new Actions(driver);
+			a.moveToElement(seat11).build().perform();
+			seat11.click();
+			driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
+
+			WebElement paybutton = driver.findElement(proceedbutton);
+			boolean pp = paybutton.isDisplayed();
+			if(pp==true)
+			{
+				paybutton.click();
+				//driver.findElement(txtPaymentMobile).sendKeys(CommonMethods.passingData("mobile"));
+				//driver.findElement(txtPaymentEmail).sendKeys(CommonMethods.passingData("EnterMail"));
+
+				debitpaymovies();
+				Thread.sleep(4000);
+				System.out.println("done");
+				break;
+			}
+
+
+			else
+			{
+				System.out.println("Notification is diplayed as: 'Please select a seat beside the selected seat(s)'");
+				seat11.click();
+			}
+
+		} 
 
 		return driver.findElement(ticketsuccess).getText();
 	}
 
-	
-	
+
+
 	// Debit card pay
 
 	public void debitpayevents() throws InterruptedException {
@@ -785,11 +2075,11 @@ public class HomePage extends BrowserFunctions {
 		driver.findElement(submit).click();
 		driver.findElement(conform).click();
 	}
-	
+
 	// Debit pay movies
-	
+
 	public void debitpaymovies() throws InterruptedException {
-		
+
 		JavascriptExecutor js1 = (JavascriptExecutor) driver;
 		js1.executeScript("window.scrollTo(0, document.body.scrollHeight)");
 		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
@@ -828,7 +2118,7 @@ public class HomePage extends BrowserFunctions {
 	}
 
 	//Contact us (Bahrain)
-	
+
 	By fname = By.id("firstName");
 	By lname = By.id("secondName");
 	By Email = By.id("emailId");
@@ -838,9 +2128,9 @@ public class HomePage extends BrowserFunctions {
 	By checkbox = By.xpath("//input[@id='isEventOrganizer']");
 	By sendbutton = By.id("btnSendQuery");
 	By sendsuccess = By.className("toast-message");
-	
+
 	//Thanks for providing your information we will get back to you soon  //toaster-message  //toast-close-button
-	
+
 	public String contactus()
 	{
 		driver.findElement(contactus).click();
@@ -853,7 +2143,7 @@ public class HomePage extends BrowserFunctions {
 		driver.findElement(sendbutton).click();
 		return driver.findElement(sendsuccess).getText();		
 	}
-	
+
 
 	//icon clicks bhd
 	By fbicon = By.id("faceboolink");
@@ -861,7 +2151,7 @@ public class HomePage extends BrowserFunctions {
 	By youtube= By.id("youtublink");
 	By fbid   = By.id("u_0_3");
 	By smlinks = By.xpath("//*[@class='social text-center']/a");
-	
+
 	public int  SMiconclick() throws InterruptedException
 	{
 		Thread.sleep(2000);
@@ -872,7 +2162,7 @@ public class HomePage extends BrowserFunctions {
 		Thread.sleep(2000);
 		List<WebElement> s3 = driver.findElements(By.xpath("//li[@class='dropdown liLocation']/ul/li"));
 		//System.out.println("List of locations" +s3.size());
-		
+
 		for(WebElement s4 : s3)
 		{
 			String s5 = s4.findElement(By.xpath("./a")).getText();
@@ -890,7 +2180,7 @@ public class HomePage extends BrowserFunctions {
 					sl.click();
 					//alertadvt();
 					Thread.sleep(4000);
-				    ArrayList  iconclick  = new ArrayList (driver.getWindowHandles());
+					ArrayList  iconclick  = new ArrayList (driver.getWindowHandles());
 					System.out.println("Size of windows opened" +iconclick.size());
 					driver.switchTo().window((String) iconclick.get(1)); 
 					String s1 = driver.getCurrentUrl();
@@ -903,19 +2193,19 @@ public class HomePage extends BrowserFunctions {
 				}
 				break;				
 			}
-			
+
 		}
 		ArrayList  fbclick  = new ArrayList (driver.getWindowHandles());
 		int windowsopened = fbclick.size();
 		return windowsopened;
-				 			
+
 	}
-	
+
 	// play/app store click
-	
+
 	By playstore= By.xpath("//*[@class='col-md-3 store']/a[1]");
 	By appstore= By.xpath("//*[@class='col-md-3 store']/a[2]");
-	
+
 	public String playstoreclick()
 	{
 		JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -924,9 +2214,9 @@ public class HomePage extends BrowserFunctions {
 		String s1=driver.getCurrentUrl();
 		System.out.println(s1);
 		return s1;
-		
+
 	}
-	
+
 	public String appstoreclick()
 	{
 		JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -935,10 +2225,10 @@ public class HomePage extends BrowserFunctions {
 		String s1=driver.getCurrentUrl();
 		System.out.println(s1);
 		return s1;
-		
+
 	}
-	
-	
+
+
 	//advertisingneeds
 	By name1 		= By.id("txtFirstName");
 	By name2 		= By.id("txtLastName");
@@ -948,7 +2238,7 @@ public class HomePage extends BrowserFunctions {
 	By advtsubmit 	= By.id("btnSubmit");
 	By advtsuccessmsg = By.xpath("//*[contains(@class,'toast-message') and contains(text(),'Thanks for providing your information we will get back to you soon.')]");
 
-		
+
 	public String advertisingneeds()
 	{
 		driver.findElement(AdvertiseWithUs).click();
@@ -964,10 +2254,10 @@ public class HomePage extends BrowserFunctions {
 		CommonMethods.explicitWaitForElementVisibility(errormsgemptypwd);
 		return driver.findElement(errormsgemptypwd).getText();				
 	}
-	
-	
+
+
 	// Advertise With Us Query Page
-	
+
 	By advertiseWithUs			=	By.xpath("//*[@id='advertiseWithUs']");
 	By adverFName				=	By.id("txtFirstName");
 	By adverLName				=	By.id("txtLastName");
@@ -978,7 +2268,7 @@ public class HomePage extends BrowserFunctions {
 	By descrip					=	By.id("txtDescription");
 	By submitBtn				=	By.id("btnSubmit");
 	By successAdd				=	By.xpath("//*[contains(@class,'toast-message') and contains(text(),'Thanks for providing your information we will get back to you soon.')]");
-	
+
 	public String queryAdvertise()
 	{
 		//driver.navigate().to("http://staging.wanasatime.com");
@@ -996,20 +2286,20 @@ public class HomePage extends BrowserFunctions {
 		String ur=driver.getCurrentUrl();
 		return ur;
 	}
-	
+
 	//Any Query in Plans and Pricing...
-	
+
 	By plansandpricing	=	By.xpath("//*[@href='/PlansPricing.aspx']");
 	By anyQuery			=	By.xpath("//*[@class='text-center']//*[@class='anyQuery']");
 	By userEmail		=	By.id("userE-mail");
 	By userMessage		=	By.id("userMessage");
 	By subBtn			=	By.id("submitQuery");
-	
 
-	
+
+
 	public String plansAndPricingQuery()
-	
-	
+
+
 	{
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
@@ -1018,15 +2308,17 @@ public class HomePage extends BrowserFunctions {
 		driver.findElement(userEmail).sendKeys(CommonMethods.passingData("EnterMail"));
 		driver.findElement(userMessage).sendKeys("I want to know the plans and pricing Details");
 		driver.findElement(subBtn).click();
-//		String u=driver.getCurrentUrl();
+		//		String u=driver.getCurrentUrl();
 		CommonMethods.explicitWaitForElementVisibility(errormsgemptypwd);
 		return driver.findElement(errormsgemptypwd).getText();
-			
+
 	}
-	 
+
 
 	//user 
 	//menu s
+	
+	By menu2 = By.xpath("//*[@id='icon-m-hamburger'][1]");
 	By menu = By.xpath("//button[@id='userMenu']//*[@id='icon-m-hamburger']");
 	By menu1 = By.id("userMenu");
 	By profileclick = By.xpath("//a[@id='myProfile']");
@@ -1034,27 +2326,29 @@ public class HomePage extends BrowserFunctions {
 	By Evouchers = By.id("eVouchers"); 
 	//By AdvertiseWithUs = By.linkText("Advertise With Us");
 	//By logout = By.id("Logout");
-	
-	
+
+
 	// profile edit 	
+	
 	By buyerFName = By.id("buyerFName"); 
 	By buyerLName = By.id("buyerLName");
-	
+
 	// Profile Pic Locators
 
-    By profilepic          =             By.id("picEditIcon");
-    By profilesavebtn	   =             By.id("btnSaveImage");
+	By profilepic          =             By.id("picEditIcon");
+	By profilesavebtn	   =             By.id("btnSaveImage");
 
 	// genderdropdown 
+	
 	By gender= By.id("buyerGender");	
 	By buyerState = By.id("buyerState");
 	By buyerCity = By.id("buyerCity");
 	By updateBuyerProfile = By.id("updateBuyerProfile");
 	By userdob       = By.id("buyerDOB");
 	By changePasswordBtn = By.id("changePasswordBtn");
-	
-	
-	
+
+
+
 	public void edituser() throws Exception
 	{	
 		signinWanasaTimeCredentials();
@@ -1063,20 +2357,20 @@ public class HomePage extends BrowserFunctions {
 		driver.findElement(profileclick).click();		
 		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
 		driver.findElement(profilepic).click();
-		 StringSelection ss= new StringSelection("C:\\Users\\Smsc_Tech\\Desktop\\kangana.jpg");
-		 Thread.sleep(8000);
+		StringSelection ss= new StringSelection("C:\\Users\\Smsc_Tech\\Desktop\\kangana.jpg");
+		Thread.sleep(8000);
 		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss,null);
-		 Robot robot = new Robot();
-		 robot.keyPress(KeyEvent.VK_CONTROL);
-		 robot.keyPress(KeyEvent.VK_V);
-		 robot.keyRelease(KeyEvent.VK_V);
-		 robot.keyRelease(KeyEvent.VK_CONTROL);
-		 robot.keyPress(KeyEvent.VK_ENTER);
-		 robot.keyRelease(KeyEvent.VK_ENTER);
-		 Thread.sleep(14000);
-		 driver.findElement(profilesavebtn).click();
-		 driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
-		 driver.findElement(buyerLName).clear();
+		Robot robot = new Robot();
+		robot.keyPress(KeyEvent.VK_CONTROL);
+		robot.keyPress(KeyEvent.VK_V);
+		robot.keyRelease(KeyEvent.VK_V);
+		robot.keyRelease(KeyEvent.VK_CONTROL);
+		robot.keyPress(KeyEvent.VK_ENTER);
+		robot.keyRelease(KeyEvent.VK_ENTER);
+		Thread.sleep(14000);
+		driver.findElement(profilesavebtn).click();
+		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
+		driver.findElement(buyerLName).clear();
 		Thread.sleep(3000);
 		driver.findElement(buyerLName).sendKeys("domreddy");
 		Thread.sleep(3000);
@@ -1085,12 +2379,12 @@ public class HomePage extends BrowserFunctions {
 		gender.selectByValue("Female");		
 		driver.findElement(userdob).clear();	
 		/*List<WebElement> dob=driver.findElements(By.id("buyerDOB"));
-		
+
 		for(WebElement ele:dob)
 		{
-			
+
 			String date=ele.getText();
-			
+
 			if(date.equalsIgnoreCase("12/08/1995"))
 			{
 				ele.click();
@@ -1098,8 +2392,8 @@ public class HomePage extends BrowserFunctions {
 			}  
 			}*/
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-   		js.executeScript("document.getElementById('buyerDOB').value='"+CommonMethods.passingData("userDOB")+"'");	
-   		driver.findElement(userdob).click();	
+		js.executeScript("document.getElementById('buyerDOB').value='"+CommonMethods.passingData("userDOB")+"'");	
+		driver.findElement(userdob).click();	
 		driver.findElement(buyerState).clear();
 		Thread.sleep(3000);
 		driver.findElement(buyerState).sendKeys("hyd");
@@ -1108,42 +2402,43 @@ public class HomePage extends BrowserFunctions {
 		driver.findElement(buyerCity).sendKeys("hyd");
 		driver.findElement(updateBuyerProfile).click();	
 		Thread.sleep(6000);
-	
+
 	}
-	
-	
-	
+
+
+
 	//change password
 	By oldPassword = By.id("oldPassword");
 	By newPassword = By.id("newPassword");
 	By ConfirmPassword = By.id("cnfrmPassword");
 	By BtnupdatePassword = By.id("updatePassword");
 	By pwdupdateclose   = By.xpath("//button[contains(@class,'mr_10')]");
-  //  By successmsgpwd  = By.xpath("//*[contains(@class,'toast-message') and contains(text(),'Password Changed Successfully')]");
-	 By successmsgp  = By.xpath("//*[contains(@class,'toast-message')]");
+	//  By successmsgpwd  = By.xpath("//*[contains(@class,'toast-message') and contains(text(),'Password Changed Successfully')]");
+	By successmsgp  = By.xpath("//*[contains(@class,'toast-message')]");
+	
 	public String passwordchange() throws InterruptedException
 	{
-			/*Thread.sleep(5000);
+		/*Thread.sleep(5000);
 			CommonMethods.explicitWaitForElementVisibility(menu1);
 			driver.findElement(menu1).click();
 			//driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
 			CommonMethods.explicitWaitForElementVisibility(profileclick);
 			driver.findElement(profileclick).click();*/
-			driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
-			driver.findElement(changePasswordBtn).click();	
-			driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
-			driver.findElement(oldPassword).sendKeys(CommonMethods.passingData("Password"));	
-			driver.findElement(newPassword).sendKeys(CommonMethods.passingData("newpwdchange"));
-			driver.findElement(ConfirmPassword).sendKeys(CommonMethods.passingData("newpwdchange"));
-			driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
-			driver.findElement(BtnupdatePassword).click();
-			CommonMethods.explicitWaitForElementVisibility(successmsgp);
-			return driver.findElement(successmsgp).getText();
+		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
+		driver.findElement(changePasswordBtn).click();	
+		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
+		driver.findElement(oldPassword).sendKeys(CommonMethods.passingData("Password"));	
+		driver.findElement(newPassword).sendKeys(CommonMethods.passingData("newpwdchange"));
+		driver.findElement(ConfirmPassword).sendKeys(CommonMethods.passingData("newpwdchange"));
+		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
+		driver.findElement(BtnupdatePassword).click();
+		CommonMethods.explicitWaitForElementVisibility(successmsgp);
+		return driver.findElement(successmsgp).getText();
 
 	}
-	
-	
-	
+
+
+
 	//n
 	public void pwdcahngeclose() throws InterruptedException
 	{
@@ -1156,11 +2451,11 @@ public class HomePage extends BrowserFunctions {
 		driver.findElement(changePasswordBtn).click();
 		driver.findElement(pwdupdateclose).click();
 	}
-	
-	
-	
+
+
+
 	//preferences
-	
+
 	By preclick = By.xpath("//a[contains(text(),'Preferences')]");	
 	//By movies = By.xpath("//div[@id='preferences']//h5[contains(text(),'Movies')]");
 	By checkboxclickmovies = By.xpath("//*[@id='movieDiv']/div[3]/label/input");
@@ -1169,7 +2464,7 @@ public class HomePage extends BrowserFunctions {
 	By preupadte = By.id("btnUpdatePreferences");
 	//toast toast-success
 	By prefersuccess = By.xpath("//*[contains(@class,'toast toast-success') and contains(text(),'Preferences Saved Successfully')]");
-	
+
 	public String preferences() throws InterruptedException
 	{
 		JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -1186,16 +2481,16 @@ public class HomePage extends BrowserFunctions {
 		driver.findElement(preupadte).click();	
 		return driver.findElement(successmsgp).getText();
 	}	
-	
-		
+
+
 	//notifications
 	By notclilck = By.xpath("//a[contains(text(),'Notifications')] ");
 	By DeactivateAccountsms = By.xpath("//div[@id='notification']//div//div[1]//div[1]//div[2]//label");
 	By notupdate = By.id("btnESUpdate");
 	By notsuccess = By.xpath("//*[contains(@class,'toast toast-success') and contains(text(),'Notifications Saved Successfully')]");
-	
-	
-	
+
+
+
 	public String notifications() throws InterruptedException
 	{
 		/*Thread.sleep(5000);
@@ -1212,7 +2507,7 @@ public class HomePage extends BrowserFunctions {
 	}
 
 	//booking history
-	
+
 	By mvebookings = By.linkText("MOVIES");
 	By Eventbookings = By.linkText("EVENTS");
 	By Allbookings = By.linkText("ALL");;
@@ -1224,40 +2519,40 @@ public class HomePage extends BrowserFunctions {
 	By selectyr = By.xpath(" //div[@class='datepicker-years']//td//span[contains(text(),'2018')]");
 	By selectmonth = By.xpath("//div[@class='datepicker-months']//td//span[contains(text(),'Dec')]");
 	By searchapply = By.id("btnApply");
-	
-	
-	
-    public void searchbookingistory() throws InterruptedException
-    {
 
-    	    signinWanasaTimeCredentials();
-    	   // alertadvt();
-    		driver.findElement(menu1).click();
-    		driver.findElement(BookingHistory).click();
-    		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
-    		//todaybookings 
-    		WebElement testDropDown = driver.findElement(By.id("filterSelection"));  
-    		Select moviesstatus = new Select(testDropDown);  
-    		moviesstatus.selectByValue("3");    
-    		//date selection
-    		//String fdate= CommonMethods.passingData("fromdate");
-    		//System.out.println("From Date from json :" +fdate);
-    		//js.executeScript("document.getElementById('fromDate').value='"+fdate+"'");
-    		JavascriptExecutor js = (JavascriptExecutor) driver;
-       		js.executeScript("document.getElementById('fromDate').value='"+CommonMethods.passingData("fromdate")+"'");
-       		js.executeScript("document.getElementById('toDate').value='"+CommonMethods.passingData("todate")+"'");
-       		driver.findElement(searchapply).click();
-       		Thread.sleep(6000);
-    }
-	
-	
-	
+
+
+	public void searchbookingistory() throws InterruptedException
+	{
+
+		signinWanasaTimeCredentials();
+		// alertadvt();
+		driver.findElement(menu1).click();
+		driver.findElement(BookingHistory).click();
+		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
+		//todaybookings 
+		WebElement testDropDown = driver.findElement(By.id("filterSelection"));  
+		Select moviesstatus = new Select(testDropDown);  
+		moviesstatus.selectByValue("3");    
+		//date selection
+		//String fdate= CommonMethods.passingData("fromdate");
+		//System.out.println("From Date from json :" +fdate);
+		//js.executeScript("document.getElementById('fromDate').value='"+fdate+"'");
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("document.getElementById('fromDate').value='"+CommonMethods.passingData("fromdate")+"'");
+		js.executeScript("document.getElementById('toDate').value='"+CommonMethods.passingData("todate")+"'");
+		driver.findElement(searchapply).click();
+		Thread.sleep(6000);
+	}
+
+
+
 	// Negative Cases 		
-	
+
 	//events
-	
+
 	// Single day Event Cancel and Back Button
-	
+
 	By tabEvents					=	By.id("tabEvents");
 
 	By back							= 	By.id("btnBack");
@@ -1267,31 +2562,31 @@ public class HomePage extends BrowserFunctions {
 	By btnCreditCard				=	By.id("btnCreditCard");
 	By cancelBtnCreditCard			=	By.xpath("//*[@class='col-xs-12 text-right hidden-xs']//*[@class='cancelButton']");
 	By ticketFailure				=	By.xpath("//*[@id='failedMsg']//h4");
-	
-	
-	
+
+
+
 	public boolean singleDayBackBtnBahrain()	
 	{	
-	driver.findElement(tabEvents).click();
-	JavascriptExecutor js = (JavascriptExecutor) driver;
-	js.executeScript("window.scrollTo(0, document.body.scrollHeight)");	
-	driver.findElement(eventbookBHDMusic).click();
-	driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
-	driver.findElement(eventbookingclick).click();
-	driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
-	driver.findElement(okButtonOnOverlay).click();
-	driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
-	driver.findElement(dateselection).click();
-	driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
-	driver.findElement(next).click();
-	driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
-	driver.findElement(selectcategoryfree).click();
-	driver.findElement(back).click();
-	CommonMethods.explicitWaitForElementVisibility(next);
-    return driver.findElement(next).isDisplayed(); 	
+		driver.findElement(tabEvents).click();
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollTo(0, document.body.scrollHeight)");	
+		driver.findElement(eventbookBHDMusic).click();
+		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
+		driver.findElement(eventbookingclick).click();
+		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
+		driver.findElement(okButtonOnOverlay).click();
+		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
+		driver.findElement(dateselection).click();
+		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
+		driver.findElement(next).click();
+		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
+		driver.findElement(selectcategoryfree).click();
+		driver.findElement(back).click();
+		CommonMethods.explicitWaitForElementVisibility(next);
+		return driver.findElement(next).isDisplayed(); 	
 	}
-	
-	
+
+
 	public boolean singleDayCancelBtnBahrain()
 	{
 		driver.findElement(tabEvents).click();
@@ -1310,11 +2605,11 @@ public class HomePage extends BrowserFunctions {
 		//driver.findElement(selectcategoryfree).click();
 		driver.findElement(cancel).click();
 		return driver.findElement(eventbookingclick).isDisplayed();
-		
+
 	}
-	
+
 	// Cancel in credit Card
-	
+
 	public String cancelBtnInCreditCard()
 	{
 		driver.findElement(tabEvents).click();
@@ -1340,16 +2635,16 @@ public class HomePage extends BrowserFunctions {
 		driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
 		driver.findElement(cancelBtnCreditCard).click();
 		return driver.findElement(ticketFailure).getText();
-		
-				
+
+
 	}
-	
+
 	// Back button in Seat selection Page Naal Event Qatar
-	
-	   By naalEvent			=	By.xpath("//*[@href='arts-and-culture/naal-']");
-	   By goBack			=	By.id("goBack");
-	   
-	 
+
+	By naalEvent			=	By.xpath("//*[@href='arts-and-culture/naal-']");
+	By goBack			=	By.id("goBack");
+
+
 	public boolean backinSeatLayoutPage()
 	{
 		CommonMethods.explicitWaitForElementVisibility(naalEvent);
@@ -1363,9 +2658,10 @@ public class HomePage extends BrowserFunctions {
 	}
 
 	// proceed button without selecting seat layout
-	
+
 	By proceedToPay		= By.id("proceed");
 	By withoutSeat		= By.xpath("//*[contains(@class,'toast-message') and contains(text(),'Please select your tickets')]");
+	
 	public String proceedInSeatLayoutWithOutSelectingSeat()
 	{
 		CommonMethods.explicitWaitForElementVisibility(naalEvent);
@@ -1376,16 +2672,17 @@ public class HomePage extends BrowserFunctions {
 		driver.findElement(btnproceed).click();
 		return driver.findElement(withoutSeat).getText();
 	}
+	
 	//Cancel Button in Payment GateWay Page CBQ                                                    
-	
-	
+
+
 	By festivalAround		=	By.xpath("//*[@href='arts-and-culture/festivals-around-theworld']");
 	By cancelinPayment		=	By.xpath("//*[@id='payment_details']/input[1]");
 	By yesbtnAfterCancel	=	By.xpath("//span[contains(@class,'ui-button-text')][contains(text(),'Yes')]");
 	By subCatAdult			=	By.xpath("//button[@id='326'][1]");
 	By subCatChild			=	By.xpath("//button[@id='327'][2]");
 	By withOutSelectingSeat	=	By.xpath("//*[contains(@class,'toast-message') and contains(text(),'Select No.Of Tickets you want to book')]");
-	
+
 	public String cancelBtnInPaymentPage()
 	{
 		CommonMethods.explicitWaitForElementVisibility(festivalAround);
@@ -1403,9 +2700,9 @@ public class HomePage extends BrowserFunctions {
 		driver.findElement(yesbtnAfterCancel).click();
 		return driver.findElement(ticketFailure).getText();
 	}
-	
-    // Proceed Btn without Selecting sub Categories
-	
+
+	// Proceed Btn without Selecting sub Categories
+
 	public String withoutSubCategories()
 	{
 		CommonMethods.explicitWaitForElementVisibility(festivalAround);
@@ -1420,48 +2717,63 @@ public class HomePage extends BrowserFunctions {
 
 	public void facebookiconclick() throws InterruptedException
 	{
-	Thread.sleep(2000);
-	//driver.findElement(location).click();
-	WebElement xx = driver.findElement(By.xpath("//span[@class='fa fa-map-marker']"));
-	Actions a = new Actions(driver);
-	a.moveToElement(xx).build().perform();
-	Thread.sleep(2000);
-	List<WebElement> s3 = driver.findElements(By.xpath("//li[@class='dropdown liLocation']/ul/li"));
-	//System.out.println("List of locations" +s3.size());
+		Thread.sleep(2000);
+		//driver.findElement(location).click();
+		WebElement xx = driver.findElement(By.xpath("//span[@class='fa fa-map-marker']"));
+		Actions a = new Actions(driver);
+		a.moveToElement(xx).build().perform();
+		Thread.sleep(2000);
+		List<WebElement> s3 = driver.findElements(By.xpath("//li[@class='dropdown liLocation']/ul/li"));
+		//System.out.println("List of locations" +s3.size());
 
-	for(WebElement s4 : s3)
-	{
-	String s5 = s4.findElement(By.xpath("./a")).getText();
-	
-	//System.out.println("Country Name " +s5);	
-	String s6 = CommonMethods.passingData("loc");
-	//System.out.println("For Json:" +s6);	
-	if(s6.equalsIgnoreCase(s5))
-	{
-	s4.click();
-	JavascriptExecutor js = (JavascriptExecutor) driver;
-	js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
-	List<WebElement> slinks = driver.findElements(smlinks);
-	for(WebElement sl:slinks)
-	{
-	sl.click();
+		for(WebElement s4 : s3)
+		{
+			String s5 = s4.findElement(By.xpath("./a")).getText();
 
-	Thread.sleep(4000);
-    ArrayList  fbclick  = new ArrayList (driver.getWindowHandles());
-	System.out.println("Size of windows opened" +fbclick.size());
-	driver.switchTo().window((String) fbclick.get(1)); 
-	//String s1 = driver.getCurrentUrl();
-	//System.out.println(s1);	
-	driver.close();
-	driver.switchTo().window((String) fbclick.get(0)); 
-	//String s2 = driver.getCurrentUrl();
-	//System.out.println(s2);	
-	}
-	break;	
-	}
-	}
- 	}
+			//System.out.println("Country Name " +s5);	
+			String s6 = CommonMethods.passingData("loc");
+			//System.out.println("For Json:" +s6);	
+			if(s6.equalsIgnoreCase(s5))
+			{
+				s4.click();
+				JavascriptExecutor js = (JavascriptExecutor) driver;
+				js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+				List<WebElement> slinks = driver.findElements(smlinks);
+				for(WebElement sl:slinks)
+				{
+					sl.click();
 
-		
+					Thread.sleep(4000);
+					ArrayList  fbclick  = new ArrayList (driver.getWindowHandles());
+					System.out.println("Size of windows opened" +fbclick.size());
+					driver.switchTo().window((String) fbclick.get(1)); 
+					//String s1 = driver.getCurrentUrl();
+					//System.out.println(s1);	
+					driver.close();
+					driver.switchTo().window((String) fbclick.get(0)); 
+					//String s2 = driver.getCurrentUrl();
+					//System.out.println(s2);	
+				}
+				break;	
+			}
+		}
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

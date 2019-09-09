@@ -59,7 +59,7 @@ import utils.CommonMethods;
 		}
 		 
 
-		//@Test(priority=2)  
+		@Test(priority=2)  
 
 		public void verifylogin() throws InterruptedException  
 		{	
@@ -80,7 +80,7 @@ import utils.CommonMethods;
 		
 		// single day event
 		
-	//	@Test(priority=3)
+		//@Test(priority=3)
 		public void verifyeventbookvisa() throws InterruptedException 
 		{
 			//ss.alertadvt();
@@ -107,7 +107,7 @@ import utils.CommonMethods;
 		}
 		
 		//free ticket booking
-		 // @Test(priority=5)
+		// @Test(priority=5)
 		public void verifybookticketevents() throws InterruptedException 
 		{
 			logger_ss = extent.createTest("verifybookticketevents");
@@ -127,6 +127,7 @@ import utils.CommonMethods;
 		public void verifyeventticketBookingWithDebitCard() throws InterruptedException
 			{
 			logger_ss = extent.createTest("verifyeventticketBookingWithDebitCard");
+			ss.countrySelection();
 			//driver.navigate().to("http://staging.wanasatime.com");
 			//ss.clickSignInButton();
 			//ss.signinWanasaTimeCredentials();			
@@ -174,7 +175,7 @@ import utils.CommonMethods;
 		
 		}
 			
-		//@Test(priority=9)
+		/*//@Test(priority=9)
 		   
 		  public void verifymovieticketbooking() throws InterruptedException
 			{
@@ -189,7 +190,7 @@ import utils.CommonMethods;
 			//ss.downloadTicket();	
 						
 			}							
-		
+		*/
 		//@Test(priority=10)
 		public void verifyquickbooking() throws InterruptedException
 		{
@@ -202,17 +203,14 @@ import utils.CommonMethods;
 			Assert.assertEquals(msg,"Congratulations! Your Tickets was confirmed.");
 			logger_ss.log(Status.INFO, "Successfully verified quickbooking(with debitcard)."); 
 			driver.navigate().to("http://staging.wanasatime.com");
-			//ss.alertadvt();
-			driver.findElement(ss.menu).click();
-			driver.findElement(ss.logout).click();
-			//ss.alertadvt();
+		    ss.logout();
 			String URL1 = driver.getCurrentUrl();
 			Assert.assertEquals(URL1,"http://staging.wanasatime.com/Home.aspx");
 			
 		}	
 		
 				
-	//	@Test(priority=11) 
+		//@Test(priority=11) 
 		public void verifygoogLogin() throws InterruptedException
 			{
 			    logger_ss = extent.createTest("googLogin");
@@ -223,10 +221,8 @@ import utils.CommonMethods;
 				driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
 				String afterlogin=ss.googleLogin();
 				Assert.assertEquals(afterlogin,"http://staging.wanasatime.com/");				
-				driver.navigate().to("http://staging.wanasatime.com");
-				//ss.alertadvt();
-				driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
-				driver.findElement(ss.menu1).click();
+				CommonMethods.explicitWaitForElementVisibility(ss.menu);
+				driver.findElement(ss.menu).click();
 				driver.findElement(ss.logout).click();
 				//ss.alertadvt();
 				String URL1 = driver.getCurrentUrl();
@@ -426,8 +422,17 @@ import utils.CommonMethods;
 	
 
 		// Negative Cases
+	//	@Test
+		public void verifyvouchermultiple() throws InterruptedException
+		{
+			logger_ss = extent.createTest("verifypromomultipletimesapply");
+			ss.countrySelection();
+			String s = ss.vouchermultiple();
+			Assert.assertEquals(s, "Only One Voucher Per Transaction");
+			logger_ss.log(Status.INFO, "Successfully verified verifypromomultipletimesapply");
+		}
 		
-		@Test(priority=25)
+	//	@Test(priority=25)
 		
 		public void backBtnSingleDayEvent() throws InterruptedException
 		{
@@ -442,7 +447,7 @@ import utils.CommonMethods;
 		}
 		
 		
-	  @Test(priority=26) 
+	 // @Test(priority=26) 
 	  public void cancelBtnSingleDayEvent() throws InterruptedException
 	  	{
 		    driver.navigate().to("http://staging.wanasatime.com");
@@ -456,7 +461,7 @@ import utils.CommonMethods;
 	  	}
 	  
 	  
-	  @Test(priority=27) 
+	 // @Test(priority=27) 
 	    
 	  public void cancelBtnCreditCard() throws InterruptedException
 	  {
@@ -478,7 +483,10 @@ import utils.CommonMethods;
 			logger_ss.log(Status.INFO, "Successfully verified cancelBtnCreditCard");
 	  }
 	  
-	  @Test(priority=28) 
+	  
+	  
+	  
+	//  @Test(priority=28) 
 	  
 	  public void backBtnInSeatLayoutNaal() throws InterruptedException
 	  {
@@ -491,7 +499,10 @@ import utils.CommonMethods;
 		  logger_ss.log(Status.INFO, "Successfully verified backBtnInSeatLayoutNaal");
 	  }
 	  
-	  @Test(priority=29)
+	  
+	  
+	  
+	 // @Test(priority=29)
 	  public void withOutSelectingSeatInSeatLayoutForNaal() throws InterruptedException
 	  {
 		  driver.navigate().to("http://staging.wanasatime.com");
@@ -502,7 +513,9 @@ import utils.CommonMethods;
 		  Assert.assertEquals(str,"Please select your tickets");
 		  logger_ss.log(Status.INFO, "Successfully verified withOutSelectingSeatInSeatLayoutForNaal");
 	  }
-	  @Test(priority=30) 
+	  
+	   
+	//  @Test(priority=30) 
 	  public void cancelBtnInCBQPayment() throws InterruptedException
 	  {
 		  driver.navigate().to("http://staging.wanasatime.com");
@@ -520,8 +533,9 @@ import utils.CommonMethods;
 			logger_ss.log(Status.INFO, "Successfully verified cancelBtnInCBQPayment");  
 	  }
 	  
+	  
 
-      @Test(priority=31) 	  
+   //   @Test(priority=31) 	  
 	  public void withOutSelectingSeat() throws InterruptedException
 	  {
 		  driver.navigate().to("http://staging.wanasatime.com");
@@ -537,8 +551,11 @@ import utils.CommonMethods;
 			driver.findElement(ss.logout).click();
 			//ss.alertadvt();
 	  }
+      
+      
+      
 
-	  @Test(priority=32)
+	//  @Test(priority=32)
 	  public void verifyfacebookiconclick() throws InterruptedException
 	  {
 	  logger_ss = extent.createTest("verifyfacebookiconclick");
@@ -546,5 +563,30 @@ import utils.CommonMethods;
 	  //Assert.assertEquals(s1, true);	
 	  logger_ss.log(Status.INFO, "Successfully facebookiconclick.");
 	  }
+	  
+	  
+	//  @Test
+	  public void moviebook() throws InterruptedException
+	  {
+		  ss.countrySelection();
+		  ss.movietabselection();
+		 ss.nowplayingmovieselection();
+		 ss.moviedateselection();
+		 ss.movietimeselection();
+		 ss.numberoftickets();
+		 ss.movieseatselection();
+		 
+		//  ss.movieseatselectionerrorpopup();
+		  
+		// ss.pricecomparemovies();
+	// ss.changeticketsnumberfromseatlayoutpage();
+		  //ss.movieseatselectionerrorpopup();
+		 // ss.changeticketsnumberfromseatlayoutpage();
+		  
+	  }
+	  
+	
+	  
+	  
 	}
 

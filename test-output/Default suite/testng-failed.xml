@@ -10,10 +10,9 @@
     <classes>
       <class name="wanasa.HomePageTest">
         <methods>
-          <include name="withOutSelectingSeatInSeatLayoutForNaal"/>
+          <include name="verifyeventticketBookingWithDebitCard"/>
           <include name="tearDown"/>
           <include name="setup"/>
-          <include name="closeBrowser1"/>
         </methods>
       </class> <!-- wanasa.HomePageTest -->
     </classes>
