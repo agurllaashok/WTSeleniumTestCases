@@ -5,9 +5,9 @@
     <classes>
       <class name="wanasa.HomePageTest">
         <methods>
-          <include name="eventCatFilter"/>
           <include name="tearDown"/>
           <include name="setup"/>
+          <include name="evouchersFileter"/>
           <include name="closeBrowser1"/>
         </methods>
       </class> <!-- wanasa.HomePageTest -->

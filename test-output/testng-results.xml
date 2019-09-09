@@ -2,12 +2,12 @@
 <testng-results skipped="0" failed="0" ignored="16" total="17" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="38175" started-at="2019-08-27T06:30:24Z" finished-at="2019-08-27T06:31:02Z">
+  <suite name="Default suite" duration-ms="33304" started-at="2019-09-09T09:28:03Z" finished-at="2019-09-09T09:28:36Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="38175" started-at="2019-08-27T06:30:24Z" finished-at="2019-08-27T06:31:02Z">
+    <test name="Default test" duration-ms="33304" started-at="2019-09-09T09:28:03Z" finished-at="2019-09-09T09:28:36Z">
       <class name="wanasa.HomePageTest">
-        <test-method status="PASS" signature="setup(java.lang.String)[pri:0, instance:wanasa.HomePageTest@74f0ea28]" name="setup" is-config="true" duration-ms="15984" started-at="2019-08-27T06:30:24Z" finished-at="2019-08-27T06:30:40Z">
+        <test-method status="PASS" signature="setup(java.lang.String)[pri:0, instance:wanasa.HomePageTest@74f0ea28]" name="setup" is-config="true" duration-ms="15058" started-at="2019-09-09T09:28:03Z" finished-at="2019-09-09T09:28:18Z">
           <params>
             <param index="0">
               <value>
@@ -18,22 +18,22 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method status="PASS" signature="eventCatFilter()[pri:39, instance:wanasa.HomePageTest@74f0ea28]" name="eventCatFilter" duration-ms="21003" started-at="2019-08-27T06:30:40Z" finished-at="2019-08-27T06:31:01Z">
+        <test-method status="PASS" signature="evouchersFileter()[pri:0, instance:wanasa.HomePageTest@74f0ea28]" name="evouchersFileter" duration-ms="17177" started-at="2019-09-09T09:28:18Z" finished-at="2019-09-09T09:28:35Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- eventCatFilter -->
-        <test-method status="PASS" signature="tearDown(org.testng.ITestResult)[pri:0, instance:wanasa.HomePageTest@74f0ea28]" name="tearDown" is-config="true" duration-ms="429" started-at="2019-08-27T06:31:01Z" finished-at="2019-08-27T06:31:01Z">
+        </test-method> <!-- evouchersFileter -->
+        <test-method status="PASS" signature="tearDown(org.testng.ITestResult)[pri:0, instance:wanasa.HomePageTest@74f0ea28]" name="tearDown" is-config="true" duration-ms="322" started-at="2019-09-09T09:28:35Z" finished-at="2019-09-09T09:28:36Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=eventCatFilter status=SUCCESS method=HomePageTest.eventCatFilter()[pri:39, instance:wanasa.HomePageTest@74f0ea28] output={null}]]]>
+                <![CDATA[[TestResult name=evouchersFileter status=SUCCESS method=HomePageTest.evouchersFileter()[pri:0, instance:wanasa.HomePageTest@74f0ea28] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method status="PASS" signature="closeBrowser1(java.lang.String)[pri:0, instance:wanasa.HomePageTest@74f0ea28]" name="closeBrowser1" is-config="true" duration-ms="725" started-at="2019-08-27T06:31:01Z" finished-at="2019-08-27T06:31:02Z">
+        <test-method status="PASS" signature="closeBrowser1(java.lang.String)[pri:0, instance:wanasa.HomePageTest@74f0ea28]" name="closeBrowser1" is-config="true" duration-ms="695" started-at="2019-09-09T09:28:36Z" finished-at="2019-09-09T09:28:36Z">
           <params>
             <param index="0">
               <value>

@@ -174,7 +174,7 @@ import utils.CommonMethods;
 		
 		}
 			
-		@Test(priority=9)
+		//@Test(priority=9)
 		   
 		  public void verifymovieticketbooking() throws InterruptedException
 			{
@@ -212,7 +212,7 @@ import utils.CommonMethods;
 		}	
 		
 				
-	@Test(priority=11) 
+	//@Test(priority=11) 
 		public void verifygoogLogin() throws InterruptedException
 			{
 			    logger_ss = extent.createTest("googLogin");
@@ -239,10 +239,13 @@ import utils.CommonMethods;
 		public void verifyfooterlinks() throws InterruptedException
 	    {
 			     logger_ss = extent.createTest("verifyfooterlinks");
+			     ss.countrySelection();
 		    	 ss.footerlinksaboutus();
 		    	 String URL = driver.getCurrentUrl();
 		    	 Assert.assertEquals(URL,"http://staging.wanasatime.com/AboutUs.aspx" );
+		    	 
 		    	 ss.footerlinksAdvertiseWithUs();
+		    	 
 		    	 String Advt = driver.getCurrentUrl();
 		    	 Assert.assertEquals(Advt,"http://staging.wanasatime.com/AdvertiseWithUs.aspx" );
 		    	 ss.footerlinksfaq();
@@ -275,14 +278,15 @@ import utils.CommonMethods;
 			logger_ss.log(Status.INFO, "Successfully verified contactus.");
 		}
 
-		//@Test(priority=14)
+		@Test(priority=14)
 		public void verifySMiconclick() throws InterruptedException
 		{
 			logger_ss = extent.createTest("verifySMiconclick");	
 			driver.navigate().to("http://staging.wanasatime.com");
-			//ss.alertadvt();					
+			//ss.alertadvt();	
+			ss.countrySelection();
 			int cocunt = ss.SMiconclick();
-			Assert.assertEquals(cocunt,4);
+			Assert.assertEquals(cocunt,5);
 			logger_ss.log(Status.INFO, "Successfully verified SMiconclick.");
 		}
 		
@@ -291,7 +295,8 @@ import utils.CommonMethods;
 		{
 			logger_ss = extent.createTest("verifyplaystoreclick");
 			driver.navigate().to("http://staging.wanasatime.com");
-			//ss.alertadvt();			
+			//ss.alertadvt();	
+			//ss.countrySelection();
 			String s=ss.playstoreclick();	
 			Assert.assertEquals(s, "https://play.google.com/store/apps/details?id=com.mobile.android.wanasatime&hl=en_US");		
 			logger_ss.log(Status.INFO, "Successfully verified playstoreclick");
@@ -309,12 +314,13 @@ import utils.CommonMethods;
 			logger_ss.log(Status.INFO, "Successfully verified appstoreclick");
 		}
 		
-	//	@Test(priority=17)
+	//@Test(priority=17)
 		public void verifyadvertisingneeds() throws InterruptedException
 		{
 			logger_ss = extent.createTest("verifyadvertisingneeds");
 			driver.navigate().to("http://staging.wanasatime.com");
-			//ss.alertadvt();	
+			//ss.alertadvt();
+			ss.countrySelection();
 			String s=ss.advertisingneeds();	
 			Assert.assertEquals(s, "Thanks for providing your information we will get back to you soon.");		
 			logger_ss.log(Status.INFO, "Successfully verified advertisingneeds");
@@ -412,7 +418,7 @@ import utils.CommonMethods;
 			logger_ss.log(Status.INFO, "Successfully verified verifynotifications");
 		}
 		
-      // @Test(priority=25)
+      //@Test(priority=25)
 		public void verifysearchbookingistory() throws InterruptedException
 		{
 			logger_ss = extent.createTest("searchbookingistory");
@@ -639,6 +645,18 @@ import utils.CommonMethods;
          logger_ss.log(Status.INFO, "Filter Applied Successfully Based on Event Category");
 	  
 	 }
+	 //Evouchers Fileter based on Date
+	 @Test
+	 public void evouchersFileter() throws Exception
+	 {
+		 logger_ss = extent.createTest("verifyEvouchersFilter");
+		 ss.clickSignInButton();
+		 ss.login();
+		boolean bol=ss.evouchersFilters();
+		Assert.assertEquals(bol,true);
+		logger_ss.log(Status.INFO, "Filter Applied Successfully Based on Evouchers");
+		 
+		 	 }
 	}
 	
 

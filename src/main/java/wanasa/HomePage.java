@@ -102,7 +102,7 @@ public class HomePage extends BrowserFunctions {
 	public String signinWanasaTimeCredentials() 
 	{
 		try {
-			
+			//clickSignInButton();
 			driver.findElement(signinemail).clear();
 			driver.findElement(signinpassword).clear();
 			driver.findElement(signinemail).sendKeys(CommonMethods.passingData("EnterMail"));
@@ -128,7 +128,7 @@ public class HomePage extends BrowserFunctions {
 		driver.findElement(signinpassword).sendKeys(CommonMethods.passingData("Password"));
 		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
 		driver.findElement(loginclick).click();
-		alertadvt();
+		//alertadvt();
 		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
 	}
 
@@ -1032,7 +1032,7 @@ public class HomePage extends BrowserFunctions {
 	 
 
 	//user 
-	//menu s
+	By menus=By.id("icon-m-hamburger");
 	By menu = By.xpath("//button[@id='userMenu']//*[@id='icon-m-hamburger']");
 	By menu1 = By.id("userMenu");
 	By profileclick = By.xpath("//a[@id='myProfile']");
@@ -1867,7 +1867,49 @@ public class HomePage extends BrowserFunctions {
 					
 		  return false;
 	}
+	
+	// Filters in E-vouchers Screen
+	
+	By evouchers		= 		By.id("eVouchers");
+	By statusSelect		=		By.xpath("//*[@id='statusSelection']/option");
+	By fromDate			=		By.id("fromDate");
+	By toDate			=		By.id("toDate");
+	By applybtn			=		By.id("searchDates");
+	By signinMenuClick	=		By.id("icon-m-hamburger");
+	By evouchersData	=		By.className("e-vouchers__item");
+	
+	public boolean evouchersFilters() throws Exception
+	{
+		driver.findElement(menu1).click();
+		driver.findElement(evouchers).click();
+		WebElement testDropDown = driver.findElement(By.xpath("//*[@id='statusSelection']"));  
+		Select evoucher = new Select(testDropDown);  
+		evoucher.selectByIndex(1);    
+		//date selection
+		//String fdate= CommonMethods.passingData("fromdate");
+		//System.out.println("From Date from json :" +fdate);
+		//js.executeScript("document.getElementById('fromDate').value='"+fdate+"'");
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+   		js.executeScript("document.getElementById('fromDate').value='"+CommonMethods.passingData("fromdate")+"'");
+   		js.executeScript("document.getElementById('toDate').value='"+CommonMethods.passingData("todate")+"'");
+   		driver.findElement(applybtn).click();
+   		List<WebElement> showingvouchers = driver.findElements(evouchersData);
+		  System.out.println("showingEvouchers list size" +showingvouchers.size());
+		  
+		  if(showingvouchers.size()>=0) {
+		  System.out.println("Count of Evouchers"+showingvouchers.size()); 
+		  //System.out.println("Event Name"+showingEvents);
+		  driver.manage().timeouts().implicitlyWait(30,TimeUnit.SECONDS);
+		Thread.sleep(6000);
+			  return true;
+			  }	
+
+return false;
+	}
+	
 }
+	
+
 	
 		
 	

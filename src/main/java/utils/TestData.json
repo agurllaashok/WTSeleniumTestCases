@@ -1,8 +1,8 @@
 {
-    "EnterMail"								:		"pallavi.domreddy@smscountry.com",
+    "EnterMail"								:		"nagamanjusha.a@gmail.com",
     "emcmail"								:		"nagamanjusha.a@gmail.com",
 	"EmcPassword"							:		"manjusha1",
-    "Password"								:		"pallavi00",
+    "Password"								:		"manjusha",
     "mobile" 								:		"12345678",
     "vemail"								: 		"harshitha.basani@smscountry.com",
     "vpwd"							    	: 		"WanasaTime",
@@ -30,4 +30,6 @@
      "timeFilter"							:		"Afternoon",
      "typeFilterEvent"						:		"Science and Technology",
      "catFilter"							:		"Workshops",
+	 "efromdate"							:		"12/10/2018",
+	 "etodate"								:		"9/9/2019"
 }
